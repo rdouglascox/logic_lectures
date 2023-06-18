@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture 12, issues in translation: conditional</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">
+
+table {
+border-collapse: collapse;
+margin-left: 30pt;
+}
+th {
+border-bottom: 1px solid black;
+border-right: 1px solid black;
+}
+th:last-child {
+border-right: none;
+}
+td {
+border-right: 1px solid black;
+}
+td:last-child {
+border-right: none;
+}
+
+.ttable1 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.ttable1 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable1 td:last-child {
+border-right: none;
+}
+.ttable1 td:nth-child(1) {
+border-right: double black;
+}
+.ttable1 tr:nth-child(1) {
+border-bottom: 2px solid black;
+}
+.ttable2 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable2 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable2 td:last-child {
+border-right: none;
+}
+.ttable2 td:nth-child(2) {
+border-right: double black;
+}
+.ttable2 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable3 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable3 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable3 td:last-child {
+border-right: none;
+}
+.ttable3 td:nth-child(3) {
+border-right: double black;
+}
+.ttable3 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable4 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.element {
+text-align: center;
+}
+.ttable4 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable4 td:last-child {
+border-right: none;
+}
+.ttable4 td:nth-child(4) {
+border-right: double black;
+}
+.ttable4 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+
+.arg table {
+border-collapse: collapse;
+text-align: left;
+}
+.arg tr, td {
+text-align: left;
+vertical-align: top;
+}
+.arg tr:nth-last-child(1) {
+border-top: 1px solid black;
+text-align: left;
+}
+.arg td:nth-child(1) {
+font-weight: bold;
+text-align: left;
+}
+
+.tree {
+margin-left: 35px;
+}
+body {
+font-family: "Times New Roman", Times, serif;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+.slide.section.level2 {
+padding: 20pt;
+margin: 20pt;
+}
+div.slide.section.level1 h1 {
+color: #e64626;
+font-size: 160%;
+margin-top: 10%;
+text-align: center;
+}
+div.slide.section.level2 h1 {
+color: #e64626;
+font-size: 120%;
+}
+.title-slide.section.level1 {
+padding: 20pt;
+margin: 20pt;
+}
+ul li {
+list-style: disc;
+}
+li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+li ul li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lecture 12, issues in translation: conditional</h1>
+<p class="subtitle">phil1012 introductory logic</p>
+</header>
+<h1 id="overview">overview</h1>
+<h2 id="this-lecture">this lecture</h2>
+<ul class="incremental">
+<li>issues arising with respect to translating conditional statements
+from English into PL</li>
+</ul>
+<h2 id="learning-outcomes">learning outcomes</h2>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain some of the problems arising from the assumption that
+ordinary conditions are to be translated as material conditionals</li>
+<li>distinguish between the unacceptability of certain conditions and
+their truth conditions</li>
+</ul></li>
+</ul>
+<h2 id="required-reading">required reading</h2>
+<ul class="incremental">
+<li>section 6.3 of chapter 6</li>
+</ul>
+<h1 id="issues-with-conditional">issues with conditional</h1>
+<h2 id="issues-with-conditional-1">issues with conditional</h2>
+<ul class="incremental">
+<li>one of the biggest issues in philosophical logic and philosophy of
+language concerns how we should tranlate conditional statements into
+formal language like PL</li>
+<li>logicians and philosophers are fond of the idea that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+adequately captures the truth conditions of ordinary conditionals</li>
+<li>we call
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+the <strong>material conditional</strong>.</li>
+<li>so the question is whether the material conditional provides an
+adequate translation for ordinary conditionals</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>people write entire books defending the claim against evidence to
+the contrary</li>
+<li>the matter remains controversial</li>
+<li>it is important that you get a sense of the controversy</li>
+<li>but then forget about it for the rest of the course, and just assume
+that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+adequately captures ordinary language conditionals</li>
+</ul>
+<h2 id="the-truth-table-for-conditional">the truth table for
+conditional</h2>
+<ul class="incremental">
+<li>recall the truth table for conditional</li>
+<li>if the antecedent is true and the consequent is false then the
+conditional is false. otherwise it is true.</li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td style="text-align: left;"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td style="text-align: center;">(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: center;">T</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: center;">F</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: center;">T</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: center;">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<ul class="incremental">
+<li>so far, we have assumed that the following sentences translate into
+the following PL formula.
+<ul class="incremental">
+<li>if the train breaks down, then I will be late.</li>
+<li>I will be late if the train breaks down.</li>
+<li>the train broke down, only if I am late.</li>
+</ul></li>
+<li>which we translate with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>:
+The train breaks down</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>:
+I am late</li>
+</ul></li>
+<li>using
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+we translate like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>*</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mo>→</mo><mi>L</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">*(T \rightarrow L)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>let’s see if we can do more to motivate translating the ordinary
+conditional as a material conditional</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider:
+<ul class="incremental">
+<li><ol class="incremental" type="1">
+<li>if the train breaks down, I will be late.</li>
+</ol></li>
+</ul></li>
+<li>with the following glossary
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+The train breaks down</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>:
+I am late</li>
+</ul></li>
+<li>we can all agree that (1) is false if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is false.</li>
+<li>now let’s ask:
+<ul class="incremental">
+<li>is (1) true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true?</li>
+<li>is (1) true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true?</li>
+<li>is (1) true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is false?</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>now consider:
+<ul class="incremental">
+<li><ol class="incremental" start="2" type="1">
+<li>if the train breaks down, the train breaks down.</li>
+</ol></li>
+</ul></li>
+<li>with the following glossary
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+The train breaks down</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>:
+I am late</li>
+</ul></li>
+<li><ol class="incremental" start="2" type="1">
+<li>had better be true whether
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false or whether
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is true.</li>
+</ol></li>
+<li>so we can agree that (2) is true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true</li>
+<li>and we can agree that (2) is true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is false.</li>
+<li>now let’s ask:
+<ul class="incremental">
+<li>is (1) or (2) true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true?</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>now let’s ask:
+<ul class="incremental">
+<li>is (2) true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true?</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>well, it had better not be</li>
+<li>if (1) is false if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true, then the conditional must have the same truth table as the
+biconditional.</li>
+<li>this is absurd.</li>
+<li>so we can agree that (1) is true if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>
+is true</li>
+<li>and now we have agreed that the ordinary conditional must have the
+truth table we have given it if it is a truth functional connective at
+all</li>
+</ul>
+</div>
+<h2 id="proving-equivalence">proving equivalence</h2>
+<ul class="incremental">
+<li>let’s have another go. this time we set out to prove the equivalence
+of the ordinary conditional.</li>
+<li>we do so in two parts</li>
+<li>first part: if “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+is true, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true.</li>
+<li>second part: If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true, then “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”.</li>
+</ul>
+<h2 id="the-first-part">the first part</h2>
+<ul class="incremental">
+<li>if “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+is true, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true.</li>
+<li>proof:
+<ul class="incremental">
+<li>suppose that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is false.</li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is false, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false.</li>
+<li>so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false.</li>
+<li>but if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false, then “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+is certainly false.</li>
+<li>so if “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+is true,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+must be true.</li>
+</ul></li>
+</ul>
+<h2 id="the-second-part-version-1">the second part (version 1)</h2>
+<ul class="incremental">
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true, then “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”.</li>
+<li>“proof” 1:
+<ul class="incremental">
+<li>the proposition
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \land \lnot B)</annotation></semantics></math>,
+so if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \land \lnot B)</annotation></semantics></math>
+is true.</li>
+<li>but from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \land \lnot B)</annotation></semantics></math>,
+“if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+obviously follows. for given that it is not the case that both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is the case, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+must not be the case—that is,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+must be the case.</li>
+</ul></li>
+</ul>
+<h2 id="the-second-part-version-2">the second part (version 2)</h2>
+<ul class="incremental">
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true, then “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”.</li>
+<li>“proof” 2:
+<ul class="incremental">
+<li>the proposition
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot A \lor B)</annotation></semantics></math>,
+so if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>
+is true,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot A \lor B)</annotation></semantics></math>
+is true. …</li>
+<li>but from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot A \lor B)</annotation></semantics></math>,
+“if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>”
+obviously follows. For given that at least one of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is the case, if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is the case—that is,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+is not the case—then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+must be the case.</li>
+</ul></li>
+</ul>
+<h2 id="a-quick-proof">a quick proof</h2>
+<ul class="incremental">
+<li>from Frank Jackson:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p>Instead of saying “if it rains, then the match will be cancelled,”
+one could have said, to much the same effect, “either it will not rain,
+or it will and the match will be cancelled:” and the latter is true if
+and only if either “it will rain” is false or “the match will be
+cancelled” is true; that is if and only if [the material conditional] is
+true. (Jackson 1991 p. 2)</p>
+</blockquote>
+<hr />
+<ul class="incremental">
+<li>it is very plausible that if conditionals are truth-functional
+connectives, then they are the connective we have chosen.</li>
+<li>but there are problems with the antecedent of this conditional!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>let’s consider some of the absurd consequences of treating the
+ordinary language conditional as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>:</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>absurdity of assuming that if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+is true, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A \rightarrow C</annotation></semantics></math>
+is true.
+<ul class="incremental">
+<li>if Sydney is in New Zealand, then 2+2=4!</li>
+<li>if Sydney is in Australia, then 2+2=4!</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>absurdity of assuming that if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is false, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A \rightarrow C</annotation></semantics></math>
+is true.
+<ul class="incremental">
+<li>if 2+2=5, then Sydney is in Australia!</li>
+<li>if 2+2=5, then Sydney is in New Zealand!</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>one might argue that all of these conditionals are intuitively
+false</li>
+<li>but according to the truth table for conditional, they should be
+true.</li>
+<li>what’s missing is some kind of connection between the antecedent and
+the consequent.</li>
+<li>but truth functions do not seem to be able to provide the relevant
+connection.</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>perhaps our intuitions concern the appropriateness of uttering these
+conditionals, not their truth values.</li>
+<li>perhaps they are all true, although it would be in appropriate to
+utter them.</li>
+<li>perhaps it is appropriate to utter a conditional only if there is
+the relevant kind of connection between the antecedent and the
+consequent?</li>
+</ul>
+</div>
+<h2 id="a-gricean-explanation">a gricean explanation</h2>
+<ul class="incremental">
+<li>for it to be appropriate to assert “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”,
+one must believe it to be true. (Maxim of Quality).</li>
+<li>so one must either believe (i) that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is false, or (ii) that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+is true, or (iii) that both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+is true.</li>
+<li>if (i), then asserting
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+would be more informative than asserting “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”.
+so if you were to assert former rather than the latter you would violate
+the Maxim of Quality.</li>
+<li>if (ii), then asserting
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+would be more informative than asserting “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”.
+so if you were to assert former rather than the latter you would violate
+the Maxim of Quality.</li>
+<li>if (iii) then, since you believe that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true, and believe “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”,
+you should believe that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.
+then asserting
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A \lor C</annotation></semantics></math>
+would be more informative than assering ‘If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>’’.</li>
+<li>finally, if you believe that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false, then since you believe “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”,
+you should believe that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>.
+then asserting
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+would be more informative than asserting “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”.</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>for it to be appropriate to utter ‘If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>’’
+one must not be confident that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true or that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is false.</li>
+<li>yet, one must be confident that it is not the case that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+is true and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>
+is false.</li>
+<li>but this is plausible only if is confident that there is some kind
+of connection between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.</li>
+<li>so, an utterance of “If
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>”
+will implicate a connection between
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>.</li>
+<li>this is what goes wrong in the examples on a Gricean
+explanation.</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>but there are problems which can’t be explained away in Gricean
+terms</li>
+<li>here’s a logical entailment involving
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>.
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>C</mi><mo>⊨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(A \land B) \rightarrow C \models (A \rightarrow C) \lor (B \rightarrow C)</annotation></semantics></math></li>
+</ul></li>
+<li>and here’s an ordinary language equivalent:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p>If you close switch A and switch B the light will go on. Hence, it is
+the case that either if you close switch A the light will go on, or that
+if you close switch B the light will go on. (Priest 2008 p. 14)</p>
+</blockquote>
+<ul class="incremental">
+<li>this example is a problem for the Gricean explanation since we are
+not confident in either the antecedent or the consequent</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>here’s another logical entailment involving
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>.
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⊨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(A \rightarrow B) \land (C \rightarrow D) \models (A \rightarrow D) \lor (C \rightarrow B)</annotation></semantics></math></li>
+</ul></li>
+<li>here’s an ordinary language equivalent:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>If John is in Paris he is in France, and if John is in London he is
+in England. Hence, it is the case either that if John is in Paris he is
+in England, or that if he is in London he is in France. (Priest 2008
+p. 15)</p>
+</blockquote>
+<ul class="incremental">
+<li>trouble!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>here’s is one more logical entailment involving
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>.
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>⊨</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot (A \rightarrow B) \models A</annotation></semantics></math></li>
+</ul></li>
+<li>here’s an ordinary language equivalent:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>It is not the case that if there is a good god the prayers of evil
+people will be answered. Hence, there is a god. (Priest 2008 p. 15)</p>
+</blockquote>
+<ul class="incremental">
+<li>trouble!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>this should be enough to give you a sense of the issues with
+translating ordinary conditionals using the material conditional</li>
+<li>but as I said earlier, while it is important for you to know the
+controvery, controversial matters won’t make much of a difference to
+what you are doing in this course</li>
+</ul>
+</div>
+<h1 id="issues-with-only-if">issues with ‘only if’</h1>
+<h2 id="issues-with-only-if-1">issues with ‘only if’</h2>
+<ul class="incremental">
+<li>many students have trouble with ‘only if’</li>
+<li>they get the antecedent and consequent confused</li>
+<li>they are tempted to translate ‘A only if B’ as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></li>
+<li>let’s see if we can set your thinking straight on this one</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>why translate ‘A only if B’ as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \rightarrow B</annotation></semantics></math>?</li>
+<li>well, we want to make sure that the following argument is
+valid:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">P1.</td>
+<td style="text-align: center;">John is home only if the lights are
+on.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P2.</td>
+<td style="text-align: center;">John is home.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C1.</td>
+<td style="text-align: center;">The lights are on.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<ul class="incremental">
+<li>to do so we must translate ‘John is home only if the lights are on’
+as follows.</li>
+<li>glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>
+: John is home.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>:
+The lights are on.</li>
+</ul></li>
+<li>translation:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>J</mi><mo>→</mo><mi>L</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>J</mi><mo>∴</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">(J \rightarrow L), J \therefore L</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we are pretty certain that the argument is valid.</li>
+<li>so we must at least translate ‘A only if B’ as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>.</li>
+<li>the question is whether it <em>also</em> goes ‘the other way’.</li>
+<li>but if it did, there would be no difference between ‘John is home if
+and only if the lights are on’ and ‘John is home only if the lights are
+on’.</li>
+<li>so it can only go one way.</li>
+<li>and if it doesn’t go the way we standardly assume, then it doesn’t
+make a the argument at issue valid.</li>
+</ul>
+</div>
+<h1 id="wrapping-up">wrapping up</h1>
+<h2 id="this-lecture-1">this lecture</h2>
+<ul class="incremental">
+<li>issues arising with respect to translating conditional statements
+from English into PL</li>
+</ul>
+<h2 id="next-lecture">next lecture</h2>
+<ul class="incremental">
+<li>lecture 13, the formal language MPL</li>
+</ul>
+</body>
+</html>

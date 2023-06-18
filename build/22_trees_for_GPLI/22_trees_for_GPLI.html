@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 22, trees for GPLI</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 22, trees for GPLI</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>trees for GPLI</li>
+<li>two new tree rules
+<ul class="incremental">
+<li>the closure rule</li>
+<li>substitution of identicals</li>
+</ul></li>
+<li>finished trees and saturated paths
+<ul class="incremental">
+<li>new definition of saturation</li>
+</ul></li>
+<li>reading models off open paths
+<ul class="incremental">
+<li>provisional domains and assignments of referents</li>
+<li>trimming domains and assignments of referents</li>
+</ul></li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain what it is for a GPLI tree to be finished and a path to be
+saturated</li>
+<li>construct GPLI trees</li>
+<li>read models off open paths of GPLI trees</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>section 13.7 of chapter 13</li>
+</ul>
+</div>
+
+<div id="tree-rules-for-gpli" class="title-slide slide section level1">
+<h1>tree rules for gpli</h1>
+
+</div>
+<div id="tree-rules-for-gpli-1" class="slide section level2">
+<h1>tree rules for gpli</h1>
+<ul class="incremental">
+<li>as in the transition from MPL to GPL we will build on our
+pre-existing tree rules</li>
+<li>since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math>
+is part of the logical vocabulary, we need to say something about the
+tree rules for it</li>
+</ul>
+</div>
+<div id="the-closure-rule" class="slide section level2">
+<h1>the closure rule</h1>
+<ul class="incremental">
+<li>the first new rule is called the <strong>closure rule</strong></li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="64230b3eb1e276c7036bca76f457b7801b3e60fb.svg" />
+</div>
+<ul class="incremental">
+<li>this basically says that you can close a path if there is a
+proposition on it which asserts that something is not identical to
+itself!</li>
+<li>the motivation for this rule should be obvious</li>
+</ul>
+</div>
+</div>
+<div id="new-notation-explained" class="slide section level2">
+<h1>new notation explained</h1>
+<ul class="incremental">
+<li>recall that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+stands for any arbitrary wff that has no free variables other than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>x</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{x}</annotation></semantics></math>
+and that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/\underline{x})</annotation></semantics></math>
+stands for the wff that results from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+by replacing <em>all</em> free occurrences of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>x</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{x}</annotation></semantics></math>
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+with the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math></li>
+<li>we use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a})</annotation></semantics></math>
+to stand for any arbitrary wff in which the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+occurs (one or more times)</li>
+<li>we then use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>b</mi><mo accent="true">_</mo></munder><mi>/</mi><mi>/</mi><munder><mi>a</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{b}//\underline{a})</annotation></semantics></math>
+to stand for any wff which results from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a})</annotation></semantics></math>
+by replacing <em>some</em> occurrences of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+with the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>b</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{b}</annotation></semantics></math></li>
+</ul>
+</div>
+<div id="some-examples-using-the-new-notation"
+class="slide section level2">
+<h1>some examples using the new notation</h1>
+<ul class="incremental">
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ga</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>/</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b//a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Gb</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>c</mi><mi>/</mi><mi>/</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(c//a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">Gc</annotation></semantics></math></li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Rab</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>/</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b//a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>b</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Rbb</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>c</mi><mi>/</mi><mi>/</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(c//a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>c</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Rcb</annotation></semantics></math></li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>∨</mo><mi>R</mi><mi>a</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \lor Rab)</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>c</mi><mi>/</mi><mi>/</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(c//a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>c</mi><mo>∨</mo><mi>R</mi><mi>a</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Gc \lor Rab)</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>∨</mo><mi>R</mi><mi>c</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \lor Rcb)</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>c</mi><mo>∨</mo><mi>R</mi><mi>c</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Gc \lor Rcb)</annotation></semantics></math></li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>→</mo><mi>R</mi><mi>b</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \rightarrow Rbb)</annotation></semantics></math>,
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>/</mi><mi>/</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a//b)</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>→</mo><mi>R</mi><mi>a</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \rightarrow Rab)</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>→</mo><mi>R</mi><mi>b</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \rightarrow Rba)</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>→</mo><mi>R</mi><mi>a</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Ga \rightarrow Raa)</annotation></semantics></math></li>
+</ul>
+</div>
+<div id="substitution-of-identicals" class="slide section level2">
+<h1>substitution of identicals</h1>
+<ul class="incremental">
+<li>the second new rule is called the <strong>substitution of
+identicals</strong> rule</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="d4c9121a5dfe9bdb8c959f7610f83f9735c8499e.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s run through an example . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="646339262a2dfdfeff1f2469884183c06f9bf828.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1e8f2b57a97a03c9b15e4d1616daae7da7adcb52.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1e8f2b57a97a03c9b15e4d1616daae7da7adcb52.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1e366f7b10b0fe0d1f8dd3af4a1e8590c9fad1c7.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="0c37347f2fdfe9d98ee3fa1d47197b6ea8563872.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="d548af54b38545efd5b14ae0c391da31c9043be5.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="a59afef6729377e196480285cf55c03215e05fe9.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="35f5212eb2a752455a5a51ab25eb6ac1b2a179f9.svg" />
+</div>
+<ul class="incremental">
+<li>wrong!</li>
+<li>why? neither the closure rule nor the ordinary rule for closing a
+path applies here</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="de79b9f3bc898d223abcebcd745895904a18f87b.svg" />
+</div>
+<ul class="incremental">
+<li>right!</li>
+</ul>
+</div>
+
+<div id="finished-trees-closed-and-saturated-paths"
+class="title-slide slide section level1">
+<h1>finished trees, closed and saturated paths</h1>
+
+</div>
+<div id="finished-trees-closed-and-saturated-paths-1"
+class="slide section level2">
+<h1>finished trees, closed and saturated paths</h1>
+<ul class="incremental">
+<li>a tree is finished when all paths are closed or saturated</li>
+<li>a tree is saturated when no more rules can be applied to it</li>
+<li>recall the qualification for the rule for the universal
+quantifier</li>
+<li>we add the following qualification for saturation</li>
+</ul>
+</div>
+<div id="saturation" class="slide section level2">
+<h1>saturation</h1>
+<ul class="incremental">
+<li><strong>saturation</strong>: a path is not saturated unless every
+application of SI that could be made on that path and that would result
+in the addition to the path of a formula that does not already appear on
+the path has been made</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s consider another example . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="4947cb397979cb5a5df2ebaee0e48b1c542c6121.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="7a9d4c60cc751beeb7bf9f627af9a9300dfa2cba.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="e40a7767aee1d727efc74667213bc27b241f96f1.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="38ae6b68eb9d96e7ad4b70fd7df48f81e5249609.svg" />
+</div>
+<ul class="incremental">
+<li>this tree is finished, as we cannot apply the SI rule to generate
+any new basic propositions (or negations of basic propositions)</li>
+</ul>
+</div>
+
+<div id="reading-models-off-open-paths"
+class="title-slide slide section level1">
+<h1>reading models off open paths</h1>
+
+</div>
+<div id="reading-models-off-open-paths-1" class="slide section level2">
+<h1>reading models off open paths</h1>
+<ul class="incremental">
+<li>given a saturated open path, we can read off from it a model on
+which the proposition(s) at the top of the tree are true</li>
+<li>the process involves three stages
+<ul class="incremental">
+<li>stage one: construct a provisional domain and assignment of
+referents to names</li>
+<li>stage two: trim the domain and assignments of referents to names to
+obtain a final domain and assignment of referents to names</li>
+<li>stage three: assign extensions to predicates on the trimmed domain
+and assignments of referents</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s consider an example . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="26194548c22c7eb4b07fe89a9bf6070b95c06593.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="7b9d1f21b51b86215ac90a62aa110effe7d949de.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="3fa9a94d3785b7212b752b2b0339ce9300398a9a.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="506e7355010207d7e1e5130d02e054e95ababe80.svg" />
+</div>
+<ul class="incremental">
+<li>domain:</li>
+<li>referents:</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="506e7355010207d7e1e5130d02e054e95ababe80.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2, 3} (provisional)</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+3 (provisional)</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8523457648c3d7c79a85966f8761944fdbac4e2b.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2, 3} (provisional)</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+3 (provisional)</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8523457648c3d7c79a85966f8761944fdbac4e2b.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2, 3} (provisional)</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+3 (revised)</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8523457648c3d7c79a85966f8761944fdbac4e2b.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2} (revised)</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+2 (revised)</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="838a5fa4e0f7905bb8f473a257ad75e886d419ad.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2} (revised)</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+2 (revised)</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{\langle 1, 1 \rangle \}</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s consider another example . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1e09e13dc9a9ec6854d0109d3f6425dcbdba94f1.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="2223156276cb2715cbfb8bef6feeef1cf8ab824f.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="38f1087bcb009317824e6ef8cb53b3a2ba267873.svg" />
+</div>
+<ul class="incremental">
+<li>domain:</li>
+<li>referents:</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="38f1087bcb009317824e6ef8cb53b3a2ba267873.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2, 3}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:3</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="fef337985c29c0265356170243de1ae8059c2e31.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:2</li>
+<li>extensions:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="858b740d7bc479b6bb715b34e8c9f736ef6d8f22.svg" />
+</div>
+<ul class="incremental">
+<li>domain: {1, 2}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:2</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mo stretchy="false" form="prefix">{</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo><mo>,</mo><mi>G</mi><mo>:</mo><mo stretchy="false" form="prefix">{</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">F: \{2\}, G: \{2\}</annotation></semantics></math></li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>trees for GPLI</li>
+<li>two new tree rules
+<ul class="incremental">
+<li>the closure rule</li>
+<li>substitution of identicals</li>
+</ul></li>
+<li>finished trees and saturated paths
+<ul class="incremental">
+<li>new definition of saturation</li>
+</ul></li>
+<li>reading models off open paths
+<ul class="incremental">
+<li>provisional domains and assignments of referents</li>
+<li>trimming domains and assignments of referents</li>
+</ul></li>
+</ul>
+</div>
+<div id="live-lecture-and-tutorials" class="slide section level2">
+<h1>live lecture and tutorials</h1>
+<ul class="incremental">
+<li>you will practice constructing GPLI trees on your own</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>lecture 23, numerical quantifiers and definite descriptions in
+GPLI</li>
+</ul>
+</div>
+</body>
+</html>

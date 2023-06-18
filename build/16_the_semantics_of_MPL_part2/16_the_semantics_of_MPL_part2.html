@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 16, the semantics of MPL (part 2)</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 16, the semantics of MPL (part 2)</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>second of two lectures on the semantics of MPL</li>
+<li>the semantics of complicated quantified propositions in MPL</li>
+<li>analyses of logical concepts in MPL</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain how the truth values of complex quantified propositions are
+determined in MPL</li>
+<li>explain how models provide analyses of various logical concepts
+(like validity) in MPL</li>
+<li>determine whether a complex quantified proposition of MPL is true or
+false on a given model</li>
+<li>describe a model on which an MPL proposition is true and/or a model
+on which a proposition is false</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>sections 9.4 and 9.5 of chapter 9</li>
+</ul>
+</div>
+
+<div id="complex-quantified-propositions"
+class="title-slide slide section level1">
+<h1>complex quantified propositions</h1>
+
+</div>
+<div id="complex-quantified-propositions-1"
+class="slide section level2">
+<h1>complex quantified propositions</h1>
+<ul class="incremental">
+<li>how are the truth values of the following determined?
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Rx)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x(Px \land Rx)</annotation></semantics></math></li>
+</ul></li>
+<li>we do not yet have a way of determining the truth values of these
+propositions</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>but we do have a way of determining the truth values of the
+following in a model:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>a</mi><mo>→</mo><mi>R</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pa \rightarrow Ra)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>a</mi><mo>∧</mo><mi>R</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pa \land Ra)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>so here’s an idea . . .</li>
+<li>we can replace a question we <em>cannot</em> answer with many
+questions we <em>can</em> answer</li>
+<li>we can answer questions about the values of expressions like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>a</mi><mo>∧</mo><mi>R</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pa \land Ra)</annotation></semantics></math>
+in models related to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></li>
+<li>it turns out that if we ask the right questions we can answer
+questions about the truth values of complex quantified expressions</li>
+</ul>
+</div>
+<div id="some-new-terminology" class="slide section level2">
+<h1>some new terminology</h1>
+<ul class="incremental">
+<li>but before we get to that, we need some new terminology</li>
+<li>we use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+to stand for an arbitrary formula which has no free variables other than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>x</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{x}</annotation></semantics></math></li>
+<li>we use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/ \underline{x})</annotation></semantics></math>
+to stand for a formula that results from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+by replacing all the free occurrences of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>x</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{x}</annotation></semantics></math>
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{x})</annotation></semantics></math>
+with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>for example</li>
+<li>if we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>→</mo><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(x): (Fx \rightarrow Gx)</annotation></semantics></math></li>
+</ul></li>
+<li>then we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>a</mi><mo>→</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a/x): (Fa \rightarrow Ga)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>b</mi><mo>→</mo><mi>G</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): (Fb \rightarrow Gb)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>x</mi><mo>↔</mo><mi>H</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(x): ((Fx \land Ga) \lor (Gx \leftrightarrow Hx))</annotation></semantics></math></li>
+</ul></li>
+<li>then we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>a</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>a</mi><mo>↔</mo><mi>H</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a/x):((Fa \land Ga) \lor (Ga \leftrightarrow Ha))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>b</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>b</mi><mo>↔</mo><mi>H</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): ((Fb \land Ga) \lor (Gb \leftrightarrow Hb))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>x</mi><mo>∨</mo><mi>H</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(y): \forall x ((Fx \land Ga) \rightarrow (Gx \lor Hy))</annotation></semantics></math></li>
+</ul></li>
+<li>then we have . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mi>/</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>x</mi><mo>∨</mo><mi>H</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(a/y): \forall x ((Fx \land Ga) \rightarrow (Gx \lor Ha))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mi>x</mi><mo>∨</mo><mi>H</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/y): \forall x ((Fx \land Ga) \rightarrow (Gx \lor Hb))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>now let’s put this new terminology to use</li>
+</ul>
+</div>
+<div id="complex-universally-quantified-propositions"
+class="slide section level2">
+<h1>complex universally quantified propositions</h1>
+<ul class="incremental">
+<li>let’s see how we can work out the truth value of a complex
+universally quantified proposition like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Rx)</annotation></semantics></math></li>
+</ul></li>
+<li>on a model like this:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill}
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s how we do it</li>
+<li>according to the semantics of MPL:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall \underline{x} \alpha (\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff for every object
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math>
+in the domain of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is some name that is not assigned a referent in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>
+is a model just like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that in it the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is assigned the referent
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>so take some name that doesn’t have a referent on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+say
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>what this means is that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+if and only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Pb \rightarrow Rb</annotation></semantics></math>
+is true on every model that is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>so to check whether our proposition is true on this model, we
+literally check every model which meets this condition</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s one such model which is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>1</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^1</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+Bill</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+<li>we ask whether the following is true on the model:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): (Pb \rightarrow Rb)</annotation></semantics></math></li>
+</ul></li>
+<li>it is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>1</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^1</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s another model which is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>2</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^2</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+Ben</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+<li>we ask whether the following is true on the model:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): (Pb \rightarrow Rb)</annotation></semantics></math></li>
+</ul></li>
+<li>it is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>2</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^2</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s another model which is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>3</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^3</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+Alice</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+<li>we ask whether the following is true on the model:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): (Pb \rightarrow Rb)</annotation></semantics></math></li>
+</ul></li>
+<li>it is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>3</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^3</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+if and only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Pb \rightarrow Rb</annotation></semantics></math>
+is true on every model that is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>we haven’t checked every such model</li>
+<li>but we’ve checked one for each object in the domain of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></li>
+<li>so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></li>
+</ul>
+</div>
+<div id="complex-existentially-quantified-propositions"
+class="slide section level2">
+<h1>complex existentially quantified propositions</h1>
+<ul class="incremental">
+<li>let’s see how we can work out the truth value of a complex
+existentially quantified proposition like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x(Px \rightarrow Rx)</annotation></semantics></math></li>
+</ul></li>
+<li>on a model like this:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill}
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s how we do it</li>
+<li>according to the semantics of MPL:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists\underline{x} \alpha (\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff there is at least one object
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math>
+in the domain of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is some name that is not assigned a referent in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>
+is a model just like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that in it the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is assigned the referent
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>so take some name that doesn’t have a referent on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+say
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>what this means is that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+if and only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Pb \rightarrow Rb</annotation></semantics></math>
+is true on <em>some</em> model that is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>so to check whether our proposition is true on this model, we check
+to see if there is such a model which meets this condition</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s one such model which is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<ul class="incremental">
+<li>model
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>1</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^1</annotation></semantics></math>:
+<ul class="incremental">
+<li>domain: {Bill, Ben, Alice}</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+Bill</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+{Bill},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>:
+{Bill, Alice}</li>
+</ul></li>
+</ul></li>
+<li>we ask whether the following is true on the model:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>b</mi><mi>/</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>:</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(b/x): (Pb \rightarrow Rb)</annotation></semantics></math></li>
+</ul></li>
+<li>it is true on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mn>1</mn></msup><annotation encoding="application/x-tex">\mathcal{M}^1</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+if and only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo>→</mo><mi>R</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Pb \rightarrow Rb</annotation></semantics></math>
+is true on <em>some</em> model that is exactly like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that it assigns a referent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math></li>
+<li>we have just seen such a model</li>
+<li>so
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>R</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x(Px \rightarrow Rx)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></li>
+</ul>
+</div>
+
+<div id="the-semantics-of-mpl" class="title-slide slide section level1">
+<h1>the semantics of MPL</h1>
+
+</div>
+<div id="the-semantics-of-mpl-stated-again"
+class="slide section level2">
+<h1>the semantics of MPL, stated again</h1>
+<ul class="incremental">
+<li>we are now, finally, in a position to state complete semantics of
+MPL . . .</li>
+<li>see handout “The Semantics of MPL”</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ol class="incremental" style="list-style-type: decimal">
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>P</mi><mo accent="true">_</mo></munder><munder><mi>a</mi><mo accent="true">_</mo></munder></mrow><annotation encoding="application/x-tex">\underline{P}\underline{a}</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff the referent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+is in the extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>P</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{P}</annotation></semantics></math>
+in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot \alpha</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is false in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+are both true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff one or both of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is false in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+or both</p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+are both true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+or both false in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math></p></li>
+</ol>
+</div>
+<div class="slide section level2">
+
+<ol class="incremental" start="7" style="list-style-type: decimal">
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall \underline{x} \alpha (\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff for every object
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math>
+in the domain of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is some name that is not assigned a referent in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>
+is a model just like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that in it the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is assigned the referent
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math></p></li>
+<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists\underline{x} \alpha (\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+iff there is at least one object
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math>
+in the domain of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>a</mi><mo accent="true">_</mo></munder><mi>/</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha(\underline{a}/\underline{x})</annotation></semantics></math>
+is true in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is some name that is not assigned a referent in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msubsup><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><mi>o</mi><munder><mi>a</mi><mo accent="true">_</mo></munder></msubsup><annotation encoding="application/x-tex">\mathcal{M}_{o}^{\underline{a}}</annotation></semantics></math>
+is a model just like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℳ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{M}</annotation></semantics></math>
+except that in it the name
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>a</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{a}</annotation></semantics></math>
+is assigned the referent
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>o</mi><annotation encoding="application/x-tex">o</annotation></semantics></math></p></li>
+</ol>
+</div>
+
+<div id="analyses-of-logical-concepts"
+class="title-slide slide section level1">
+<h1>analyses of logical concepts</h1>
+
+</div>
+<div id="analyses-of-logical-concepts-1" class="slide section level2">
+<h1>analyses of logical concepts</h1>
+<ul class="incremental">
+<li>we now get analyses of our core logical notions</li>
+<li>they are just what you would expect given that a model plays the
+same role in MPL as truth table rows played in PL</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>an argument is <strong>valid</strong> iff there is no model in which
+the premises are all true and the conclusion is false</li>
+<li>an argument is <strong>invalid</strong> iff there is a model in
+which the premises are all true and the conclusion is false</li>
+<li>such a model is a <strong>counterexample</strong> or
+<strong>countermodel</strong> to the argument</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>a proposition is a <strong>tautology</strong> iff there is no model
+in which it is false</li>
+<li>a proposition is a <strong>contradiction</strong> iff there is no
+model in which it is true</li>
+<li>a proposition is <strong>satisfiable</strong> if and only if there
+is at least one model in which it is true</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>two propositions are <strong>equivalent</strong> iff there is no
+model in which one is true and the other is false</li>
+<li>two propositions are <strong>contradictory</strong> iff there is no
+model in which they have the same truth value</li>
+<li>two propositions are <strong>jointly satisfiable</strong> iff there
+is at least one model in which they are both true</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>a set of propositions is <strong>satisfiable</strong> iff there is
+at least one model in which all the propositions in the set are
+true</li>
+</ul>
+</div>
+
+<div id="analyses-and-tests" class="title-slide slide section level1">
+<h1>analyses and tests</h1>
+
+</div>
+<div id="analyses-and-tests-1" class="slide section level2">
+<h1>analyses and tests</h1>
+<ul class="incremental">
+<li>in PL truth tables provided an analysis of validity and a method of
+testing for validity</li>
+<li>in MPL, models give analyses—but <em>not</em> tests</li>
+<li>our analysis of validity <em>fixes the facts</em> concerning which
+arguments in MPL are valid</li>
+<li>however, we have no way of finding out whether an argument is valid
+How do you know that there is <em>no</em> model on which the premises
+are all true and the conclusion is false? There is an infinite number of
+models. you can’t check them all!</li>
+<li>trees for MPL to the rescue!</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>the semantics of complicated quantified propositions in MPL</li>
+<li>analyses of central logical notions in terms of models</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>lecture 17, trees for MPL</li>
+</ul>
+</div>
+</body>
+</html>

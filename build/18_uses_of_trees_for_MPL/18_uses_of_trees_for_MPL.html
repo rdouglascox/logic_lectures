@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 18, uses of trees for MPL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 18, uses of trees for MPL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>uses of trees for MPL</li>
+<li>how to set up trees to test for various logical properties in
+MPL</li>
+<li>how to read off models from completed trees</li>
+<li>identifying infinite trees and reading models off the open paths of
+infinite trees</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>use trees to test for various logical properties of MPL
+formulas</li>
+<li>read off (counter)models from open paths of MPL trees</li>
+<li>identify infinite trees and read models of infinite paths</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>sections 10.2 and 10.3 of chapter 10</li>
+</ul>
+</div>
+
+<div id="using-trees" class="title-slide slide section level1">
+<h1>using trees</h1>
+
+</div>
+<div id="using-trees-1" class="slide section level2">
+<h1>using trees</h1>
+<ul class="incremental">
+<li>MPL trees, like PL trees, test for satisfiability, in the first
+instance.</li>
+<li>but we can use them to test for much more</li>
+<li>again, you need to know how to set up the tree, and how to interpret
+its results</li>
+<li>in the case of MPL trees, we read off models on which the initial
+propositions are jointly satisfiable</li>
+<li>these are called <strong>countermodels</strong> in the case of
+arguments.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we set up and use MPL trees to test for various properties in much
+the same way as we did for PL trees.</li>
+<li>let’s look at an example of testing some proposition to see whether
+it is a tautology</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="93e8b763cd7176b259c802dc3c0d9032890e8890.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="5777d978176e12055282ff6a82622a8e753ccee3.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="89e3db3e374966ef88ff5363d526a6eac1e27f48.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="e3726668b8a45e4a6f92ca12c4c9d012400baacf.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="0065d064cc78d8bb420cebdc31132807adca5f0d.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="24824931e1de4b1b8e492f18bfb38a7026e14acc.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="12d03f5cc58b812c64e86f728149d506ad58954f.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="a0a45d6e2d8ccc432cac0ef2eb87b1340c3ac068.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="4a4f3e4d5a1230d18ec9ea903b5075a7d0b8144a.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can conclude that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mo>∃</mo><mi>x</mi><mi>F</mi><mi>x</mi><mo>∧</mo><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>→</mo><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((\exists x Fx \land \forall x (Fx \rightarrow Gx)) \rightarrow \exists xGx)</annotation></semantics></math>
+is a tautology, since its negation is not satisfiable.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>to take another example, suppose we want to test whether some
+argument is a valid argument</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="dc786d3fe9f8eb3b7669a79ff7569c3dd2d9b1c1.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="50b9e7216d42bf3264459dfbade95077876927a6.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="50b9e7216d42bf3264459dfbade95077876927a6.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="524571e763eb7d01315b136746539a9b503b6752.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1480a6a2be5402abfa37c81a0d85e72d6cb8570f.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8168ca4a950061f4ca0d9a17931072d176941524.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="b001c7c5327480d68068ccffcd72e61810da89a8.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="61df41d0ca9f85be1363c0dcb7a1eb51034a9ff7.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="79c3a7a310878e16719cc83cac6a8c6e6af8e6a0.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="7e9b852a870712c7716a6e1131c8734399840d5c.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can conclude that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>F</mi><mi>x</mi><mo>,</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo>∴</mo><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists xFx, \exists xGx \therefore \exists x(Fx \land Gx)</annotation></semantics></math>
+is not a valid argument, since the premises,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>F</mi><mi>x</mi><mo>,</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\exists xFx, \exists xGx,</annotation></semantics></math>
+and the negated conclusion,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>∧</mo><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot \exists x(Fx \land Gx)</annotation></semantics></math>
+are jointly satisfiable.</li>
+<li>we want to be able to read off a countermodel from our tree.</li>
+<li>how?</li>
+</ul>
+</div>
+
+<div id="how-to-read-off-models-from-open-paths"
+class="title-slide slide section level1">
+<h1>how to read off models from open paths</h1>
+
+</div>
+<div id="how-to-read-off-models-from-open-paths-1"
+class="slide section level2">
+<h1>how to read off models from open paths</h1>
+<ul class="incremental">
+<li>a model consists of:
+<ul class="incremental">
+<li>a domain</li>
+<li>a referent for each name which appears on the path</li>
+<li>an extension for each predicate which appears on the path</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>where there are <em>n</em> names in the path, we write our domain as
+follows:
+<ul class="incremental">
+<li>domain: {1, …, <em>n</em>}</li>
+</ul></li>
+<li>so if there are 3 names in the path, we write our domain as follows:
+<ul class="incremental">
+<li>domain: {1,2,3}</li>
+</ul></li>
+<li>we then assign each name in the path to an object in the domain as
+follows:
+<ul class="incremental">
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:3,
+…</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we then assign an extension to each predicate which makes atomic
+formulas involving the predicate true.</li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Fa</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ga</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Gb</annotation></semantics></math>,
+are all on an open path, then we assign the following extensions to the
+predicates:
+<ul class="incremental">
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+{1},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>:
+{1,2}.</li>
+</ul></li>
+<li>if the predicate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>
+is on the open path but does not occur in an atomic formula, then we
+assign the following extension to the predicate:
+<ul class="incremental">
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∅</mi><annotation encoding="application/x-tex">\emptyset</annotation></semantics></math>
+(Not
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>H</mi><annotation encoding="application/x-tex">H</annotation></semantics></math>:
+{<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∅</mi><annotation encoding="application/x-tex">\emptyset</annotation></semantics></math>}).</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s consider an example …</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose we want to read a model off of this tree:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="e223367c8b54a90c0754d28903b52b7742b3d77a.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>first step: find the number of names on the open path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="e223367c8b54a90c0754d28903b52b7742b3d77a.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>there are two, so we have the following domain:
+<ul class="incremental">
+<li>domain: {1, 2}</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>second step: assign each name in the path to an object in the
+domain</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="e223367c8b54a90c0754d28903b52b7742b3d77a.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we assign referents in the most natural manner:
+<ul class="incremental">
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+2</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>third step: assign an extension to each predicate which makes atomic
+formulas involving the predicate true</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="5e53df1fa8999ce17264c19b969b986125fd9a97.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we assign an extension to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>
+which makes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Fa</annotation></semantics></math>
+true:
+<ul class="incremental">
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+{1}</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="9d7d80ad8dadffcb28c9182896ef781a11b96a64.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we assign an extension to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>
+which makes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Gb</annotation></semantics></math>
+true:
+<ul class="incremental">
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+{1},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>:
+{2}</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is our completed model:
+<ul class="incremental">
+<li>domain: {1, 2}</li>
+<li>deferents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+2</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+{1},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>:
+{2}</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="oh-no-infinite-trees" class="title-slide slide section level1">
+<h1>oh no! infinite trees</h1>
+
+</div>
+<div id="oh-no-infinite-trees-1" class="slide section level2">
+<h1>oh no! infinite trees</h1>
+<ul class="incremental">
+<li>unlike PL trees, MPL trees have an interesting feature: they can be
+infinitely long</li>
+<li>see pp. 372–373 of the textbook for how to avoid infinite trees in
+MPL</li>
+<li>let’s consider an example of an infinite tree</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="27069157f99f24a18a952056c42b0544d51f9f07.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="020d1c44d51f82aeb8dee0a6dd26cc61f9d9b635.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="1d8bf5ee588a52d5108e8c031a434bb46a898ec6.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="6d08e6ebf7cb9cb38f9628e8c06e881cea084373.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="2381618461d761860630a0af272cb0aca646ef03.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ae43c99a1c8ef57ceb00581fb1d75b994d8dd0aa.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>this tree is going to go on like this forever</li>
+<li>it will never be complete</li>
+<li>it has an infinite path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>is the proposition satisfiable or not?</li>
+<li>is the path saturated or not?</li>
+<li>it is saturated</li>
+<li>so it is satisfiable</li>
+<li>we can read off a model</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>will the proposition always be satisfiable if we have an infinite
+tree?</li>
+<li>will infinite paths always be saturated?</li>
+<li>no and no.</li>
+<li>here is an example</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8648fbca6dcf2a7b031a6bbf18c5b23dbf999f87.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="38b0435b36e36cc82fce98f8947807ef35d5d3f7.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ed28654ad7b014fbc3adf1ca2c09b702b2eae2a3.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="0bf29ff4a484fc939e546913214fc7e1fa48dddc.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="d8c8983ccc7c9c97b099e6b3795439917577c34d.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is another infinite path (if we ignore
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>a</mi><mo>∧</mo><mi>¬</mi><mi>G</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ga \land \lnot Ga</annotation></semantics></math>).</li>
+<li>but the proposition is not satisfiable.</li>
+<li>and the path is not saturated.</li>
+<li>and if we were to saturate it, by applying the rule for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∧</mo><annotation encoding="application/x-tex">\land</annotation></semantics></math>
+to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>a</mi><mo>∧</mo><mi>¬</mi><mi>G</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ga \land \lnot Ga</annotation></semantics></math>,
+it would close straight away.</li>
+</ul>
+</div>
+
+<div id="reading-models-off-infinite-trees"
+class="title-slide slide section level1">
+<h1>reading models off infinite trees</h1>
+
+</div>
+<div id="reading-models-off-infinite-trees-1"
+class="slide section level2">
+<h1>reading models off infinite trees</h1>
+<ul class="incremental">
+<li>I said we could read a model off of our infinite tree above.</li>
+<li>let’s look at how.</li>
+<li>here is our tree again:</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ae43c99a1c8ef57ceb00581fb1d75b994d8dd0aa.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what is the domain?</li>
+<li>how many names occur on the open path?</li>
+<li>an infinite number of names occur</li>
+<li>so here is our domain:
+<ul class="incremental">
+<li>domain: {1, 2, 3, . . . }</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>how shall we assign referents to each of the infinite number of
+names?</li>
+<li>like this of course:
+<ul class="incremental">
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+3 . . .</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>and what about extensions for the predicates?</li>
+<li>well, there are only two predicates
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>.</li>
+<li>but we need an assignment which makes them true whenever they appear
+in atomic propositions on the path.</li>
+<li>let’s look at our tree and think about it . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ae43c99a1c8ef57ceb00581fb1d75b994d8dd0aa.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the pattern for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>
+is:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Gb</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">Gc</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">Gd</annotation></semantics></math>,
+…</li>
+<li>the pattern for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>
+is:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Fa</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Fb</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">Fc</annotation></semantics></math>,
+…</li>
+<li>our complete model, then:
+<ul class="incremental">
+<li>domain: {1, 2, 3, . . . }</li>
+<li>referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+1,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+2,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+3 . . .</li>
+<li>extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+{<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>,
+. . .},
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math>:
+{<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>,
+. . .}.</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>will you have to read off a model from an infinite tree in the
+problem sets or the exam?</li>
+<li>possibly. but if so, it won’t be a difficult pattern to
+identify.</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>lecture 19, the formal language GPL</li>
+</ul>
+</div>
+</body>
+</html>

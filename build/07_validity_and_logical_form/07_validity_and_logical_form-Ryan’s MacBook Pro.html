@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 07, validity and logical form</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 07, validity and logical form</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>in the last few lectures we’ve been examining the semantics of PL
+and truth tables</li>
+<li>in this lecture we look in more detail at the idea of the
+<strong>logical form</strong> of a proposition</li>
+<li>recall that logical form was central to the definition of
+<strong>validity</strong></li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>identify the forms of propositions</li>
+<li>identify instances of forms</li>
+<li>identify the forms of arguments</li>
+<li>identify instances of argument forms</li>
+<li>explain how truth tables provide a test not only for necessary truth
+preservation but for validity</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>all of chapter 5</li>
+</ul>
+</div>
+
+<div id="validity-and-logical-form"
+class="title-slide slide section level1">
+<h1>validity and logical form</h1>
+
+</div>
+<div id="validity-and-logical-form-1" class="slide section level2">
+<h1>validity and logical form</h1>
+<ul class="incremental">
+<li>recall: an argument is <strong>valid</strong> if and only if,
+<strong>in virtue of the form of the argument</strong>, it is impossible
+for its conclusion to be false if its premises are all true</li>
+<li>our truth table test tells us whether it is possible for the
+conclusion to be false if all of the premises are true</li>
+<li>does it tell us whether this is in virtue of the form of the
+argument?</li>
+<li>it turns out that the answer is yes, since we can show that every
+argument with the same form is valid</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>practical upshot: once we know that a given argument is valid, we
+know that every other argument of the same form is valid, without having
+to do truth tables for them individually</li>
+</ul>
+</div>
+<div id="the-form-of-an-argument" class="slide section level2">
+<h1>the form of an argument</h1>
+<ul class="incremental">
+<li>what is the form of an argument?</li>
+<li>suppose we set out to test whether the following argument is
+valid:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">P1.</td>
+<td align="left">John is a philosopher</td>
+</tr>
+<tr class="even">
+<td align="left">P2.</td>
+<td align="left">if John is a philosopher, then he drinks</td>
+</tr>
+<tr class="odd">
+<td align="left">C1.</td>
+<td align="left">John drinks</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we begin by writing up our glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+John is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>:
+John drinks</li>
+</ul></li>
+<li>we translate accordingly:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(P \rightarrow D)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we use a truth table to test for validity:</li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math></td>
+<td
+align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td
+align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(P \rightarrow D)</annotation></semantics></math></td>
+<td
+align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="right">T</td>
+<td align="right">T</td>
+<td align="right">T</td>
+</tr>
+<tr class="odd">
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="right">T</td>
+<td align="right">F</td>
+<td align="right">F</td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="right">F</td>
+<td align="right">T</td>
+<td align="right">T</td>
+</tr>
+<tr class="odd">
+<td align="center">F</td>
+<td align="center">F</td>
+<td align="right">F</td>
+<td align="right">T</td>
+<td align="right">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>great, now suppose we set out to test whether the following argument
+is valid:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">P1.</td>
+<td align="left">Jane is a philosopher</td>
+</tr>
+<tr class="even">
+<td align="left">P2.</td>
+<td align="left">if Jane is a philosopher, then she smokes</td>
+</tr>
+<tr class="odd">
+<td align="left">C1.</td>
+<td align="left">Jane smokes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we begin by writing up our glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>:
+Jane is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>:
+Jane smokes</li>
+</ul></li>
+<li>we translate accordingly:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>J</mi><mo>→</mo><mi>S</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(J \rightarrow S)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>and we use a truth table to test for validity:</li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math></td>
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>J</mi><mo>→</mo><mi>S</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(J\rightarrow S)</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="left">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="left">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>after a while we might start to feel that the whole process is a bit
+laborious and redundant</li>
+<li>don’t these arguments have something in common which means that if
+we know that one is valid, we know the other is, and vice versa?</li>
+<li>yep, these arguments are instances of the same
+<strong>form</strong></li>
+<li>how can we make the notion of form more precise?</li>
+</ul>
+</div>
+
+<div id="abstracting-from-content-from-propositions-to-forms"
+class="title-slide slide section level1">
+<h1>abstracting from content: from propositions to forms</h1>
+
+</div>
+<div id="from-propositions-to-forms" class="slide section level2">
+<h1>from propositions to forms</h1>
+<ul class="incremental">
+<li>consider the following proposition:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>¬</mi><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land (B \rightarrow \lnot C))</annotation></semantics></math></li>
+</ul></li>
+<li>what is its form?</li>
+<li>there are many correct answers ranging from very course-grained to
+very fine-grained</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>at its most course-grained it is just a proposition:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>¬</mi><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{(A \land (B \rightarrow \lnot C))}</annotation></semantics></math></li>
+</ul></li>
+<li>so it has the following form:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>at a more fine-grained level of description it is a conjunction:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>A</mi><mo accent="true">_</mo></munder><mo>∧</mo><munder><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>¬</mi><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\underline{A } \land \underline{(B \rightarrow \lnot C)})</annotation></semantics></math></li>
+</ul></li>
+<li>so it has the following form:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>at an even more fine-grained level of description it is a
+conjunction whose second conjunct is a conditional:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>A</mi><mo accent="true">_</mo></munder><mo>∧</mo><munder><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>B</mi><mo accent="true">_</mo></munder><mo>→</mo><munder><mrow><mi>¬</mi><mi>C</mi></mrow><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\underline{A } \land \underline{(\underline{B} \rightarrow \underline{\lnot C})})</annotation></semantics></math></li>
+</ul></li>
+<li>so it has the following form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>γ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land (\beta \rightarrow \gamma))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>at the most fine-grained level of description it is a conjunction
+whose second conjunct is a conditional, whose consequent is a negation:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>A</mi><mo accent="true">_</mo></munder><mo>∧</mo><munder><mrow><mo stretchy="true" form="prefix">(</mo><munder><mi>B</mi><mo accent="true">_</mo></munder><mo>→</mo><mi>¬</mi><munder><mi>C</mi><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow><mo accent="true">_</mo></munder><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\underline{A } \land \underline{(\underline{B} \rightarrow \lnot \underline{C})})</annotation></semantics></math></li>
+</ul></li>
+<li>so it has the following form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>¬</mi><mi>γ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land (\beta \rightarrow \lnot \gamma))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>propositions do not have a single form</li>
+<li>they have many forms ranging from the course-grained to the
+fine-grained</li>
+</ul>
+</div>
+
+<div id="instances-from-forms-to-propositions"
+class="title-slide slide section level1">
+<h1>instances: from forms to propositions</h1>
+
+</div>
+<div id="instances-from-forms-to-propositions-1"
+class="slide section level2">
+<h1>instances: from forms to propositions</h1>
+<ul class="incremental">
+<li>consider the following logical form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>β</mi><mo>∧</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow (\lnot \beta \land \alpha))</annotation></semantics></math></li>
+</ul></li>
+<li>a <strong>logical form</strong> is like a formula, except that in
+place of basic propositions it has variables in the place of
+formulas</li>
+<li>given a logical form, we can ask: what propositions have this form?
+We call such propositions <strong>instances</strong> of the form</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>an instance of a logical form can be obtained by replacing the
+variables with propositions</li>
+<li>all occurrences of the same variable must be replaced by the same
+proposition</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>for example . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>β</mi><mo>∧</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow (\lnot \beta \land \alpha))</annotation></semantics></math>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>B</mi><mo>∧</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \leftrightarrow (\lnot B \land A))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>E</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B \leftrightarrow (\lnot E \land B))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>E</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \leftrightarrow (\lnot E \land (A \rightarrow B)))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>B</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B \leftrightarrow (\lnot B \land B))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \leftrightarrow (\lnot (A \rightarrow B) \land (A \rightarrow B)))</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>but not . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>β</mi><mo>∧</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow (\lnot \beta \land \alpha))</annotation></semantics></math>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>B</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \leftrightarrow (\lnot B \land B))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>E</mi><mo>∧</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B \leftrightarrow (\lnot E \land D))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>E</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \leftrightarrow (\lnot E \land B))</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>two propositions share a form when they are both instances of
+it</li>
+<li>it doesn’t make sense to say that they have the same form, they may
+both be instances of some form and not both instances of some other
+form</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>okay, now we have a better idea of the forms of a proposition</li>
+<li>and we have a better idea of the propositions which are instances of
+forms</li>
+<li>we can now generalise this idea to the forms of an argument</li>
+</ul>
+</div>
+
+<div id="the-forms-of-an-argument"
+class="title-slide slide section level1">
+<h1>the form(s) of an argument</h1>
+
+</div>
+<div id="the-forms-of-an-argument-1" class="slide section level2">
+<h1>the form(s) of an argument</h1>
+<ul class="incremental">
+<li>consider the following argument form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow (\beta \rightarrow \alpha))</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>β</mi><mo>→</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\therefore \beta \rightarrow \alpha</annotation></semantics></math><br />
+</li>
+</ul></li>
+<li>an <strong>argument form</strong> is just like an argument except
+that, in place of basic propositions, it has variables in the place of
+propositions</li>
+<li>given an argument form, we can ask: what arguments have this
+form?</li>
+<li>we call such arguments <strong>instances</strong> of the form</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>for example . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha \rightarrow (\beta \rightarrow \alpha)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>β</mi><mo>→</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\therefore \beta \rightarrow \alpha</annotation></semantics></math>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>→</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P \rightarrow (Q \rightarrow P)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>Q</mi><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\therefore Q \rightarrow P</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>∨</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(R \lor \lnot Q)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>∨</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>∨</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(R \lor \lnot Q) \rightarrow (P \rightarrow (R \lor \lnot Q))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>∨</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\therefore P \rightarrow (R \lor \lnot Q)</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider the following argument:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>→</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(P \rightarrow (Q \rightarrow P))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>Q</mi><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\therefore Q \rightarrow P</annotation></semantics></math></li>
+</ul></li>
+<li>an argument can be an instance of more than one form</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>for example . . .
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>→</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(P \rightarrow (Q \rightarrow P))</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>Q</mi><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\therefore Q \rightarrow P</annotation></semantics></math>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow (\beta \rightarrow \alpha))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\therefore (\beta \rightarrow \alpha)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \gamma</annotation></semantics></math>),
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>β</mi><mo>→</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\therefore (\beta \rightarrow \alpha)</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>an argument can be an instance of more than one form</li>
+<li>it is important to keep this in mind when we discuss validity and
+form</li>
+</ul>
+</div>
+
+<div id="validity-and-form" class="title-slide slide section level1">
+<h1>validity and form</h1>
+
+</div>
+<div id="validity-and-form-1" class="slide section level2">
+<h1>validity and form</h1>
+<ul class="incremental">
+<li>now that we have a precise understanding of the forms of an
+argument, to what use can we put the idea?</li>
+<li>well, we can use it to make our notion of validity more precise</li>
+<li>and we can appeal to the form of an argument in arguing that it is
+valid</li>
+<li>we begin by introducing notions analogous to validity and
+invalidity, which are properties of arguments, for argument forms</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we define the properties <strong>valid*</strong> and
+<strong>invalid*</strong> of <strong>argument forms</strong></li>
+<li>these are distinct from the properties <strong>valid</strong> and
+<strong>invalid</strong> of <strong>arguments</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>an argument form is <strong>valid*</strong> if and only if there is
+no row in which the premises are true and the conclusion false</li>
+<li>an argument form is <strong>valid*</strong> if and only if there is
+no instance of the form in which the premises are true and the
+conclusion false</li>
+<li>an argument form is <strong>invalid*</strong> if and only if there
+is a row in which the premises are true and the conclusion false</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we test for <strong>validity*</strong> of an argument form using
+truth tables as before</li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="left">T</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="left">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>now, a very nice feature of <strong>valid*</strong> argument forms
+is that every instance of a <strong>valid*</strong> argument form is
+valid argument</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider the following argument:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>∨</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>E</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \land C) \rightarrow ((B \lor D) \rightarrow E))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land C)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>∨</mo><mi>D</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>E</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\therefore ((B \lor D) \rightarrow E)</annotation></semantics></math><br />
+</li>
+</ul></li>
+<li>we need a truth table with 32 rows since we have five distinct basic
+propositions!</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>but wait! this argument is an instance of the form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\therefore \beta</annotation></semantics></math></li>
+</ul></li>
+<li>and this form is <strong>valid*</strong> (we just did the truth
+table for it)</li>
+<li>so we can immediately conclude that the argument is valid</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>hint: unless stated otherwise, it is <em>always</em> permissible to
+save yourself time on a problem set or an exam by appealing to the form
+of an argument in proving its validity</li>
+<li>we will look at examples in the tutorials</li>
+</ul>
+</div>
+
+<div id="invalidity-and-form" class="title-slide slide section level1">
+<h1>invalidity and form</h1>
+
+</div>
+<div id="invalidity-and-form-1" class="slide section level2">
+<h1>invalidity and form</h1>
+<ul class="incremental">
+<li>careful: it is not the case that every instance of an
+<strong>invalid*</strong> argument form is an invalid argument</li>
+<li>the following is an <strong>invalid*</strong> argument form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\therefore \beta</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>but the following is an instance of the form:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow A)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></li>
+</ul></li>
+<li>and this argument is valid</li>
+<li>we can see this by doing the truth table, or by noting that this is
+<em>also</em> an instance of a valid form</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>indeed, we can distinguish between <strong>A-properties</strong> and
+<strong>S-properties</strong> of arguments and argument forms</li>
+<li>every instance of a form with an A-property has that A-property. not
+so with the S-properties.</li>
+</ul>
+<div class="incremental">
+<table>
+<thead>
+<tr class="header">
+<th align="left">A-property</th>
+<th align="left">S-property</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">validity</td>
+<td align="left">invalidity</td>
+</tr>
+<tr class="even">
+<td align="left">logical truth</td>
+<td align="left">non-logical truth</td>
+</tr>
+<tr class="odd">
+<td align="left">equivalence</td>
+<td align="left">inequivalence</td>
+</tr>
+<tr class="even">
+<td align="left">unsatisfiability</td>
+<td align="left">satisfiability</td>
+</tr>
+</tbody>
+</table>
+<ul class="incremental">
+<li>in other words, there are shortcuts available for establishing
+A-properties, but no shortcuts for S-properties</li>
+</ul>
+</div>
+</div>
+
+<div id="notable-argument-forms"
+class="title-slide slide section level1">
+<h1>notable argument forms</h1>
+
+</div>
+<div id="notable-argument-forms-1" class="slide section level2">
+<h1>notable argument forms</h1>
+<ul class="incremental">
+<li>now that we’ve introduced the idea of a valid* argument form, and
+we’ve seen how to appeal to valid argument forms in establishing the
+validity of an argument, you should be on the lookout for shortcuts</li>
+<li>here are some valid* argument forms to be on the lookout for</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>modus ponens
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></li>
+</ul></li>
+<li>modus tollens
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></li>
+</ul></li>
+<li>hypothetical syllogism
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">(\beta</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\gamma)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\gamma)</annotation></semantics></math></li>
+</ul></li>
+<li>constructive dilemma
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>γ</mi></mrow><annotation encoding="application/x-tex">(\gamma</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\delta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∨</mo><annotation encoding="application/x-tex">\lor</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\gamma)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">(\beta</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∨</mo><annotation encoding="application/x-tex">\lor</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\delta)</annotation></semantics></math></li>
+</ul></li>
+<li>disjunctive syllogism
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">(\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∨</mo><annotation encoding="application/x-tex">\lor</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∴</mo><annotation encoding="application/x-tex">\therefore</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>validity and logical form</li>
+<li>the forms of propositions</li>
+<li>the instances of forms</li>
+<li>valid* argument forms</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>lecture 08, functional completeness</li>
+</ul>
+</div>
+</body>
+</html>

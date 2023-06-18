@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture 04, issues in translation: assertability and implicature</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">
+
+table {
+border-collapse: collapse;
+margin-left: 30pt;
+}
+th {
+border-bottom: 1px solid black;
+border-right: 1px solid black;
+}
+th:last-child {
+border-right: none;
+}
+td {
+border-right: 1px solid black;
+}
+td:last-child {
+border-right: none;
+}
+
+.ttable1 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.ttable1 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable1 td:last-child {
+border-right: none;
+}
+.ttable1 td:nth-child(1) {
+border-right: double black;
+}
+.ttable1 tr:nth-child(1) {
+border-bottom: 2px solid black;
+}
+.ttable2 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable2 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable2 td:last-child {
+border-right: none;
+}
+.ttable2 td:nth-child(2) {
+border-right: double black;
+}
+.ttable2 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable3 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable3 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable3 td:last-child {
+border-right: none;
+}
+.ttable3 td:nth-child(3) {
+border-right: double black;
+}
+.ttable3 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable4 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.element {
+text-align: center;
+}
+.ttable4 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable4 td:last-child {
+border-right: none;
+}
+.ttable4 td:nth-child(4) {
+border-right: double black;
+}
+.ttable4 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+
+.arg table {
+border-collapse: collapse;
+text-align: left;
+}
+.arg tr, td {
+text-align: left;
+vertical-align: top;
+}
+.arg tr:nth-last-child(1) {
+border-top: 1px solid black;
+text-align: left;
+}
+.arg td:nth-child(1) {
+font-weight: bold;
+text-align: left;
+}
+
+.tree {
+margin-left: 35px;
+}
+body {
+font-family: "Times New Roman", Times, serif;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+.slide.section.level2 {
+padding: 20pt;
+margin: 20pt;
+}
+div.slide.section.level1 h1 {
+color: #e64626;
+font-size: 160%;
+margin-top: 10%;
+text-align: center;
+}
+div.slide.section.level2 h1 {
+color: #e64626;
+font-size: 120%;
+}
+.title-slide.section.level1 {
+padding: 20pt;
+margin: 20pt;
+}
+ul li {
+list-style: disc;
+}
+li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+li ul li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lecture 04, issues in translation: assertability and
+implicature</h1>
+<p class="subtitle">phil1012 introductory logic</p>
+</header>
+<h1 id="overview">overview</h1>
+<h2 id="this-lecture">this lecture</h2>
+<ul class="incremental">
+<li>issues that arise with respect to translating English sentences into
+PL</li>
+<li>first in a series of ‘mini-lectures’ on the issues</li>
+<li>assertability and implicature</li>
+</ul>
+<h2 id="learning-outcomes">learning outcomes</h2>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain the difference between what is said, what is implied, and
+what is implicated by the utterance of a sentence</li>
+<li>distinguish between what is said, the proposition expressed by an
+utterance of a sentence in a context, and what is merely implied or
+implicated by an utterance of a sentence in a context</li>
+</ul></li>
+</ul>
+<h2 id="required-reading">required reading</h2>
+<ul class="incremental">
+<li>section 6.1 of chapter 6</li>
+</ul>
+<h1 id="truth-and-appropriateness">truth and appropriateness</h1>
+<h2 id="truth-and-appropriateness-1">truth and appropriateness</h2>
+<ul class="incremental">
+<li>there is a distinction between <strong>sentences</strong> and
+<strong>utterances</strong></li>
+<li>a speaker might utter a sentence, and express a proposition, which
+may be true or false</li>
+<li>the act of uttering a sentence is itself called an
+<strong>utterance</strong></li>
+<li>an utterance can be <strong>appropriate</strong> or
+<strong>inappropriate</strong></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider the following exchange:
+<ul class="incremental">
+<li>you: where is the general lecture theatre?</li>
+<li>me: through the main entry, across the lawn, and on the right</li>
+</ul></li>
+<li>my utterance is <strong>true</strong> and
+<strong>appropriate</strong></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider the following exchange:
+<ul class="incremental">
+<li>you: Where is the general lecture theatre?</li>
+<li>me: # in Sydney</li>
+</ul></li>
+<li>my utterance is <strong>true</strong> and
+<strong>inappropriate</strong></li>
+<li>in what sense was my utterance inappropriate?</li>
+<li>it was uncooperative</li>
+<li>what are the rules governing appropriate utterances?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>H. P. Grice:</li>
+<li>a general principle for cooperative conversation . . .</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p>Make your conversational contribution such as is required, at the
+stage at which it occurs, by the accepted purpose or direction of the
+talk exchange in which you are engaged. (Grice 1989 p. 26)</p>
+</blockquote>
+<hr />
+<ul class="incremental">
+<li>Grice attempted to capture the ideal of cooperative conversation
+with a series of maxims</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>maxims of quantity:
+<ul class="incremental">
+<li>make your contribution as informative as required (for the current
+purposes of the exchange)</li>
+<li>do not make your contribution more informative than required</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>maxim of quality:
+<ul class="incremental">
+<li>try to make your contribution one that is true
+<ul class="incremental">
+<li>do not say what you believe to be false</li>
+<li>do not say something for which you lack adequate evidence</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>maxims of relation:
+<ul class="incremental">
+<li>be relevant
+<ul class="incremental">
+<li>e.g. . . .</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>maxim of manner:
+<ul class="incremental">
+<li>be perspicuous
+<ul class="incremental">
+<li>avoid obscurity of expression</li>
+<li>avoid ambiguity</li>
+<li>be brief (avoid unnecessary prolixity)</li>
+<li>be orderly</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>in general an utterance will be appropriate if and only if it
+conforms to these maxims</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider the earlier example again:
+<ul class="incremental">
+<li>you: where is the general lecture theatre?</li>
+<li>me: # in Sydney</li>
+</ul></li>
+<li>which maxim(s) did I violate?</li>
+<li>the maxim of quantity (or relevance? or both?)</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>what’s the point of knowing the distinction between truth and
+falsity and appropriateness and inappropriateness?</li>
+<li>well, we are aiming to capture the <strong>truth conditions of an
+utterance</strong> in our translations</li>
+<li>so we need to be able to tell the difference between a sentence
+being true but inappropriate to utter in a context and its being false
+as uttered in a context</li>
+</ul>
+<hr />
+</div>
+<h1 id="what-is-said-and-what-is-merely-implicated">what is said and
+what is merely implicated</h1>
+<h2 id="what-is-said-and-what-is-merely-implicated-1">what is said and
+what is merely implicated</h2>
+<ul class="incremental">
+<li>there is another important distinction between . . .
+<ul class="incremental">
+<li>what is <strong>said</strong></li>
+<li>what is <strong>implicated</strong></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider another example:
+<ul class="incremental">
+<li>you: Did you pass the exam?</li>
+<li>me: If I didn’t, I’m fool</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>what is <strong>said</strong>: if I didn’t pass the exam, I am a
+fool
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+I passed the exam</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+I am a fool</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>→</mo><mi>F</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \rightarrow F)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>what is <strong>implicated</strong>: I passed the exam
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+I passed the exam</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+I am a fool</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>interestingly, it was by <strong>flouting</strong> a conversational
+maxim that I managed to convey this</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>what’s the point of knowing the distinction between what is said and
+what is implicated by an utterance?</li>
+<li>well, we are aiming to translate what is said by an utterance</li>
+<li>so it is important to be able to distinguish between what is said
+and what is medrely implicated</li>
+</ul>
+<h1 id="wrapping-up">wrapping up</h1>
+<h2 id="this-lecture-1">this lecture</h2>
+<ul class="incremental">
+<li>we looked at some important distinctions in the philosophy of
+language which can help us with our translations</li>
+<li>we are aiming, in our translations, to capture only what is said,
+not what is implied or implicated by an utterance</li>
+</ul>
+<h2 id="next-lecture">next lecture</h2>
+<ul class="incremental">
+<li>lecture 05, the semantics of PL</li>
+</ul>
+</body>
+</html>

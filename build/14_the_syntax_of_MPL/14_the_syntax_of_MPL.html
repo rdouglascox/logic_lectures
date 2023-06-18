@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 14, syntax of MPL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 14, syntax of MPL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>the syntax of MPL</li>
+<li>formal specification of the vocabulary and syntax of MPL</li>
+<li>how formulas of MPL are constructed</li>
+<li>the notions of logical operators, the scope of a quantifier, free
+and bound variables, open and closed formulas</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>identify well-formed formulas of MPL</li>
+<li>construct construction tables for formulas of MPL</li>
+<li>identify the main operator of a formula of MPL</li>
+<li>identify the scope of a quantifier</li>
+<li>identify free and bound variables and open and closed formulas of
+MPL</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>section 8.4 of chapter 8</li>
+</ul>
+</div>
+
+<div id="syntax-of-mpl" class="title-slide slide section level1">
+<h1>syntax of MPL</h1>
+
+</div>
+<div id="syntax-of-mpl-1" class="slide section level2">
+<h1>syntax of MPL</h1>
+<ul class="incremental">
+<li>we can give a precise specification of the syntax of MPL as we did
+for PL.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the <strong>symbols</strong> of MPL are:
+<ul class="incremental">
+<li>names:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>…</mi><mo>,</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">a, b, c, \ldots, t</annotation></semantics></math></li>
+</ul></li>
+<li>variables:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>,</mo><mi>u</mi><mo>,</mo><mi>v</mi><mo>,</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">x, y, z, u, v, w</annotation></semantics></math></li>
+</ul></li>
+<li>predicates:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>,</mo><mi>…</mi><mo>,</mo><mi>X</mi><mo>,</mo><mi>Y</mi><mo>,</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">A, B, C, \ldots, X, Y, Z</annotation></semantics></math></li>
+</ul></li>
+<li>five connectives:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mspace width="0.5em"></mspace><mo>∧</mo><mspace width="0.5em"></mspace><mo>∨</mo><mspace width="0.5em"></mspace><mo>→</mo><mspace width="0.5em"></mspace><mo>↔</mo></mrow><annotation encoding="application/x-tex">\lnot \hspace{6pt} \land \hspace{6pt} \lor \hspace{6pt} \rightarrow \hspace{6pt} \leftrightarrow</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the <strong>symbols</strong> of MPL (continued) are:
+<ul class="incremental">
+<li>two quantifier symbols:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mspace width="1.0em"></mspace><mo>∃</mo></mrow><annotation encoding="application/x-tex">\forall \hspace{12pt} \exists</annotation></semantics></math></li>
+</ul></li>
+<li>two punctuation symbols (parentheses):
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mspace width="1.0em"></mspace><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">( \hspace{12pt} )</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><strong>terms</strong> are defined as follows:
+<ul class="incremental">
+<li>a name is a term</li>
+<li>a variable is a term</li>
+<li>nothing else is a term</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><strong>wffs</strong> of MPL are defined as follows:
+<ul class="incremental">
+<li>(3i) where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>P</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{P}</annotation></semantics></math>
+is a predicate and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>t</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{t}</annotation></semantics></math>
+is a term, the following is a wff:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>P</mi><mo accent="true">_</mo></munder><munder><mi>t</mi><mo accent="true">_</mo></munder></mrow><annotation encoding="application/x-tex">\underline{P}\underline{t}</annotation></semantics></math></li>
+</ul></li>
+<li>(3ii) where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+are wffs and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><munder><mi>x</mi><mo accent="true">_</mo></munder><annotation encoding="application/x-tex">\underline{x}</annotation></semantics></math>
+is a variable, the following are wffs:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot \alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi></mrow><annotation encoding="application/x-tex">\forall \underline{x} \alpha</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><munder><mi>x</mi><mo accent="true">_</mo></munder><mi>α</mi></mrow><annotation encoding="application/x-tex">\exists \underline{x} \alpha</annotation></semantics></math></li>
+</ul></li>
+<li>nothing else is a wff</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="constructing-wffs" class="title-slide slide section level1">
+<h1>constructing wffs</h1>
+
+</div>
+<div id="constructing-wffs-1" class="slide section level2">
+<h1>constructing wffs</h1>
+<ul class="incremental">
+<li>given this syntax for MPL we can show how any well formed formula of
+MPL is constructed.</li>
+<li>suppose we want to construct
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\forall x Rx \rightarrow \exists x Px)</annotation></semantics></math></li>
+</ul></li>
+<li>we might construct it as follows</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x Rx</annotation></semantics></math></td>
+<td align="center">1, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x Rx</annotation></semantics></math></td>
+<td align="center">1, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\forall x Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">3,4 /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>a <strong>logical operator</strong> is a connective or a
+quantifier</li>
+<li>the main operator (c.f. main connective) is the last operator added
+in the construction of the wff</li>
+<li>any wff constructed along the way is a subformula</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose we want to construct
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Rx \rightarrow \exists x Px)</annotation></semantics></math>.</li>
+</ul></li>
+<li>we might construct it as follows</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">1,3 /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">1,3, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">4/(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="quantifier-scope" class="title-slide slide section level1">
+<h1>quantifier scope</h1>
+
+</div>
+<div id="quantifier-scope-1" class="slide section level2">
+<h1>quantifier scope</h1>
+<ul class="incremental">
+<li>if a wff has a quantifier in it, then it must have got there by
+being stuck on the front of some sub-formula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+(by 3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>
+or 3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)
+at some stage in the construction</li>
+<li>for any quantifier appearing in a wff, we call this subformula
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+the <strong>scope</strong> of the quantifier</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\forall x Rx \rightarrow \exists x Px)</annotation></semantics></math>,
+the scope of the quantifier
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x</annotation></semantics></math>
+is the wff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></li>
+<li>to see this, consider how we would construct
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\forall x Rx \rightarrow \exists x Px)</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x Rx</annotation></semantics></math></td>
+<td align="center">1, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Rx \rightarrow \exists x Px)</annotation></semantics></math>,
+the scope of the quantifier
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x</annotation></semantics></math>
+is the wff
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Rx \rightarrow \exists x Px)</annotation></semantics></math>.</li>
+<li>to see this, consider the construction table for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Rx \rightarrow \exists x Px)</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">1,3, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Step</th>
+<th align="center">Wff constructed at this step</th>
+<th align="center">From steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></td>
+<td align="center">/(3i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></td>
+<td align="center">2, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">1,3, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Rx \rightarrow \exists x Px)</annotation></semantics></math></td>
+<td align="center">4, /(3ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="free-and-bound-variables"
+class="title-slide slide section level1">
+<h1>free and bound variables</h1>
+
+</div>
+<div id="free-and-bound-variables-1" class="slide section level2">
+<h1>free and bound variables</h1>
+<ul class="incremental">
+<li>an occurrence of a variable in a wff is <strong>bound</strong> if it
+is in the scope of a quantifier that contains that variable.</li>
+<li>an occurrence of a variable that is <em>not</em> bound in a wff is
+<strong>free</strong>.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Fx \rightarrow \exists x Gx)</annotation></semantics></math></li>
+</ul></li>
+<li>the first occurrence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is free.</li>
+<li>the second—the one in the quantifier—is bound.</li>
+<li>the third is bound.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if a variable falls within the scope of multiple quantifiers
+containing that variable, it is bound by the one added first (in the
+construction of the wff).</li>
+<li>consider:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Fx \rightarrow \exists x Gx)</annotation></semantics></math></li>
+</ul></li>
+<li>the second occurrence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is bound by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x</annotation></semantics></math>.</li>
+<li>the fourth occurrence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is bound by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x</annotation></semantics></math>.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>an occurrence of a quantifier is <strong>vacuous</strong> if the
+variable in the quantifier does not occur free within the scope of the
+quantifier.</li>
+<li>consider:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">\exists x P y</annotation></semantics></math></li>
+</ul></li>
+<li>this occurrence of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x</annotation></semantics></math>
+is vacuous.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we distinguish between the quantifier symbols
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math>
+and quantifiers
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x</annotation></semantics></math>.</li>
+<li>a quantifier consists of a quantifier symbol and a variable.</li>
+<li>the variable which is a constituent of a quantifier is not free. (is
+it bound?)</li>
+<li>this variable is sometimes called the <strong>operator
+variable</strong>.</li>
+</ul>
+</div>
+
+<div id="open-and-closed-wffs" class="title-slide slide section level1">
+<h1>open and closed wffs</h1>
+
+</div>
+<div id="open-and-closed-wffs-1" class="slide section level2">
+<h1>open and closed wffs</h1>
+<ul class="incremental">
+<li>corresponding to the notion of free and bound variables is the
+notion of open and closed wffs</li>
+<li>a wff with no free occurrences of variables is a
+<strong>closed</strong> wff.
+<ul class="incremental">
+<li>e.g. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><mi>x</mi><mo>→</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Fx \rightarrow \exists x Gx)</annotation></semantics></math></li>
+</ul></li>
+<li>a wff with one or more free occurrences of variables is an
+<strong>open</strong> wff.
+<ul class="incremental">
+<li>e.g. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>F</mi><munder><mi>x</mi><mo accent="true">_</mo></munder><mo>→</mo><mo>∃</mo><mi>x</mi><mi>G</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(F\underline{x} \rightarrow \exists x Gx)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>open and closed wffs are equally well-formed.</li>
+<li>but open wffs do not express propositions—they cannot themselves be
+true or false.</li>
+<li>consider:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Rx</annotation></semantics></math>
+<ul class="incremental">
+<li>this doesn’t express a proposition</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>R</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x R x</annotation></semantics></math>
+does, however</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>the syntax of MPL</li>
+<li>formal specification of the vocabulary and syntax of MPL</li>
+<li>how formulas of MPL are constructed</li>
+<li>the notions of logical operators, the scope of a quantifier, free
+and bound variables, open and closed formulas</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>lecture 15, the semantics of MPL, part 1</li>
+</ul>
+</div>
+</body>
+</html>

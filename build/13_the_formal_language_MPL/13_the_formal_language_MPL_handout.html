@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture 13, the formal language MPL</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">
+
+table {
+border-collapse: collapse;
+margin-left: 30pt;
+}
+th {
+border-bottom: 1px solid black;
+border-right: 1px solid black;
+}
+th:last-child {
+border-right: none;
+}
+td {
+border-right: 1px solid black;
+}
+td:last-child {
+border-right: none;
+}
+
+.ttable1 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.ttable1 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable1 td:last-child {
+border-right: none;
+}
+.ttable1 td:nth-child(1) {
+border-right: double black;
+}
+.ttable1 tr:nth-child(1) {
+border-bottom: 2px solid black;
+}
+.ttable2 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable2 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable2 td:last-child {
+border-right: none;
+}
+.ttable2 td:nth-child(2) {
+border-right: double black;
+}
+.ttable2 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable3 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable3 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable3 td:last-child {
+border-right: none;
+}
+.ttable3 td:nth-child(3) {
+border-right: double black;
+}
+.ttable3 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable4 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.element {
+text-align: center;
+}
+.ttable4 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable4 td:last-child {
+border-right: none;
+}
+.ttable4 td:nth-child(4) {
+border-right: double black;
+}
+.ttable4 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+
+.arg table {
+border-collapse: collapse;
+text-align: left;
+}
+.arg tr, td {
+text-align: left;
+vertical-align: top;
+}
+.arg tr:nth-last-child(1) {
+border-top: 1px solid black;
+text-align: left;
+}
+.arg td:nth-child(1) {
+font-weight: bold;
+text-align: left;
+}
+
+.tree {
+margin-left: 35px;
+}
+body {
+font-family: "Times New Roman", Times, serif;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+.slide.section.level2 {
+padding: 20pt;
+margin: 20pt;
+}
+div.slide.section.level1 h1 {
+color: #e64626;
+font-size: 160%;
+margin-top: 10%;
+text-align: center;
+}
+div.slide.section.level2 h1 {
+color: #e64626;
+font-size: 120%;
+}
+.title-slide.section.level1 {
+padding: 20pt;
+margin: 20pt;
+}
+ul li {
+list-style: disc;
+}
+li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+li ul li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lecture 13, the formal language MPL</h1>
+<p class="subtitle">phil1012 introductory logic</p>
+</header>
+<h1 id="overview">overview</h1>
+<h2 id="this-lecture">this lecture</h2>
+<ul class="incremental">
+<li>an introduction to the formal language MPL</li>
+<li>the limitations of PL and the motivation for MPL</li>
+<li>an introduction to the notions of names, predicates, variables, and
+quantifiers</li>
+<li>translation of propositions into MPL</li>
+</ul>
+<h2 id="learning-outcomes">learning outcomes</h2>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain what MPL allows us to do that we cannot do in PL</li>
+<li>translate propositions with a simple subject-predicate form into
+MPL</li>
+<li>translate existential and universal propositions into MPL</li>
+<li>translate propositions involving restricted quantification into
+MPL</li>
+</ul></li>
+</ul>
+<h2 id="required-reading">required reading</h2>
+<ul class="incremental">
+<li>sections 8.1, 8.2, 8.3 of chapter 8</li>
+</ul>
+<h1 id="beyond-propositional-logic">beyond propositional logic</h1>
+<h2 id="beyond-propositional-logic-1">beyond propositional logic</h2>
+<ul class="incremental">
+<li>propositional logic is great</li>
+<li>but there are some arguments which seem to be such that, in virtue
+of their form, their premises can’t all be true and their conclusion
+false</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>consider the following argument</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">P1.</td>
+<td style="text-align: left;">all philosophers are drinkers</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">P2.</td>
+<td style="text-align: left;">John is a philosopher</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">C1.</td>
+<td style="text-align: left;">John is a drinker</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>a valid argument</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>let’s translate the argument into PL</li>
+<li>we have the following glossary
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+all philosophers are drinkers</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>:
+John is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>:
+John is a drinker</li>
+</ul></li>
+<li>and the following translation
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>J</mi><annotation encoding="application/x-tex">J</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∴</mo><mi>D</mi></mrow><annotation encoding="application/x-tex">\therefore D</annotation></semantics></math></li>
+</ul></li>
+<li>but this argument is invalid in PL!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we must go beyond PL!</li>
+<li>for the remainder of the course we will go beyond PL three times
+over
+<ul class="incremental">
+<li>MPL: names, one-place predicates, quantifiers, and variables.</li>
+<li>GPL: names, many-place predicates, quantifiers, and variables.</li>
+<li>GPLI: names, many-place predicates, quantifiers, variables, and the
+identity predicate.</li>
+</ul></li>
+<li>for now: MPL</li>
+</ul>
+</div>
+<h1 id="names-and-predicates">names and predicates</h1>
+<h2 id="names-and-predicates-1">names and predicates</h2>
+<ul class="incremental">
+<li>introducing names and predicates</li>
+<li>consider: ‘John is a philosopher’
+<ul class="incremental">
+<li>this expresses a basic proposition. but let’s now take a look at the
+constituents of this sentence</li>
+</ul></li>
+<li>there is a <strong>name</strong> ‘John’, which
+<strong>refers</strong> to an individual thing, namely John</li>
+<li>there is a <strong>predicate</strong>, ‘is a philosopher’ which is
+<strong>satisfied</strong> by certain individual things if and only if
+they have the property of being a philosopher</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>the symbol for a <strong>name</strong> in MPL is a lowercase letter,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>,
+. . .,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+<ul class="incremental">
+<li>not including the last six letters in the alphabet,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>
+(these will be used for something else)</li>
+</ul></li>
+<li>the symbol for a <strong>predicate</strong> in MPL is an uppercase
+letter,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>D</mi><annotation encoding="application/x-tex">D</annotation></semantics></math>,
+. . .,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>X</mi><annotation encoding="application/x-tex">X</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Y</mi><annotation encoding="application/x-tex">Y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
+(no reservations here.)</li>
+<li>don’t confuse sentences letters from PL with predicate letters from
+MPL!</li>
+<li>and note that there are no sentence letters in PL!</li>
+</ul>
+<h1 id="glossaries-in-mpl-preliminary">glossaries in MPL
+(preliminary)</h1>
+<h2 id="glossaries-in-mpl-preliminary-1">glossaries in MPL
+(preliminary)</h2>
+<ul class="incremental">
+<li>glossaries in MPL work like glossaries in PL</li>
+<li>the give meanings for the non-logical symbols of MPL</li>
+<li>unlike PL whose non-logical symbols were sentence letters, the
+non-logical symbols of MPL are names and predicates</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we give the meanings of names in our MPL glossaries like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+Bruce</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+Jane</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+<em>Australian Materialism</em></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+The author of <em>Australian Materialism</em></li>
+</ul></li>
+<li>we give the meanings of predicates in our MPL glossaries like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+is a book</li>
+</ul></li>
+<li>this is provisional. we’ll see a better way of doing glossaries from
+MPL below.</li>
+</ul>
+<h1 id="atomic-propositions">atomic propositions</h1>
+<h2 id="atomic-propositions-1">atomic propositions</h2>
+<ul class="incremental">
+<li>an <strong>atomic proposition</strong> is a proposition made up from
+one name and one predicate.</li>
+<li>we translate the atomic proposition ‘Bruce is a philosopher’ like
+this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">Pb</annotation></semantics></math></li>
+</ul></li>
+<li>we translate the atomic proposition ‘The author of <em>Australian
+Materialism</em> is a philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Pa</annotation></semantics></math></li>
+</ul></li>
+<li>we translate the atomic proposition ‘<em>Australian Materialism</em>
+is a book’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">Bm</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<h2 id="connectives-in-mpl">connectives in MPL</h2>
+<ul class="incremental">
+<li>we retain all the connectives of PL in MPL.</li>
+<li>we translate a disjunction like ‘Bruce is a philosopher or Jane is a
+philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>∨</mo><mi>P</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pb \lor Pj)</annotation></semantics></math></li>
+</ul></li>
+<li>we translate a conjunction like ‘Bruce is a philosopher and Jane is
+a philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>∧</mo><mi>P</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pb \land Pj)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we translate a conditional like ‘If Bruce is a philosopher, then
+Jane is a philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>b</mi><mo>→</mo><mi>P</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">Pb \rightarrow Pj</annotation></semantics></math></li>
+</ul></li>
+<li>we translate a biconditional like ‘Bruce is a philosopher if and
+only if Jane is a philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>b</mi><mo>↔</mo><mi>P</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Pb \leftrightarrow Pj)</annotation></semantics></math></li>
+</ul></li>
+<li>we translate a negation like ‘Bruce is not a philosopher’ like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">\lnot Pb</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<h2 id="variables-and-quantifiers">variables and quantifiers</h2>
+<ul class="incremental">
+<li>introducing <strong>variables</strong> and
+<strong>quantifiers</strong></li>
+<li>how should we translate the following?
+<ul class="incremental">
+<li>everyone is a philosopher</li>
+<li>someone is a philosopher</li>
+<li>so-one is a philosopher</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>not like this:</li>
+<li>here’s my glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>:
+everyone</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+someone</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>:
+no-one</li>
+</ul></li>
+<li>here’s my translation:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>
+is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
+is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+is a philosopher</li>
+</ul></li>
+<li>this is wrong!</li>
+<li>expressions like ‘everyone’, ‘someone’, and ‘no-one’ are not
+names.</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>expressions like ‘someone’ and ‘everyone’ are
+<strong>quantifiers</strong></li>
+<li>‘someone’ is an <strong>existential quantifier</strong></li>
+<li>‘everyone’ is a <strong>universal quantifier</strong></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>how should we think about quantified propositions then? what do they
+say?</li>
+<li>well, ‘Everything is a philosopher’ says, roughly, that every
+<em>thing</em> is such that <em>it</em> is a philosopher</li>
+<li>and ‘Something is a philosopher’ says, roughly, that some
+<em>thing</em> is such that <em>it</em> is a philosopher</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>to put it slightly more formally (but still informally):</li>
+<li>well, ‘Everything is a philosopher’ says, roughly, that every
+<em>x</em> is such that <em>x</em> is a philosopher</li>
+<li>and ‘Something is a philosopher’ says, roughly, that some <em>x</em>
+is such that <em>x</em> is a philosopher</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we use the variable <em>x</em> in this informal presentation.</li>
+<li>in MPL the symbols for <em>individual variables</em> are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>v</mi><annotation encoding="application/x-tex">v</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math></li>
+<li>using variables, we can get closer to what we are after.</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>given our glossary for ‘is a philosopher’ we have:
+<ul class="incremental">
+<li>every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></li>
+<li>some
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we introduce two new symbols in MPL which mean ‘every
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is such that’ and ‘some
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is such that’
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∀</mo><annotation encoding="application/x-tex">\forall</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+(universal quantifier)</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∃</mo><annotation encoding="application/x-tex">\exists</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+(existenial quantifier)</li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>using quantifiers and variables we can translate ‘Everything is a
+philosopher’ and ‘Something is a philosopher’ as follows:
+<ul class="incremental">
+<li>everything is a philosopher
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\forall x Px</annotation></semantics></math></li>
+</ul></li>
+<li>something is a philosopher
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Px</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>okay, we are getting somewhere</li>
+<li>but we set out to translate the following
+<ul class="incremental">
+<li>everyone is a philosopher</li>
+<li>someone is a philosopher</li>
+<li>no-one is a philosopher</li>
+</ul></li>
+<li>‘everything is a philosopher’ doesn’t mean the same thing as
+‘everyone is a philosopher’</li>
+<li>things get just a little bit more complicated</li>
+<li>but before turning to this complication . . .</li>
+</ul>
+<h2 id="glossaries-in-mpl-official">glossaries in MPL (official)</h2>
+<ul class="incremental">
+<li>with the introduction of variables, here is a new convention for
+writing glossaries for predicates
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a philosopher</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a book</li>
+</ul></li>
+<li>notice how one variable occurs before the colon and immediately
+after the predicate letter, and another variable occurs after it in the
+place in the sentence where a name might go</li>
+</ul>
+<h1 id="restricted-quantification">restricted quantification</h1>
+<h2 id="restricted-quantification-1">restricted quantification</h2>
+<ul class="incremental">
+<li>back to the complication . . .</li>
+<li>how should we translate ‘every philosopher is a drinker’ and ‘some
+philosopher is a drinker’?</li>
+<li>let’s think it through carefully</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>think about ‘every philosopher is a drinker’</li>
+<li>you can think of it as saying that every x is such that <u>if</u> x
+is a philosopher, <u>then</u> x is a drinker.</li>
+<li>so we translate it as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>D</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Px \rightarrow Dx)</annotation></semantics></math></li>
+</ul></li>
+<li>where:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Dx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a philosopher</li>
+</ul></li>
+<li>you can think of the predicate in the antecent of the conditional as
+‘restricting’ the things over which we are quantifying</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>now think about ‘Some philosopher is a drinker’</li>
+<li>you can think of it as saying that some x is such that x is a
+philosopher <u>and</u> x is a drinker</li>
+<li>so we translate it as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>D</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Px \land Dx)</annotation></semantics></math></li>
+</ul></li>
+<li>where:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Dx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a philosopher</li>
+</ul></li>
+<li>you can think of the predicate in the first conjunct of the
+conjunction as ‘restricting’ the things over which we are
+quantifying</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>notice that for restricted universal quantification we use a
+conditional, and the antecedent of the conditional does the restricting,
+and that for restricted existential quantification we use a conjunction,
+and one conjunct does the restricting.</li>
+<li>don’t confuse the two</li>
+<li>this says that everything is a philosopher and a drinker:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>D</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x (Px \land Dx)</annotation></semantics></math></li>
+</ul></li>
+<li>and this says that there is something which is either not a
+philosopher or is a drinker.
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>D</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Px \rightarrow Dx)</annotation></semantics></math></li>
+</ul></li>
+<li>it is true if anything is not a philosopher or if anything is a
+drinker!</li>
+</ul>
+<h1 id="wrapping-up">wrapping up</h1>
+<h2 id="this-lecture-1">this lecture</h2>
+<ul class="incremental">
+<li>an introduction to the formal language MPL</li>
+<li>the limitations of PL and the motivation for MPL</li>
+<li>an introduction to the notions of names, predicates, variables, and
+quantifiers</li>
+<li>translation of propositions into MPL</li>
+</ul>
+<h2 id="next-lecture">next lecture</h2>
+<ul class="incremental">
+<li>lecture 14, the syntax of MPL</li>
+</ul>
+<!--
+
+# translation examples
+
+## translation examples
+
+* let's have a go at translating the following
+   * all round things are special
+* first we set up our glossary
+   * Gx : x is grey
+   * Rx: x is round.
+   * Sx: x is special.
+* now think about which quantifier we need
+* and think about any restrictions we might need on the quantifier
+* here's our translation
+    * $\forall x (Rx \rightarrow Sx)$
+* not this:
+    * $\forall x (Rx \land Sx)$!
+
+---
+
+* now let's have a go at translating the following
+   * some round things are special
+* first we set up our glossary
+   * Gx : x is grey
+   * Rx: x is round
+   * Sx: x is special
+* now think about which qyantifier we need
+* and think about any restrictions we might need on the quantifier
+* here's our translation
+    * $\exists x (Rx \land Sx)$
+
+---
+
+* how might we translate the following?
+   * some round things are round and some are special
+* first we set up our glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+* now think about main connective
+* and then think about the form of the parts
+* here's our translation
+    * $\exists x (Rx \land Rx) \land \exists x(Rx \land Sx)$
+
+---
+
+* here is another sentence to translate
+    * everything is round or non-round
+* our glossary
+   * Gx : x is grey
+   * Rx: x is round
+   * Sx: x is special
+* now think about what quantifier we need here
+* do we need a restriction?
+* how do we translate the material in the scope of the quantifier?
+    * $\forall x (Rx \lor \lnot Rx)$
+
+---
+
+* here is yet another sentence to translate
+    * everything is round or everything is non-round
+* here's a glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+* think about what the main connective is here
+* and then think about the form of the parts
+* here's our translation
+   * $\forall x Rx \lor \forall x \lnot Rx$
+
+---
+
+* here is another one
+    * nothing is round
+* here's a glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+* think about what quantifier we need here
+* here is our translation
+    * $\lnot \exists x R x$
+
+---
+
+* let's try to translate the following
+   * everything is non-round
+* here's a glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+    * Ex: x is empty
+* think about what quantifier we need
+* think about how to translate what's in the scope of the quantifier
+* here's our translation
+   *  $\forall x \lnot R x$
+
+---
+
+* now let's try to translate the following
+    * something isn't round
+* here's our glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+* think about what quanfier we need
+* and about the scope of the quantifier
+* here's our translation
+   *  $\exists x \lnot R x$
+
+---
+
+* here is yet another sentence to translate
+    * not everything is round
+* here's our glossary
+    * Gx : x is grey
+    * Rx: x is round
+    * Sx: x is special
+* think about the main connective
+* think about the quantifier we need
+* here's our translation
+    * $\lnot \forall x R x$
+
+---
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> Rx: x is round.\
+> Sx: x is special.\
+
+-   Translate the following into MPL using this glossary:
+
+> Something is round but not special.
+
+> $\exists x (Rx \land \lnot Sx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> Rx: x is round.\
+> Sx: x is special.\
+
+-   Translate the following into MPL using this glossary:
+
+> Something is neither round nor special.
+
+> $\exists x (\lnot Rx \land \lnot Sx)$
+
+> $\exists x \lnot(Rx \lor Sx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> Rx: x is round.\
+> Sx: x is special.\
+
+-   Translate the following into MPL using this glossary:
+
+> All round things are grey or special.
+
+> $\forall x (Rx \rightarrow (Gx \lor Sx))$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> Rx: x is round.\
+> Sx: x is special.\
+
+-   Translate the following into MPL using this glossary:
+
+> All round things that are not grey are special.
+
+> $\forall x ((Rx \land \lnot Gx) \rightarrow Sx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> Rx: x is round.\
+> s: Sydney Tower
+
+-   Translate the following into MPL using this glossary:
+
+> Sydney Tower is grey and round.
+
+> $Gs \land Rs$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Rx: x is round.\
+> s: Sydney Tower
+
+-   Translate the following into MPL using this glossary:
+
+> If Sydney Tower is round, then something is round.
+
+> $Rs \rightarrow \exists x Rx$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Gx : x is grey.\
+> s: Sydney Tower
+
+-   Translate the following into MPL using this glossary:
+
+> If Sydney Tower is grey, then something is.
+
+> $Gs \rightarrow \exists x Gx$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Sx: x is special.\
+
+-   Translate the following into MPL using this glossary:
+
+> Everything is special.
+
+> $\forall x Sx$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Sx: x is special.\
+> Px: x is a person.\
+
+-   Translate the following into MPL using this glossary:
+
+> Everyone is special.
+
+> $\forall x (Px \rightarrow Sx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Mx: x smells.
+
+-   Translate the following into MPL using this glossary:
+
+> Something smells.
+
+> $\exists x Mx$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Mx: x smells.\
+> Px: x is a person.
+
+-   Translate the following into MPL using this glossary:
+
+> Someone smells.
+
+> $\forall x (Px \rightarrow Mx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Bx: x is a bird.\
+> Fx: x is flies.
+
+-   Translate the following into MPL using this glossary:
+
+> Only birds fly.
+
+> $\forall x (Fx \rightarrow Bx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Wx: x loves walking.\
+> Px: x is a postman.
+
+-   Translate the following into MPL using this glossary:
+
+> A love of walking is necessary for being a postman.
+
+> $\forall x (Px \rightarrow Wx)$
+:::
+
+::: frame
+-   Here's a glossary:
+
+> Wx: x loves walking.\
+> Px: x is a postman.
+
+-   Translate the following into MPL using this glossary:
+
+> A love of walking is sufficient for being a postman.
+
+> $\forall x (Wx \rightarrow Px)$
+:::
+
+::: frame
+-   Recap ...
+
+-   Shortcomings of PL.
+
+-   Monadic Predicate Logic (MPL)
+
+-   Names and predicates
+
+-   Variables and Quantifiers
+
+-   Restricted Quantifiers
+
+-->
+</body>
+</html>

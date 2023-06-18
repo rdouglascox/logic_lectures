@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 10, trees for PL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 10, trees for PL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to <strong>truth trees</strong> for PL</li>
+<li>general motivation for the use of truth trees for PL</li>
+<li>particular motivations for each tree rule</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>how to construct truth trees in general</li>
+<li>how to use truth trees to test for particular logical
+properties</li>
+</ul>
+</div>
+<div id="learning-objectives" class="slide section level2">
+<h1>learning objectives</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain the motivation behind truth trees for PL</li>
+<li>write down the tree rules for PL from memory</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>all of chapter 7</li>
+</ul>
+</div>
+
+<div id="the-motivation-for-truth-trees"
+class="title-slide slide section level1">
+<h1>the motivation for truth trees</h1>
+
+</div>
+<div id="the-motivation-for-truth-trees-1" class="slide section level2">
+<h1>the motivation for truth trees</h1>
+<ul class="incremental">
+<li>the limitations of truth tables as a proof method</li>
+<li>proof trees are the only method of proof we will examine for MPL,
+GPL, and GPLI</li>
+</ul>
+</div>
+<div id="the-limitations-of-truth-tables-as-a-proof-method"
+class="slide section level2">
+<h1>the limitations of truth tables as a proof method</h1>
+<ul class="incremental">
+<li>recall the maths concerning truth tables
+<ul class="incremental">
+<li>2 basic propositions: 4 rows</li>
+<li>3 basic propositions: 8 rows</li>
+<li>4 basic propositions: 16 rows</li>
+<li>5 basic propositions: 32 rows</li>
+<li>6 basic propositions: 64 rows</li>
+<li>. . .</li>
+</ul></li>
+</ul>
+</div>
+<div id="the-limitations-of-truth-tables-as-a-proof-method-1"
+class="slide section level2">
+<h1>the limitations of truth tables as a proof method</h1>
+<ul class="incremental">
+<li>truth tables (or complete ones at least) involve a kind of
+enumerative search</li>
+<li>if an argument is valid, you’ve got to fill in every row to be
+sure</li>
+<li>truth tables may eventually provide an evaluation which is a
+counterexample</li>
+<li>might we work in a more direct fashion towards a
+counterexample?</li>
+<li>yes: truth trees</li>
+</ul>
+</div>
+
+<div id="the-basic-idea-behind-truth-trees"
+class="title-slide slide section level1">
+<h1>the basic idea behind truth trees</h1>
+
+</div>
+<div id="re-inventing-truth-trees" class="slide section level2">
+<h1>re-inventing truth trees</h1>
+<ul class="incremental">
+<li>let’s re-invent truth trees</li>
+<li>suppose you have some proposition or other, and you want to know
+whether it is satisfiable</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose we begin by assuming that it <em>is</em> satisfiable</li>
+<li>that is, suppose there is some assignment on which it is true</li>
+<li>what do we know?</li>
+<li>well, we know that the assignment is one on which both conjuncts
+must be true</li>
+<li>for now, let’s just write out a list like this to keep track:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>okay, now we’ve got another conjunction in there.</li>
+<li>if there is an assignment on which all these propositions are true
+together, it must be an assignment on which both conjuncts are true</li>
+<li>so let’s expand our list:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>okay, now comes the tricky part. how do we deal with the
+conditional?</li>
+<li>well, let’s ask what kind of assignment we need in order to make it
+true?</li>
+<li>here it helps to remind ourselves that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A\rightarrow B)</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot A \lor B)</annotation></semantics></math><br />
+</li>
+<li>so we can either take an assignment on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+is true, or an assignment on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is true</li>
+<li>take the first first</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>uh oh. what is wrong with this list of propositions?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B)\land(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math></p>
+</blockquote>
+<ul class="incremental">
+<li>not all of the propositions can be true at once!
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+cannot be true at once.</li>
+<li>this path isn’t going to make our initial assumption about
+satisfiability work out</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what about the other assignment, on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is true?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math></p>
+</blockquote>
+<ul class="incremental">
+<li>uh oh. not all of the propositions can be true at once!
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>
+cannot be true at once</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>our initial assumption was mistaken. the proposition is not
+satsfiable!</li>
+<li>this method looks like a good one for refuting the initial
+assumption of satisfiability</li>
+<li>if we reach a contradiction on a path, we can reject that path</li>
+<li>if we reach a contradiction on all paths, we know the proposition
+isn’t satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what if we don’t read a contradiction?</li>
+<li>what if had started with a slightly different proposition?</li>
+<li>what if we had arrived at the following after splitting the
+conditional?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((C \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(C \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot C</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>well, assuming that we have broken down every proposition once</li>
+<li>we know that all of the propositions can be true together if and
+only if the basic propositions and negations of basic propositions can
+be true together</li>
+<li>and we can just see that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot C</annotation></semantics></math>
+can all be true together</li>
+<li>so we can conclude that the original proposition is satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>even better</li>
+<li>we have derived an assignment on which the proposition is true:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+F,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+F</p>
+</blockquote>
+<ul class="incremental">
+<li>unlike truth tables, truth trees can take us directly to the
+relevant assignment</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>essential to the procedure is the idea of “splitting” or
+“branching”</li>
+<li>we must check <em>every</em> path we create after splitting or
+branching</li>
+<li>else we won’t know if there is <em>some</em> path without a
+contradiction on it</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>drawing this method as a tree going down the page is even
+better</li>
+</ul>
+</div>
+
+<div id="the-tree-method" class="title-slide slide section level1">
+<h1>the tree method</h1>
+
+</div>
+<div id="the-tree-method-described" class="slide section level2">
+<h1>the tree method described</h1>
+<ul class="incremental">
+<li>here is the tree proof of the unsatisfiability of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>
+from above</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="0f8fee99ce127e9705dcb58d5c92d6824466be98.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>how do we construct such a tree?</li>
+<li>well, we begin by writing down the proposition (or propositions) we
+want to test for satisfiability</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="bb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg" />
+</div>
+<ul class="incremental">
+<li>think of this proposition as the “root” of the tree if you like (the
+tree is upside down)</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>now we write down other things which must be true assuming these are
+true (according to the tree rules)</li>
+<li>if it follows from the assumption that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is true that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+are true, we write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+at the bottom of every open path on our tree</li>
+<li>in this case we only have one path</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="d185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in a moment, we will discuss the rules for building trees (the tree
+rules)</li>
+<li>these just encapsulate our claims about “what must be true” if some
+proposition is true<br />
+</li>
+<li>each time we apply a tree rule to a proposition we “check it off”
+with a tick</li>
+<li>this is just a way of keeping track what we’ve “dealt with” that
+proposition</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="cbd7b453baf9eb24faf11e3fd6090054ead0e706.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is the step applied to the conjunction</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="846906ff5614fd6619858b0cb7dedad14f862c54.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if it follows from the assumption that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is true that either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+are true, or both are true, then we “split” the tree and write them down
+on either side of the new branch</li>
+<li>we split on every open path the proposition appears on</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="820ed2840c7fbf7145359072534e43634dd6bd99.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>note that each time we apply a rule, we write down propositions
+which are simpler than those we began with</li>
+<li>the process ends when we cannot apply any more rules</li>
+<li>whenever we encounter a contradiction on a path we immediately
+“close” the path/branch with a cross</li>
+<li>there’s no point continuing with that path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in the case at hand, both paths close</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>because propositions always get simpler, we eventually end up with
+only basic propositions and negations of basic propositions</li>
+<li>if a path contains a contradiction, the propositions on that path
+cannot all be true at once</li>
+<li>if a finished path does not contain a contradiction, the
+propositions can all be true together<br />
+</li>
+<li>we can “read off” an assignment on which all the propositions are
+true from the basic propositions and negated propositions on such a
+path</li>
+</ul>
+</div>
+
+<div id="the-tree-rules" class="title-slide slide section level1">
+<h1>the tree rules</h1>
+
+</div>
+<div id="the-tree-rules-stated" class="slide section level2">
+<h1>the tree rules stated</h1>
+<ul class="incremental">
+<li>rather than thinking about “what must be true” every time we build a
+tree, we can write down some rules that capture the relevant claims for
+each connective</li>
+<li>we’ll go over the motivation here</li>
+<li>if you forget a tree rule, it is helpful to know the motivation</li>
+<li>if is also helpful to think of the truth table for the connectives
+(and connectives in the immediate scope of negation).</li>
+</ul>
+</div>
+<div id="disjunction" class="slide section level2">
+<h1>disjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for disjunction:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="433ce19a55169223fc9929fab255c6fa6d73428b.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the disjunction is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>reading off from the rows on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta)</annotation></semantics></math>
+is true . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="49f75a3f82f038e7262a6a834bdbd7359ce85cbd.svg" />
+</div>
+<ul class="incremental">
+<li>then simplifying . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="ec048e60a9647f69700ae64519a7a424367493eb.svg" />
+</div>
+<ul class="incremental">
+<li>and simplifying again . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="59c0db11872e9bf4d20eddeef0a8217ad36903d7.svg" />
+</div>
+<ul class="incremental">
+<li>what must be <em>true</em> if the disjunction is true?</li>
+<li>answer: either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<em>or</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></li>
+<li>the tree rule for disjunction is easy to remember even though
+there’s a bit involved in reading the tree rule off the truth table</li>
+</ul>
+</div>
+</div>
+<div id="negated-disjunction" class="slide section level2">
+<h1>negated disjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated disjunction:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="d4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the negated disjunction is
+true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \lor \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>answer:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\alpha</annotation></semantics></math>
+<em>and</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+must be true</li>
+<li>the tree rule for negated disjunction is easy to read off its truth
+table</li>
+</ul>
+</div>
+</div>
+<div id="conjunction" class="slide section level2">
+<h1>conjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for conjunction:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="91dc16ef11a487553c968bb091f3643c421004aa.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>the tree rule for conjunction is easy to read off its truth
+table</li>
+</ul>
+</div>
+</div>
+<div id="negated-conjunction" class="slide section level2">
+<h1>negated conjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated conjunction:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="71fc6691d662dc9b71790da75456a8fdf0df5b99.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \land \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>reading off the tree rule for negated conjunction works a bit like
+the case for disjunction . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="f11c5016d6312ba2b060f8d7c472830e195d1b11.svg" />
+</div>
+<ul class="incremental">
+<li>then simplifying . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="8db1b992f9aba61289a1bf662e61c3d0d226de9d.svg" />
+</div>
+<ul class="incremental">
+<li>then simplifying again . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="feab366fef6611e9b6e2936ae83817da280ee506.svg" />
+</div>
+</div>
+</div>
+<div id="conditional" class="slide section level2">
+<h1>conditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for conditional:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="b9915540b371a07fc5d68ab26cdcaf39fc84b088.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>reading the tree rule of the truth table for conditional is a little
+trikier than the others . . .</li>
+<li>we start with . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="ee7216dc5ca01b165bca5db1868ba89ba168275a.svg" />
+</div>
+<ul class="incremental">
+<li>simplifying first on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+we get . . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="59c6631162e1d32dcb69ba3d183ed57926070432.svg" />
+</div>
+<ul class="incremental">
+<li>then simplifying on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot \beta</annotation></semantics></math>
+. . .</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="0cf41e190ae9c8beb15e31293354496d7563b8a1.svg" />
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>in the case of conditional it is probably easier to just remember
+that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \to \beta)</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot \alpha \lor \beta)</annotation></semantics></math></li>
+<li>the tree rule (and the motivaiton for the rule) will then be
+obvious!</li>
+</ul>
+</div>
+</div>
+<div id="negated-conditional" class="slide section level2">
+<h1>negated conditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated conditional:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \rightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="biconditional" class="slide section level2">
+<h1>biconditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for biconditional:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="acc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="negated-biconditional" class="slide section level2">
+<h1>negated biconditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated biconditional:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="cba41b9310f3eff0866700bbbec7b5aaad9992fa.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \leftrightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="double-negation" class="slide section level2">
+<h1>double negation</h1>
+<ul class="incremental">
+<li>here is the tree rule for double negation:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="39dd1eefeffa4a338369b1c8b32202eef67c3845.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\lnot\alpha</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="closure" class="slide section level2">
+<h1>closure</h1>
+<ul class="incremental">
+<li>finally, here is the closure rule:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg" />
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule</li>
+<li>if a proposition and its negation both appear on a path, then it is
+not the case that all the propositions on that path can be true at the
+same time</li>
+<li>so we close that path</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>a note on closure: the closure rule applies to <em>all</em>
+propositions and their negations, not just basic propositions and their
+negations</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to <strong>truth trees</strong> for PL</li>
+<li>general motivation for the use of truth trees for PL</li>
+<li>particular motivations for each tree rule</li>
+</ul>
+</div>
+<div id="next-lecture-1" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>how to construct truth trees in general</li>
+<li>how to use truth trees to test for particular logical
+properties</li>
+</ul>
+</div>
+<div id="next-lectures" class="slide section level2">
+<h1>next lectures</h1>
+<ul class="incremental">
+<li>lecture 11, uses of trees for PL</li>
+<li>lecture 12, issues in translation: conditional</li>
+<li>lecture 13, the formal language MPL</li>
+</ul>
+</div>
+</body>
+</html>

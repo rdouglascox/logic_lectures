@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>lecture 23, numerical quantifiers and definite descriptions in GPLI</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">
+
+table {
+border-collapse: collapse;
+margin-left: 30pt;
+}
+th {
+border-bottom: 1px solid black;
+border-right: 1px solid black;
+}
+th:last-child {
+border-right: none;
+}
+td {
+border-right: 1px solid black;
+}
+td:last-child {
+border-right: none;
+}
+
+.ttable1 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.ttable1 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable1 td:last-child {
+border-right: none;
+}
+.ttable1 td:nth-child(1) {
+border-right: double black;
+}
+.ttable1 tr:nth-child(1) {
+border-bottom: 2px solid black;
+}
+.ttable2 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable2 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable2 td:last-child {
+border-right: none;
+}
+.ttable2 td:nth-child(2) {
+border-right: double black;
+}
+.ttable2 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable3 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+border: 1px soild black;
+}
+.ttable3 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable3 td:last-child {
+border-right: none;
+}
+.ttable3 td:nth-child(3) {
+border-right: double black;
+}
+.ttable3 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+.ttable4 table {
+border-collapse: collapse;
+text-align: center;
+margin-left: 30pt;
+vertical-align: top;
+}
+.element {
+text-align: center;
+}
+.ttable4 td {
+border-right: 1px solid black;
+text-align: center;
+vertical-align: top;
+}
+.ttable4 td:last-child {
+border-right: none;
+}
+.ttable4 td:nth-child(4) {
+border-right: double black;
+}
+.ttable4 tr:nth-child(1) {
+border-bottom: 1px solid black;
+}
+
+.arg table {
+border-collapse: collapse;
+text-align: left;
+}
+.arg tr, td {
+text-align: left;
+vertical-align: top;
+}
+.arg tr:nth-last-child(1) {
+border-top: 1px solid black;
+text-align: left;
+}
+.arg td:nth-child(1) {
+font-weight: bold;
+text-align: left;
+}
+
+.tree {
+margin-left: 35px;
+}
+body {
+font-family: "Times New Roman", Times, serif;
+font-family: "Lucida Console", "Courier New", monospace;
+}
+.slide.section.level2 {
+padding: 20pt;
+margin: 20pt;
+}
+div.slide.section.level1 h1 {
+color: #e64626;
+font-size: 160%;
+margin-top: 10%;
+text-align: center;
+}
+div.slide.section.level2 h1 {
+color: #e64626;
+font-size: 120%;
+}
+.title-slide.section.level1 {
+padding: 20pt;
+margin: 20pt;
+}
+ul li {
+list-style: disc;
+}
+li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+li ul li ul li {
+font-size: 100%;
+font-style: normal;
+list-style: circle;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">lecture 23, numerical quantifiers and definite
+descriptions in GPLI</h1>
+<p class="subtitle">phil1012 introductory logic</p>
+</header>
+<h1 id="overview">overview</h1>
+<h2 id="this-lecture">this lecture</h2>
+<ul class="incremental">
+<li>two final topics concerning translations into GPLI</li>
+<li>numerical quantifiers and definite descriptions in GPLI</li>
+</ul>
+<h2 id="learning-outcomes">learning outcomes</h2>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>identify numerical quantifiers and definite descriptions in ordinary
+language</li>
+<li>translation propositions involving numerical quantifiers and
+definite descriptions into GPLI</li>
+</ul></li>
+</ul>
+<h2 id="required-reading">required reading</h2>
+<ul class="incremental">
+<li>section 13.5 and 13.6 of chapter 13</li>
+</ul>
+<h1 id="the-expressive-power-of-gpli">the expressive power of GPLI</h1>
+<h2 id="the-expressive-power-of-gpli-1">the expressive power of
+GPLI</h2>
+<ul class="incremental">
+<li>GPLI is a powerful language. It allows us to express things like
+this:
+<ul class="incremental">
+<li>there is at least one Tasmanian Tiger</li>
+<li>there are at least two Tasmanian Tigers</li>
+<li>there are exactly three Tasmanian Tigers</li>
+<li>there are at most three Tasmanian Tigers</li>
+</ul></li>
+<li>these expressions involve <strong>numerical quantifiers</strong>
+like ‘at least one’, ‘at least two’, ‘exactly three’, ‘at most
+three’</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we will look at each of the following numerical quantifiers in turn
+<ul class="incremental">
+<li>at least <em>n</em></li>
+<li>at most <em>n</em></li>
+<li>exactly <em>n</em></li>
+</ul></li>
+</ul>
+<h2 id="at-least-n">at least <em>n</em></h2>
+<ul class="incremental">
+<li>suppose we want to translate ‘There is at least one Tasmanian Tiger’
+into GPLI</li>
+<li>we start with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a Tasmanian Tiger</li>
+</ul></li>
+<li>then we look for a formula which is true if there is at least one
+Tasmanian Tiger, and false if there is not at least one Tasmanian
+Tiger</li>
+<li>any guesses?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>yes, it’s:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Tx</annotation></semantics></math></li>
+<li>this is true if there is at least one Tasmanian Tiger and, it is
+false if there is not at least one Tasmanian Tiger</li>
+<li>so ‘at least one’ is just equivalent to the ordinary existential
+quantifier</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>suppose we want to translate ‘There are at least two Tasmanian
+Tigers’ into GPLI</li>
+<li>we start with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a Tasmanian Tiger</li>
+</ul></li>
+<li>then we look for a formula which is true if there are at least two
+Tasmanian Tigers, and false if there are not at least two Tasmanian
+Tigers</li>
+<li>any guesses?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>well, it’s not:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Tx</annotation></semantics></math></li>
+<li>this is true if there are at least two Tasmanian Tigers. but it is
+not false if there are not at least two Tasmanian Tigers. it would be
+true if there were only one Tasmanian Tiger</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>it’s not this either:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>T</mi><mi>x</mi><mo>∧</mo><mo>∃</mo><mi>y</mi><mi>T</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">\exists x Tx \land \exists y Ty</annotation></semantics></math></li>
+<li>why not?</li>
+<li>this just makes the claim that something is a Tasmanian Tiger two
+times</li>
+<li>in terms of models: we could pick the same tiger each time to make
+the conjunction true</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>it is not this either:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y (Tx \land Ty)</annotation></semantics></math></li>
+<li>why not?</li>
+<li>again, this just makes the claim that something is a Tasmanian Tiger
+two times</li>
+<li>in terms of models: we could pick the same tiger each time to make
+the conjunction true</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>how do we ensure that there are at least two Tasmanian Tigers?</li>
+<li>we make sure we must pick a <em>different</em> tiger each time to
+make the proposition true</li>
+<li>we use a negated identity claim like this to do so:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y (Tx \land Ty \land x \neq y)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are at least two Tasmanian Tigers. and it is
+false if there are not at least two Tasmanian Tigers</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>okay, now that we’ve hit upon the relevant strategy for translating
+‘at least <em>n</em>’ claims, let’s see if we can extend it</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>suppose we want to translate ‘There are at least three Tasmanian
+Tigers’ into GPLI</li>
+<li>we start with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a Tasmanian Tiger</li>
+</ul></li>
+<li>then we look for a formula which is true if there are at least three
+Tasmanian Tigers, and false if there are not at least three Tasmanian
+Tigers</li>
+<li>any guesses?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>well, it’s not:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo>∃</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y \exists z (Tx \land Ty \land Tz)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are at least three Tasmanian Tigers</li>
+<li>but it is not false if there are not at least three Tasmanian
+Tigers</li>
+<li>it would be true if there were only one Tasmanian Tiger!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>it’s not this either:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo>∃</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo>∧</mo><mi>y</mi><mo>≠</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y \exists z (Tx \land Ty \land Tz \land x \neq y \land y \neq z)</annotation></semantics></math></li>
+</ul></li>
+<li>we could pick the same tiger twice to make the conjunction true</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>how do we ensure that there are at least three Tasmanian
+Tigers?</li>
+<li>we make sure we must pick a <em>different</em> tiger each time to
+make the conjunction true</li>
+<li>like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo>∃</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>z</mi><mo>∧</mo><mi>y</mi><mo>≠</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y \exists z (Tx \land Ty \land Tz \land x \neq y \land x \neq z \land y \neq z)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are at least three Tasmanian Tigers</li>
+<li>and it is false if there are not at least three Tasmanian
+Tigers</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>get the pattern?</li>
+<li>you’ve got to ensure that we must pick <em>n</em> different tigers
+to make the conjunction true for the relevant <em>n</em></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>but don’t be fooled</li>
+<li>yes, there are three non-identity claims in ‘at least three’</li>
+<li>but there were none in ‘at least one’ and only one in ‘at least
+two’</li>
+<li>and there are six non-identity claims in ‘at least four’
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo>∃</mo><mi>z</mi><mo>∃</mo><mi>w</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo>∧</mo><mi>T</mi><mi>w</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>z</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>w</mi><mo>∧</mo><mi>y</mi><mo>≠</mo><mi>z</mi><mo>∧</mo><mi>y</mi><mo>≠</mo><mi>w</mi><mo>∧</mo><mi>z</mi><mo>≠</mo><mi>w</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y \exists z \exists w (Tx \land Ty \land Tz \land Tw \land x \neq y \land x \neq z \land x \neq w \land y \neq z \land y \neq w \land z \neq w)</annotation></semantics></math></li>
+</ul></li>
+<li>the number of quantifiers is a better guide in the case of ‘at least
+<em>n</em>’</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>okay, that’s all there is to translating claims involving the
+numerical quantifer ‘at least <em>n</em>’ into GPLI</li>
+</ul>
+<h2 id="at-most-n">at most <em>n</em></h2>
+<ul class="incremental">
+<li>suppose we want to translate ‘There is at most one Tasmanian Tiger’
+or ‘There is no more than one Tasmanian Tiger’ into GPLI</li>
+<li>we start with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a Tasmanian Tiger</li>
+</ul></li>
+<li>then we look for a formula which is true if there are no Tasmanian
+Tigers or there is one Tasmanian Tiger, and false if there are more than
+one Tasmanian Tigers</li>
+<li>any guesses?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>in this case, there are two approaches we might take</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>one approach captures the idea that for any two things you pick from
+the domain, if they are Tasmanian Tigers they are one and the same
+thing</li>
+<li>here is our translation then:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x \forall y((Tx \land Ty) \rightarrow x = y)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are no Tasmanian Tigers or there is one
+Tasmanian Tiger, and it is false if there are more than one Tasmanian
+Tigers</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>the other approach captures the idea that you cannot pick two things
+from the domain which are both Tasmanian Tigers and not identical to
+each other</li>
+<li>here is our translation then:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot \exists x \exists y (Tx \land Ty \land x \neq y)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are no Tasmanian Tigers or there is one
+Tasmanian Tiger, and it is false if there is more than one Tasmanian
+Tiger</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>you might find one approach more natural than the other</li>
+<li>they are equivalent!</li>
+<li>let’s see if we can extend the approach</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>suppose we want to translate ‘There are no more than two Tasmanian
+Tigers’ into GPLI</li>
+<li>we start with a glossary like this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a Tasmanian Tiger</li>
+</ul></li>
+<li>then we look for a formula which is true if there are no Tasmanian
+Tigers or there is one Tasmanian Tiger or there are two Tasmanian
+Tigers, and false if there are more than two Tasmanian Tigers. Any
+guesses?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>again, there are two approaches we might take</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>one approach captures the idea that for any three things you pick
+from the domain, if they are Tasmanian Tigers at least two of them are
+one and the same thing</li>
+<li>here is our translation then:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mo>∀</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo>∨</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo>∨</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x \forall y \forall z((Tx \land Ty \land Tz) \rightarrow (x = y \lor x = z \lor y = z))</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are no Tasmanian Tigers or there is one
+Tasmanian Tiger or there are two Tasmanian Tigers, and it is false if
+there are more than two Tasmanian Tigers</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>the other approach captures the idea that you cannot pick three
+things from the domain which are all Tasmanian Tigers where no two
+things are identical to each other</li>
+<li>here is our translation then:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mo>∃</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>z</mi><mo>∧</mo><mi>y</mi><mo>≠</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot \exists x \exists y \exists z (Tx \land Ty \land Tz \land x \neq y \land x \neq z \land y \neq z)</annotation></semantics></math></li>
+</ul></li>
+<li>this is true if there are no Tasmanian Tigers or there is one
+Tasmanian Tiger or there are two Tasmanian Tigers, and it is false if
+there are more than two Tasmanian Tigers</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>again, you might find one approach more natural than the other</li>
+<li>they are equivalent!</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>don’t be fooled! the number of quantifiers is not a guide to the
+numerical quantifier involved in these translations</li>
+<li>you need two quantifiers for ‘at most one’, three quantifiers for
+‘at most two’, and so on</li>
+</ul>
+<h2 id="exactly-n">exactly <em>n</em></h2>
+<ul class="incremental">
+<li>suppose we want to translate ‘There is exactly one Tasmanian Tiger’
+into GPLI</li>
+<li>think about what ‘there is exactly one Tasmanian Tiger’ means</li>
+<li>any guesses as to how we might translate the proposition into
+GPLI?</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>well, if there is exactly one Tasmanian Tiger, then there is at
+least one Tasmanian Tiger, and at most one Tasmanian Tiger</li>
+<li>exactly <em>n</em> = at least <em>n</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∧</mo><annotation encoding="application/x-tex">\land</annotation></semantics></math>
+at most <em>n</em></li>
+<li>there is exactly one Tasmanian tiger:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>T</mi><mi>x</mi><mo>∧</mo><mi>…</mi><mi>…</mi><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x Tx \land \ldots \ldots \forall x \forall y((Tx \land Ty) \rightarrow x = y)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>suppose we want to translate ‘There are exactly two Tasmanian
+Tigers’ into GPLI</li>
+<li>well, if there are exactly two Tasmanian Tigers, then there are at
+least two Tasmanian Tigers, and at most two Tasmanian Tigers</li>
+<li>exactly <em>n</em> = at least <em>n</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>∧</mo><annotation encoding="application/x-tex">\land</annotation></semantics></math>
+at most <em>n</em></li>
+<li>there is exactly one Tasmanian tiger:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mi>…</mi><mi>…</mi><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mo>∀</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>T</mi><mi>y</mi><mo>∧</mo><mi>T</mi><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo>∨</mo><mi>x</mi><mo>=</mo><mi>z</mi><mo>∨</mo><mi>y</mi><mo>=</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y (Tx \land Ty \land x \neq y) \land \ldots \ldots \forall x \forall y \forall z((Tx \land Ty \land Tz) \rightarrow (x = y \lor x = z \lor y = z))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>that translation is a little unwieldy</li>
+<li>there’s a more refined way of expressing the same thing</li>
+<li>it captures the idea that if there are exactly two Tasmanian Tigers,
+then you can pick two things from the domain which are not identical and
+are such that any third thing you pick is a Tasmanian Tiger if and only
+if the third thing is identical to one or the other of the first things
+you picked!</li>
+<li>here is the translation based on that thought
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mo>∃</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mo>≠</mo><mi>y</mi><mo>∧</mo><mo>∀</mo><mi>z</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>z</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo>=</mo><mi>x</mi><mo>∨</mo><mi>z</mi><mo>=</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x \exists y (x \neq y \land \forall z(Tz \leftrightarrow (z = x \lor z = y)))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<h1 id="definite-descriptions-in-gpli">definite descriptions in
+GPLI</h1>
+<h2 id="definite-descriptions-in-gpli-1">definite descriptions in
+GPLI</h2>
+<ul class="incremental">
+<li>do we have a way of translating sentence like this ‘the man is
+tall’? in any of our formal languages?</li>
+<li>well so far, we have treated ‘the man’ as if it were a name (or we
+have avoided it entirely)</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>exactly how we should go about translating definite descriptions
+like ‘the man’ is a matter of controvery</li>
+<li>there is a famous approach, due to Bertrand Russell, which treats
+definite descriptions as quantifiers</li>
+<li>the idea is that ‘the man is tall’ means something like there ‘there
+is exactly one man and that man is tall’</li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>we already have all of the tools we need to translate ‘there is
+exactly one man and that man is tall’</li>
+<li>start with a glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Mx</annotation></semantics></math>
+:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a man</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Tx</annotation></semantics></math>
+:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is tall</li>
+</ul></li>
+<li>and translate accordingly
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mo>∀</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>M</mi><mi>y</mi><mo>↔</mo><mi>x</mi><mo>=</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mi>T</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (\forall y (My \leftrightarrow x = y) \land Tx)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<hr />
+<ul class="incremental">
+<li>see the textbook for more complicated cases involving definite
+descriptions</li>
+</ul>
+<hr />
+<h1 id="wrapping-up">wrapping up</h1>
+<h2 id="this-lecture-1">this lecture</h2>
+<ul class="incremental">
+<li>numerical quantifiers and definite descriptions in GPLI</li>
+<li>the introduction of identity into our formal language has led to
+quite the increase in expressive power</li>
+<li>we are now able to capture the logical form of a decent portion of
+English</li>
+</ul>
+<h2 id="next-lecture">next lecture</h2>
+<ul class="incremental">
+<li>lecture 24, beyond GPLI</li>
+</ul>
+</body>
+</html>

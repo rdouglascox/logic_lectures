@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 11, uses of trees for PL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../../styles/slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 11, uses of trees for PL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>in the previous lecture we looked at the motivation for trees for
+PL</li>
+<li>we looked at the motivation for the particular tree rules</li>
+<li>in this lecture we look at how we construct trees and how we use
+them to test for various logical properties</li>
+<li>this lecture really only gives a general overview of how to
+construct trees</li>
+<li>in the live lecture and the tutorials we will do lots of
+examples</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>construct trees for propositions of PL</li>
+<li>use trees to determine whether arguments in PL are valid and to find
+counterexamples to invalid arguments</li>
+<li>use trees to test for various logical properties of PL propositions
+and to read off assignments from open paths</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="applying-the-rules" class="title-slide slide section level1">
+<h1>applying the rules</h1>
+
+</div>
+<div id="applying-the-rules-1" class="slide section level2">
+<h1>applying the rules</h1>
+<ul class="incremental">
+<li>let’s look at how we apply the rules . . .</li>
+</ul>
+</div>
+<div id="which-rule-to-apply" class="slide section level2">
+<h1>which rule to apply</h1>
+<ul class="incremental">
+<li>before you apply a rule ask yourself: what is the main connective?
+<ul class="incremental">
+<li>if it is anything but negation, then apply the relevant rule</li>
+<li>if it is negation, look for the main connective of the negand and
+apply the relevant rule</li>
+</ul></li>
+<li>suppose you have:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="5752493d85d45249d0ef5d283b8aee830181d121.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>is this right?</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="58208b1e54e00b39c8f1d07ea97e4a371c202625.svg" />
+</div>
+<ul class="incremental">
+<li>no, it is wrong</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>is this right?</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="f7618022e3b91b5cbcf0f4c04683224cc1e4aff7.svg" />
+</div>
+<ul class="incremental">
+<li>yes. here the main connective is negation, and the main connective
+of the negand is disjunction.</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>before you apply a rule ask yourself: what is the main connective?
+<ul class="incremental">
+<li>if it is anything but negation, then apply the relevant rule</li>
+<li>if it is negation, look for the main connective of the negand and
+apply the relevant rule</li>
+</ul></li>
+</ul>
+</div>
+<div id="testing-a-single-proposition-for-satisfiability"
+class="slide section level2">
+<h1>testing a single proposition for satisfiability</h1>
+<ul class="incremental">
+<li>suppose we want to test whether the following proposition is
+satisfiable:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow (B \rightarrow A))</annotation></semantics></math></li>
+<li>we begin by writing this proposition on the first line</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="9a6673284fd7589899a30f626c2355b746b126f1.svg" />
+</div>
+<ul class="incremental">
+<li>notice that the assumption is not checked</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>then we apply the rule for the conditional</li>
+<li>remembering to check off the assumption</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="9a6673284fd7589899a30f626c2355b746b126f1.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="fb76accc22de4a98268e00451acfd4a5d4649da5.svg" />
+</div>
+<ul class="incremental">
+<li>notice that we have now checked the assumption, since we have
+applied the rule</li>
+<li>now we ask: have we applied all the rules we can apply?</li>
+<li>no</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>now we apply the rule for the conditional again</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="fb76accc22de4a98268e00451acfd4a5d4649da5.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="cd7d20c2a996cda1f9ac56faca2dffa26fc0d9a8.svg" />
+</div>
+<ul class="incremental">
+<li>now we ask: have we applied all the rules we can apply?</li>
+<li>yes</li>
+<li>this tree is complete</li>
+</ul>
+</div>
+<div id="the-notion-of-a-path" class="slide section level2">
+<h1>the notion of a path</h1>
+<ul class="incremental">
+<li>a helpful notion in thinking about trees is the notion of a
+path</li>
+<li>a <strong>path</strong> through a tree is a complete route from the
+topmost proposition down until one can go no further</li>
+<li>for example, suppose we have this tree:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="05132879036b8fb4a99052ff96ec2b3f738355a3.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is one path through the tree:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="af8a00202a3cdc400e995fb950e612f7ea75da1a.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is another path through the tree:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="3a1dc25a6ab86945438d5070a23690458d7ba95b.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if at any point we find that a path contains both a formula and its
+negation, we <strong>close</strong> the path with a
+<strong>cross</strong></li>
+<li>so, for example, the path above contains both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>.</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="6dab89c44cbee6c0016908139e3dff4b7be6a2c8.svg" />
+</div>
+</div>
+</div>
+<div id="applying-rules-on-every-open-path"
+class="slide section level2">
+<h1>applying rules on every open path</h1>
+<ul class="incremental">
+<li>suppose you have the following unfinished tree:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="d730effceb46197333f3a0c36b680baf17ecb490.svg" />
+</div>
+<ul class="incremental">
+<li>the rule for conditional has not been applied to the conditional on
+the third line</li>
+<li>there are two open paths through this tree</li>
+<li>the tree rules must be applied on all open paths on which the
+formula it is being applied to is on.</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if you apply the rule correctly this is the tree you get:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="955852a584119f45d55368303f0105bd6cc07941.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>it is important, however, to apply the rule only on the path on
+which the wff is on</li>
+<li>suppose you have this tree</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="3b20dadc06661440702567fa6b49a1e4d7e2f8d8.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the next step is not:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="ece4dbdb007812e3ef9ac8af24f2af2d8f9e12b2.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>these are not on the same path:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="8d6e8d3263a4595a6b3a4229fb4b30340effe4ba.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what is wrong with the following tree?</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="53ac98316fcd783e34a86a9bdee87e2a9ce7031f.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the path with B and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math>B
+should have been closed.</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="f5f64dfb7bb3d52573e1f3c94b8d282f0309e437.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>it should have looked like this:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="74478b3981d1e7d8e632796b64a9be507134db3c.svg" />
+</div>
+<ul class="incremental">
+<li>every time you add wffs to the tree you <em>must</em> check for
+closure</li>
+<li>this applies when you first write down your assumptions, and applies
+again whenever you apply a rule</li>
+</ul>
+</div>
+</div>
+
+<div id="the-order-of-the-rules"
+class="title-slide slide section level1">
+<h1>the order of the rules</h1>
+
+</div>
+<div id="the-order-of-the-rules-1" class="slide section level2">
+<h1>the order of the rules</h1>
+<ul class="incremental">
+<li>it doesn’t matter which order you apply the rules</li>
+<li>however, it is often convenient to apply non-branching rules first
+whenever you have a choice between non-branching and branching
+rules</li>
+<li>to see why, suppose we have:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="e88e3cbe50962f36fc4c5584eeae8fb5fd56b506.svg" />
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>branching first:</li>
+</ul>
+<div class="incremental">
+<div class="tree">
+<img src="aa90dca6365f814ece4f7034d0ff52ab84eda172.svg" />
+</div>
+<ul class="incremental">
+<li>non-branching first:</li>
+</ul>
+</div>
+<div class="incremental">
+<div class="tree">
+<img src="c871f690146ed5f8d8cd2e30f3ec6b06b5db4e5f.svg" />
+</div>
+<ul class="incremental">
+<li>there’s only a small difference here (2 wffs to be exact)</li>
+<li>but the difference can be significant with bigger trees</li>
+<li>another good idea is to apply rules which will give you a closed
+branch first</li>
+<li>but this requires some foresight</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>want to build trees which look exactly like the trees which the
+program I use to generate answers look?</li>
+<li>mechanically follow these steps
+<ul class="incremental">
+<li><strong>step 1.</strong> from the top down, apply double negation
+rule and check for contradictions, until you can’t. go to step 2.</li>
+<li><strong>step 2.</strong> from the top down, apply any non-branching
+rule, check for contradictions, and do step 1, until you can’t.
+(conjunction first, negated disjunction next, then negated conditional).
+go to step 3.</li>
+<li><strong>step 3.</strong> from the top down, apply a branching rule
+if you can, check for contradictions, and return to step 1. (disjunction
+first, conditional next, biconditional, then negated biconditional). if
+you can’t apply a branching rule (or any other rules for that matter),
+you are done!</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if you do this then . . .
+<ul class="incremental">
+<li>the input and output of the double negation rule will always be
+together</li>
+<li>you will never miss a contradiction (think of checking for
+contradictions as part of what you do when you apply a rule)</li>
+<li>you will never apply a branching rule before you could have applied
+a non-branching rule</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="what-trees-do" class="title-slide slide section level1">
+<h1>what trees do</h1>
+
+</div>
+<div id="what-trees-do-1" class="slide section level2">
+<h1>what trees do</h1>
+<ul class="incremental">
+<li>the rules specify things to write which must be true assuming that
+the propositions at the top of the tree are true</li>
+<li>the rules are constructed so that if the propositions at the top of
+the tree are true, then there is at least one path such that everything
+on that path is true</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>each path represents an alleged way for the propositions at the top
+all to be true together: an alleged assignment of truth values to basic
+propositions that makes the propositions at the top true</li>
+<li>this is only an alleged way for them to be true together, since some
+paths close</li>
+<li>a closed path does not represent a possible assignment of values at
+all, while an open path represents a possible assignment of values on
+which the propositions at the top are all true</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose that all paths close
+<ul class="incremental">
+<li>then the propositions at the top are unsatisfiable: there is no way
+of making them all true</li>
+</ul></li>
+<li>but suppose a path remains open: then the propositions at the top
+are satisfiable: there is an assignment of truth values to basic
+propositions that makes them all true</li>
+<li>this is what allows us to “read off’ an assignment of values to
+basic propositions on which our initial propositions are all true</li>
+</ul>
+</div>
+
+<div id="testing-for-satisfiability"
+class="title-slide slide section level1">
+<h1>testing for satisfiability</h1>
+
+</div>
+<div id="testing-for-satisfiability-1" class="slide section level2">
+<h1>testing for satisfiability</h1>
+<ul class="incremental">
+<li>in the first instance, trees allow us to test whether a given set of
+propositions is satisfiable or not</li>
+<li>if we know how to set things up properly, we can use trees to test
+for other properties too</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="c5161931acd7005fd5334d10fec8539253133995.svg" />
+</div>
+<ul class="incremental">
+<li>if all of the paths close, then the propositions are not jointly
+satisfiable</li>
+<li>if a path remains open, then the propositions are jointly
+satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ad9cfcd17df36c1b5585d1e66c15427776c83433.svg" />
+</div>
+<ul class="incremental">
+<li>all paths close, so the propositions are not jointly
+satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="131d1e83c6531ed2f9a0403853cc8b13cec0a9af.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="50dac417f2840f7cfd4dd2c35c96fda8ee9ebcdb.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="4fe0637404bf7a1ec1e7e888d7a08225e694fb86.svg" />
+</div>
+<ul class="incremental">
+<li>all paths close, so the propositions are not jointly
+satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="babe4b464c685a4f3a7ffee148e887dca8d68683.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="bb7b5695fc6d3537f3c1a57cd099dce411c01bf1.svg" />
+</div>
+<ul class="incremental">
+<li>the tree is finished and there is an open path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="66f1b5f50397ffdb4ab82b4fc6a8ecc1c95fb355.svg" />
+</div>
+<ul class="incremental">
+<li>we read off an assignment on which the propositions are true.
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>:
+T</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="d06ba674c6e815f1e63dcc0079051c14790ca464.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="b1e87387b5af25d5058560c95dadd6c5976e2c02.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="63a48ae4a8d766682b92101e4c37e4d231d7e2b0.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="bcae1a7b3ba88a0c9bbfe8fd4c3f1929ae03ed6a.svg" />
+</div>
+<ul class="incremental">
+<li>left path yields:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+T</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="cea20333046c274958df5d2275cba45607e7b3cf.svg" />
+</div>
+<ul class="incremental">
+<li>right path yields:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+T.</li>
+<li>either:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+F.</li>
+<li>so one tree can yield multiple assignments</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="2f47e53f2ec75d4daf78713ab78cfeff5df57409.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="963dcaeeb3b69722c0318ea0ee0235a5b829296e.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="63ca5366f586d7f2690741d8bc8cf23a712f9de7.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="274e1ddc8f87fa130fed347a8b87f3b4386ad136.svg" />
+</div>
+<ul class="incremental">
+<li>there are two open paths</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="0339dbc9bb543b4050e7c08ebbe2b56923aa5a09.svg" />
+</div>
+<ul class="incremental">
+<li>this path yields:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+F</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="9f724c83b9726fb0031ee8ca2864688a50385b6e.svg" />
+</div>
+<ul class="incremental">
+<li>this path yields:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+F</li>
+<li>so different paths can yield the same assignment</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>one tree can yield multiple assignments</li>
+<li>different paths can yield the same assignment</li>
+<li>every truth-making assignment, if there are any at all, can be read
+of some path
+<ul class="incremental">
+<li>none are overlooked</li>
+</ul></li>
+</ul>
+</div>
+
+<div id="testing-for-validity" class="title-slide slide section level1">
+<h1>testing for validity</h1>
+
+</div>
+<div id="testing-for-validity-1" class="slide section level2">
+<h1>testing for validity</h1>
+<ul class="incremental">
+<li>validity: is it possible for the premises to be true and the
+conclusion false?</li>
+<li>is it possible for the premises to be true and the negation of the
+conclusion to be true?</li>
+<li>is the set containing the premises and the negation of the
+conclusion satisfiable?</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="88a90fd19d6091b3018e4007087993b4bc9a7b2e.svg" />
+</div>
+<ul class="incremental">
+<li>if all of the paths close, then the argument if valid.</li>
+<li>if any paths remain open, then the argument is invalid.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>as with truth tables, if an argument is invalid, we can read off a
+counterexample</li>
+<li>the counterexample is provided by the basic propositions and
+negations of basic propositions on an open path</li>
+<li>we assign T to the basic propositions on an open path, and F to the
+basic proposition which is the negand of the negation on an open
+path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="8635aef428984b3bd63ff5a244281ed6abc24870.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="5aa4c1520f46cc4ca96622bf5546b94b4f384c72.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="73c9cbfe2f68b1a3b46762b6f3bcb28a69ab0a0c.svg" />
+</div>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="9ccec15684b8b12371f3beed497d2263d2c83b6e.svg" />
+</div>
+<ul class="incremental">
+<li>a counterexample:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+true,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+true,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+false</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the relevant row of the truth table looks like this:</li>
+</ul>
+<div class="incremental">
+<div class="ttable3">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B )</annotation></semantics></math></td>
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B \rightarrow C)</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>→</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B \rightarrow A)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="center">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+<td align="left">T</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="testing-for-contraries-and-contradictories"
+class="title-slide slide section level1">
+<h1>testing for contraries and contradictories</h1>
+
+</div>
+<div id="testing-for-contraries-and-contradictories-1"
+class="slide section level2">
+<h1>testing for contraries and contradictories</h1>
+<div class="tree">
+<img src="d78a577c06bac5506ce78cd95e231173e7d8c92b.svg" />
+</div>
+<ul class="incremental">
+<li>if the propositions are jointly satisfiable, they are not contraries
+or contradictories</li>
+<li>if they are not jointly satisfiable, they are either contraries or
+contradictories, but we need a further test to determine which</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="f1c7e4f08c66f75042e657688971300abf85e02b.svg" />
+</div>
+<ul class="incremental">
+<li>if the propositions are jointly satisfiable then they are
+contraries</li>
+<li>if they are not jointly satisfiable, then they are
+contradictories</li>
+</ul>
+</div>
+
+<div id="testing-for-tautologies-and-logical-truths"
+class="title-slide slide section level1">
+<h1>testing for tautologies and logical truths</h1>
+
+</div>
+<div id="testing-for-tautologies-and-logical-truths-1"
+class="slide section level2">
+<h1>testing for tautologies and logical truths</h1>
+<ul class="incremental">
+<li>tautology: is it possible for the proposition to be false?</li>
+<li>is it possible for the negation of the proposition to be true?</li>
+<li>is the set containing the negation of the proposition satisfiable?
+<ul class="incremental">
+<li>if it is not, then it is a tautology</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="ae7e74d397e442acfdd1459a44050d9103406957.svg" />
+</div>
+<ul class="incremental">
+<li>if the negation of the proposition is not satisfiable (if all paths
+close), then the proposition itself is a logical truth.</li>
+</ul>
+</div>
+
+<div id="testing-for-equivalence"
+class="title-slide slide section level1">
+<h1>testing for equivalence</h1>
+
+</div>
+<div id="testing-for-equivalence-1" class="slide section level2">
+<h1>testing for equivalence</h1>
+<ul class="incremental">
+<li>equivalent: is it possible for one proposition to be true while the
+other is false or vice versa?</li>
+<li>is the biconditional constructed from the propositions a
+tautology?</li>
+<li>is the set containing the negation of the biconditional constructed
+from the propositions unsatisfiable? If it is, then they are
+equivalent</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<div class="tree">
+<img src="388dd285879d35f69a40b20d9ed465bb83719b5b.svg" />
+</div>
+<ul class="incremental">
+<li>if the negated biconditional is not satisfiable (all paths close)
+then the propositions are equivalent.</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>trees can be used to test for various properties</li>
+<li>once you know how to build trees, all you need to know is how to set
+them up the right way to test for various properties, and how to
+understand the results of your test</li>
+<li>we’ve looked at a few examples in this lecture</li>
+<li>you will do many more in tutorials</li>
+</ul>
+</div>
+<div id="next-lectures" class="slide section level2">
+<h1>next lectures</h1>
+<ul class="incremental">
+<li>lecture 12, issues in translation: conditional</li>
+<li>lecture 13, the formal language MPL</li>
+</ul>
+</div>
+</body>
+</html>
