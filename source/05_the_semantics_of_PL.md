@@ -77,7 +77,7 @@ F                  T
 
 . . .
 
-![](../../assets/sketches/negation_truth_function_true.png)
+![](negation_truth_function_true.png)
 
 * the 'output' is false
 
@@ -87,7 +87,7 @@ F                  T
 
 . . .
 
-![](../../assets/sketches/negation_truth_function_false.png)
+![](negation_truth_function_false.png)
 
 * the 'output' is false
 
@@ -129,7 +129,7 @@ $\alpha$   $\beta$    $(\alpha\land\beta)$
 
 . . .
 
-![](../../assets/sketches/conjunction_true_true.png)
+![](conjunction_true_true.png)
 
 * the 'output' is true
 
@@ -139,7 +139,7 @@ $\alpha$   $\beta$    $(\alpha\land\beta)$
 
 . . .
 
-![](../../assets/sketches/conjunction_true_false.png)
+![](conjunction_true_false.png)
 
 * the 'output' is false
 
@@ -149,7 +149,7 @@ $\alpha$   $\beta$    $(\alpha\land\beta)$
 
 . . .
 
-![](../../assets/sketches/conjunction_false_true.png)
+![](conjunction_false_true.png)
 
 * the 'output' is false
 
@@ -159,7 +159,7 @@ $\alpha$   $\beta$    $(\alpha\land\beta)$
 
 . . .
 
-![](../../assets/sketches/conjunction_false_false.png)
+![](conjunction_false_false.png)
 
 * the 'output' is false
 
@@ -202,7 +202,7 @@ $\alpha$   $\beta$    $(\alpha \lor \beta)$
 
 . . .
 
-![](../../assets/sketches/disjunction_true_true.png)
+![](disjunction_true_true.png)
 
 * the 'output' is true
 
@@ -212,7 +212,7 @@ $\alpha$   $\beta$    $(\alpha \lor \beta)$
 
 . . .
 
-![](../../assets/sketches/disjunction_true_false.png)
+![](disjunction_true_false.png)
 
 * the 'output' is true
 
@@ -222,7 +222,7 @@ $\alpha$   $\beta$    $(\alpha \lor \beta)$
 
 . . .
 
-![](../../assets/sketches/disjunction_false_true.png)
+![](disjunction_false_true.png)
 
 * the 'output' is true
 
@@ -232,7 +232,7 @@ $\alpha$   $\beta$    $(\alpha \lor \beta)$
 
 . . .
 
-![](../../assets/sketches/disjunction_false_false.png)
+![](disjunction_false_false.png)
 
 * the 'output' is false
 
@@ -275,7 +275,7 @@ $\alpha$   $\beta$    $(\alpha \rightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/conditional_true_true.png)
+![](conditional_true_true.png)
 
 * the 'output' is true
 
@@ -285,7 +285,7 @@ $\alpha$   $\beta$    $(\alpha \rightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/conditional_true_false.png)
+![](conditional_true_false.png)
 
 * the 'output' is false
 
@@ -295,7 +295,7 @@ $\alpha$   $\beta$    $(\alpha \rightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/conditional_false_true.png)
+![](conditional_false_true.png)
 
 * the 'output' is true
 
@@ -305,7 +305,7 @@ $\alpha$   $\beta$    $(\alpha \rightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/conditional_false_false.png)
+![](conditional_false_false.png)
 
 * the 'output' is true
 
@@ -350,7 +350,7 @@ $\alpha$   $\beta$    $(\alpha \leftrightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/biconditional_true_true.png)
+![](biconditional_true_true.png)
 
 * the 'output' is true
 
@@ -360,7 +360,7 @@ $\alpha$   $\beta$    $(\alpha \leftrightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/biconditional_true_false.png)
+![](biconditional_true_false.png)
 
 * the 'output' is false
 
@@ -370,7 +370,7 @@ $\alpha$   $\beta$    $(\alpha \leftrightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/biconditional_false_true.png)
+![](biconditional_false_true.png)
 
 * the 'output' is false
 
@@ -380,7 +380,7 @@ $\alpha$   $\beta$    $(\alpha \leftrightarrow \beta)$
 
 . . .
 
-![](../../assets/sketches/biconditional_false_false.png)
+![](biconditional_false_false.png)
 
 * the 'output' is true
 
