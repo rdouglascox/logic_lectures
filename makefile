@@ -43,161 +43,125 @@ all : build/$(L00).pdf build/$(L01).pdf build/$(L02).pdf build/$(L03).pdf build/
 
 build/$(L00).pdf: source/$(L00).md
 	pandoc -s -i source/$(L00).md -o build/$(L00)/$(L00).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i source/$(L00).md -o build/$(L00)/$(L00)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i source/$(L00).md -o build/$(L00)/$(L00)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L05)/$(L05).html -o build/$(L05)/$(L05)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
+
+	
+	
+	pandoc -s --embed-resources -i build/$(L00)/$(L00).html -o build/$(L00)/$(L00)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
 
 build/$(L01).pdf: source/$(L01).md
 	pandoc -s -i source/$(L01).md -o build/$(L01)/$(L01).html -t slidy --css=$(STYLE) -i	
-	pandoc -s --embed-resources -i source/$(L01).md -o build/$(L01)/$(L01)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i source/$(L01).md -o build/$(L01)/$(L01)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L01)/$(L01).html -o build/$(L01)/$(L01)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L02).pdf: source/$(L02).md
 	pandoc -s -i source/$(L02).md -o build/$(L02)/$(L02).html -t slidy --css=$(STYLE) -i	
-	pandoc -s --embed-resources -i source/$(L02).md -o build/$(L02)/$(L02)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i source/$(L02).md -o build/$(L02)/$(L02)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L02)/$(L02).html -o build/$(L02)/$(L02)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L03).pdf: source/$(L03).md
 	pandoc -s -i --mathml source/$(L03).md -o build/$(L03)/$(L03).html -t slidy --css=$(STYLE) -i	
-	pandoc -s --embed-resources -i --mathml source/$(L03).md -o build/$(L03)/$(L03)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L03).md -o build/$(L03)/$(L03)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L03)/$(L03).html -o build/$(L03)/$(L03)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L04).pdf: source/$(L04).md
 	pandoc -s -i --mathml source/$(L04).md -o build/$(L04)/$(L04).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L04).md -o build/$(L04)/$(L04)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L04).md -o build/$(L04)/$(L04)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L04)/$(L04).html -o build/$(L04)/$(L04)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L05).pdf: source/$(L05).md
 	pandoc -s -i --mathml source/$(L05).md -o build/$(L05)/$(L05).html -t slidy --css=$(STYLE) -i	
-	pandoc -s --embed-resources -i --mathml source/$(L05).md -o build/$(L05)/$(L05)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L05).md -o build/$(L05)/$(L05)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L05)/$(L05).html -o build/$(L05)/$(L05)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L06).pdf: source/$(L06).md
 	pandoc -s -i --mathml source/$(L06).md -o build/$(L06)/$(L06).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L06).md -o build/$(L06)/$(L06)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L06).md -o build/$(L06)/$(L06)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L06)/$(L06).html -o build/$(L06)/$(L06)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L07).pdf: source/$(L07).md
 	pandoc -s -i --mathml source/$(L07).md -o build/$(L07)/$(L07).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L07).md -o build/$(L07)/$(L07)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L07).md -o build/$(L07)/$(L07)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L07)/$(L07).html -o build/$(L07)/$(L07)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L08).pdf: source/$(L08).md
 	pandoc -s -i --mathml source/$(L08).md -o build/$(L08)/$(L08).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L08).md -o build/$(L08)/$(L08)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L08).md -o build/$(L08)/$(L08)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L08)/$(L08).html -o build/$(L08)/$(L08)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)	
 
 build/$(L09).pdf: source/$(L09).md
-	pandoc -s -i --mathml source/$(L09).md -o build/$(L09)/$(L09).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L09).md -o build/$(L09)/$(L09)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L09).md -o build/$(L09)/$(L09)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s -i --mathml source/$(L09).md -o build/$(L09)/$(L09).html -t slidy --css=$(STYLE) -i	
+	pandoc -s build/$(L09)/$(L09).html -o build/$(L09)/$(L09)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L10).pdf: source/$(L10).md
 	pandoc -s -i --lua-filter=$(QTREE) --mathml source/$(L10).md -o build/$(L10)/$(L10).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L10)	
-	pandoc -s --embed-resources -i --lua-filter=$(QTREE) --mathml source/$(L10).md -o build/$(L10)/$(L10)_handout.html --css=$(STYLEL) -i
+	pandoc -s build/$(L10)/$(L10).html -o build/$(L10)/$(L10)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 	mv *.svg build/$(L10)
-	pandoc -s --embed-resources -i --lua-filter=$(QTREES) --mathml source/$(L10).md -o build/$(L10)/$(L10)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-	mv *.svg build/$(L10)
-
-
 
 build/$(L11).pdf: source/$(L11).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L11).md -o build/$(L11)/$(L11).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L11)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L11).md -o build/$(L11)/$(L11)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L11)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L11).md -o build/$(L11)/$(L11)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L11)/$(L11).html -o build/$(L11)/$(L11)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 	mv *.svg build/$(L11)
 
 
 build/$(L12).pdf: source/$(L12).md
 	pandoc -s -i --mathml source/$(L12).md -o build/$(L12)/$(L12).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L12).md -o build/$(L12)/$(L12)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L12).md -o build/$(L12)/$(L12)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L12)/$(L12).html -o build/$(L12)/$(L12)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L13).pdf: source/$(L13).md
 	pandoc -s -i --mathml source/$(L13).md -o build/$(L13)/$(L13).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L13).md -o build/$(L13)/$(L13)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L13).md -o build/$(L13)/$(L13)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-
+	pandoc -s build/$(L13)/$(L13).html -o build/$(L13)/$(L13)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L14).pdf: source/$(L14).md
 	pandoc -s -i --mathml source/$(L14).md -o build/$(L14)/$(L14).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L14).md -o build/$(L14)/$(L14)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L14).md -o build/$(L14)/$(L14)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-
-
+	pandoc -s build/$(L14)/$(L14).html -o build/$(L14)/$(L14)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 build/$(L15).pdf: source/$(L15).md
 	pandoc -s -i --mathml source/$(L15).md -o build/$(L15)/$(L15).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L15).md -o build/$(L15)/$(L15)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L15).md -o build/$(L15)/$(L15)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-
-
+	pandoc -s build/$(L15)/$(L15).html -o build/$(L15)/$(L15)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
+	
 build/$(L16).pdf: source/$(L16).md
 	pandoc -s -i --mathml source/$(L16).md -o build/$(L16)/$(L16).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L16).md -o build/$(L16)/$(L16)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L16).md -o build/$(L16)/$(L16)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-
+	pandoc -s build/$(L16)/$(L16).html -o build/$(L16)/$(L16)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 
 build/$(L17).pdf: source/$(L17).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L17).md -o build/$(L17)/$(L17).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L17)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L17).md -o build/$(L17)/$(L17)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L17)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L17).md -o build/$(L17)/$(L17)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L17)/$(L17).html -o build/$(L17)/$(L17)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 	mv *.svg build/$(L17)
 
 build/$(L18).pdf: source/$(L18).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L18).md -o build/$(L18)/$(L18).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L18)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L18).md -o build/$(L18)/$(L18)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L18)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L18).md -o build/$(L18)/$(L18)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L18)/$(L18).html -o build/$(L18)/$(L18)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)	
 	mv *.svg build/$(L18)
 
 build/$(L19).pdf: source/$(L19).md
 	pandoc -s -i --mathml source/$(L19).md -o build/$(L19)/$(L19).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L19).md -o build/$(L19)/$(L19)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L19).md -o build/$(L19)/$(L19)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L19)/$(L19).html -o build/$(L19)/$(L19)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
 
 build/$(L20).pdf: source/$(L20).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L20).md -o build/$(L20)/$(L20).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L20)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L20).md -o build/$(L20)/$(L20)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L20)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L20).md -o build/$(L20)/$(L20)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L20)/$(L20).html -o build/$(L20)/$(L20)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)	
 	mv *.svg build/$(L20)
 
 
 build/$(L21).pdf: source/$(L21).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L21).md -o build/$(L21)/$(L21).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L21)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L21).md -o build/$(L21)/$(L21)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L21)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L21).md -o build/$(L21)/$(L21)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L21)/$(L21).html -o build/$(L21)/$(L21)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)	
 	mv *.svg build/$(L21)
 
 
 build/$(L22).pdf: source/$(L22).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L22).md -o build/$(L22)/$(L22).html -t slidy --css=$(STYLE) -i
-	mv *.svg build/$(L22)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREE) --mathml source/$(L22).md -o build/$(L22)/$(L22)_handout.html --css=$(STYLEL) -i
-	mv *.svg build/$(L22)
-	pandoc -s --embed-resources -i --lua-filter=$(PROOFTREES) --mathml source/$(L22).md -o build/$(L22)/$(L22)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L22)/$(L22).html -o build/$(L22)/$(L22)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)	
 	mv *.svg build/$(L22)
 
 build/$(L23).pdf: source/$(L23).md
 	pandoc -s -i --mathml source/$(L23).md -o build/$(L23)/$(L23).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L23).md -o build/$(L23)/$(L23)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L23).md -o build/$(L23)/$(L23)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L23)/$(L23).html -o build/$(L23)/$(L23)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
+
+
+	
 
 build/$(L24).pdf: source/$(L24).md
 	pandoc -s -i --mathml source/$(L24).md -o build/$(L24)/$(L24).html -t slidy --css=$(STYLE) -i
-	pandoc -s --embed-resources -i --mathml source/$(L24).md -o build/$(L24)/$(L24)_handout.html --css=$(STYLEL) -i
-	pandoc -s --embed-resources -i --mathml source/$(L24).md -o build/$(L24)/$(L24)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
+	pandoc -s build/$(L24)/$(L24).html -o build/$(L24)/$(L24)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
+
+
+	
 
 
 
