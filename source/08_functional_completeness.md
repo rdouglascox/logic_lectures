@@ -472,6 +472,11 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 * it should be obvious that for any truth table whatsoever, we only need $\lnot$, $\land$, and $\lor$ to carry out the procedure of describing the row on which some proposition is true and making a disjunction of these conjunctions
 * by this method we prove that {$\lnot$, $\land$, $\lor$} is a functionally complete set of connectives!
 
+---
+
+* use can use this method to convert any proposition whatsoever into an equivalent proposition in **disjunctive normal form** 
+* a proposition is in disjunctive normal form if it is a disjunction of conjunctions whose conjuncts are either basic propositions or negations of basic propositions
+
 # functionally complete sets of connectives
 
 ## functionally complete sets of connectives
