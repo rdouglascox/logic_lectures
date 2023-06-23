@@ -8,9 +8,8 @@ HTML2PDF:= wkhtmltopdf
 QTREE:= filters/tikz-qtree.lua
 PROOFTREE:= filters/tikz-prooftree.lua
 
-QTREES:= filters/tikz-qtree_small.lua
-PROOFTREES:= filters/tikz-prooftree_small.lua
-
+QTREES:= filters/tikz-qtree.lua
+PROOFTREES:= filters/tikz-prooftree.lua
 
 L00:= 00_introduction_and_overview
 L01:= 01_what_is_logic

@@ -127,7 +127,7 @@ subtitle: phil1012 introductory logic
 
 --- 
 
-- what if we don't read a contradiction?
+- what if we don't reach a contradiction?
 - what if had started with a slightly different proposition?
 - what if we had arrived at the following after splitting the conditional?
 
