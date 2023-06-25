@@ -10,8 +10,6 @@ subtitle: phil1012 introductory logic
 * in the previous lecture we looked at the motivation for trees for PL
 * we looked at the motivation for the particular tree rules
 * in this lecture we look at how we construct trees and how we use them to test for various logical properties
-* this lecture really only gives a general overview of how to construct trees
-* in the live lecture and the tutorials we will do lots of examples
 
 ## learning outcomes
 
@@ -615,6 +613,12 @@ the relevant rule
 * right path yields: $B$: T, $C$: T.
 * either: $B$: T, $C$: T, $A$: T or $B$: T, $C$: T, $A$: F.
 * so one tree can yield multiple assignments
+* these are related to the rows of a truth table
+
+
+``` prooftree
+\begin{tabular}{|c|c|c||c|c|}\hline A&B&C&(A$\vee{}$B)&(B$\wedge{}$C)\tabularnewline \hline T&T&T&T&T\tabularnewline T&T&F&T&F\tabularnewline T&F&T&T&F\tabularnewline T&F&F&T&F\tabularnewline F&T&T&T&T\tabularnewline F&T&F&T&F\tabularnewline F&F&T&F&F\tabularnewline F&F&F&F&F\tabularnewline \hline \end{tabular}
+```
 
 ---
 
