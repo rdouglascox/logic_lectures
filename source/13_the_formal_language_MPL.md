@@ -162,7 +162,7 @@ this:
 * how should we translate the following?
     * everyone is a philosopher
     * someone is a philosopher
-    * so-one is a philosopher
+    * no one is a philosopher
 
 ---
 
@@ -170,14 +170,14 @@ this:
 * here's my glossary:
     * $e$: everyone
     * $s$: someone
-    * $n$: no-one
+    * $n$: no one
 * here's my translation:
     * $e$ is a philosopher
     * $s$ is a philosopher
     * $n$ is a philosopher
 
 * this is wrong!
-* expressions like 'everyone', 'someone', and 'no-one' are not names.
+* expressions like 'everyone', 'someone', and 'no one' are not names.
 
 ---
 

@@ -68,7 +68,7 @@ subtitle: phil1012 introductory logic
 - suppose we begin by assuming that it *is* satisfiable
 - that is, suppose there is some assignment on which it is true
 - what do we know?
-- well, we know that the assignment is one on which both conjuncts must be true
+- well, we know that the assignment is one on which both conjuncts must be satisfiable
 - for now, let's just write out a list like this to keep track:
 
 . . . 
@@ -78,7 +78,7 @@ subtitle: phil1012 introductory logic
 ---
 
 - okay, now we've got another conjunction in there.
-- if there is an assignment on which all these propositions are true together, it must be an assignment on which both conjuncts are true
+- if there is an assignment on which all these propositions are true together, it must be an assignment on which both conjuncts are satisfiable
 - so let's expand our list:
 
 . . . 
@@ -88,9 +88,9 @@ subtitle: phil1012 introductory logic
 ---
 
 - okay, now comes the tricky part. how do we deal with the conditional?
-- well, let's ask what kind of assignment we need in order to make it true?
+- well, let's ask under what conditions the conditional is satisfiable 
 - here it helps to remind ourselves that $(A\rightarrow B)$ is equivalent to $(\lnot A \lor B)$   
-- so we can either take an assignment on which $\lnot A$ is true, or an assignment on which $B$ is true
+- so we can either take an assignment on which $\lnot A$ is true, or an assignment on which $B$ is satisfiable
 - take the first first
 
 . . .
@@ -110,7 +110,7 @@ subtitle: phil1012 introductory logic
 
 ---
 
-- what about the other assignment, on which $B$ is true?
+- what about the other assignment, on which $B$ is satisfiable?
 
 . . .
 
@@ -215,7 +215,7 @@ subtitle: phil1012 introductory logic
 - in a moment, we will discuss the rules for building trees (the tree rules)
 - these just encapsulate our claims about "what must be true" if some proposition is true   
 - each time we apply a tree rule to a proposition we "check it off" with a tick
-- this is just a way of keeping track what we've "dealt with" that proposition
+- this is just a way of keeping track that we've "dealt with" that proposition
 
 . . . 
 
@@ -280,7 +280,7 @@ subtitle: phil1012 introductory logic
 
 ---
 
-- because propositions always get simpler, we eventually end up with only basic propositions and negations of basic propositions
+- because the propositions we add always get simpler, we eventually end up with only basic propositions and negations of basic propositions
 - if a path contains a contradiction, the propositions on that path cannot all be true at once
 - if a finished path does not contain a contradiction, the propositions can all be true together  
 - we can "read off" an assignment on which all the propositions are true from the basic propositions and negated propositions on such a path
@@ -324,50 +324,9 @@ $\alpha$  $\beta$           $(\alpha \lor \beta)$
 
 :::
 
-* reading off from the rows on which $(\alpha \lor \beta)$ is true . . .
+. . . 
 
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \lor \beta) \checkmark$}
-          [.{$\alpha$ \\ $\beta$} ]
-          [.{$\alpha$ \\ $\lnot \beta$} ]
-          [.{$\lnot \alpha$ \\ $\beta$} ]
-      ]
-
-```
-
-* then simplifying . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \lor \beta) \checkmark$}
-          [.{$\alpha$ \\ $\beta$} ]
-          [.{$\alpha$} ]
-          [.{$\beta$} ]
-      ]
-
-```
-
-* and simplifying again . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \lor \beta) \checkmark$}
-          [.{$\alpha$} ]
-          [.{$\beta$} ]
-      ]
-
-```
-
-* what must be *true* if the disjunction is true?
-* answer: either $\alpha$ *or*  $\beta$
-* the tree rule for disjunction is easy to remember even though there's a bit involved in reading the tree rule off the truth table
+* answer: either $\alpha$ *or*  $\beta$ (or both) 
 
 ## negated disjunction
 
@@ -398,7 +357,8 @@ $\alpha$  $\beta$           $\lnot(\alpha \lor \beta)$
 :::
 
 * answer: $\lnot\alpha$ *and*  $\lnot\beta$ must be true
-* the tree rule for negated disjunction is easy to read off its truth table
+* this one is easy if you remember the following equivalence:
+   * $\lnot(\alpha \lor \beta)$$\equiv$$(\lnot\alpha \land \lnot\beta)$ 
 
 ## conjunction
 
@@ -414,6 +374,7 @@ $\alpha$  $\beta$           $\lnot(\alpha \lor \beta)$
 ```
 
 - let's think through the motivation for the rule in terms of truth tables
+- ask: what must be *true* if the conjunction is true?
 
 ::: ttable2
 
@@ -427,7 +388,10 @@ $\alpha$  $\beta$           $(\alpha \land \beta)$
 
 :::
 
-* the tree rule for conjunction is easy to read off its truth table
+. . . 
+
+answer: $\alpha$ *and* $\beta$ must be true
+
 
 ## negated conjunction
 
@@ -445,6 +409,7 @@ $\alpha$  $\beta$           $(\alpha \land \beta)$
 ```
 
 - let's think through the motivation for the rule in terms of truth tables
+- ask: what must be true if the negated conjunction is true?
 
 ::: ttable2
 
@@ -458,46 +423,11 @@ $\alpha$  $\beta$       $\lnot(\alpha \land \beta)$
 
 :::
 
-* reading off the tree rule for negated conjunction works a bit like the case for disjunction . . .
+. . . 
 
-. . .
-
-```{.tree}
-
-\Tree [.{$\lnot(\alpha \land \beta) \checkmark$}
-          [.{$\alpha$ \\ $\lnot \beta$} ]
-          [.{$\lnot \alpha$ \\ $\beta$} ]
-          [.{$\lnot \alpha$ \\ $\lnot \beta$} ]
-      ]
-
-```
-
-* then simplifying . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$\lnot(\alpha \land \beta) \checkmark$}
-          [.{$\lnot \beta$} ]
-          [.{$\lnot \alpha$} ]
-          [.{$\lnot \alpha$ \\ $\lnot \beta$} ]
-      ]
-
-```
-
-* then simplifying again . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$\lnot(\alpha \land \beta) \checkmark$}
-          [.{$\lnot \alpha$} ]
-          [.{$\lnot \beta$} ]
-      ]
-
-```
+- answer: either $\lnot\alpha$ *or* $\lnot\beta$ (or both)
+- this one is easy if you remember the following equivalence:
+   * $\lnot(\alpha \land \beta)$$\equiv$$(\lnot\alpha \lor \lnot \beta)$
 
 ## conditional
 
@@ -515,6 +445,7 @@ $\alpha$  $\beta$       $\lnot(\alpha \land \beta)$
 ```
 
 - let's think through the motivation for the rule in terms of truth tables
+- ask: what must be true if the conditional is true?
 
 ::: ttable2
 
@@ -528,51 +459,11 @@ $\alpha$  $\beta$           $(\alpha \rightarrow \beta)$
 
 :::
 
-* reading the tree rule of the truth table for conditional is a little trikier than the others . . .
-* we start with . . .
+. . . 
 
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \to \beta) \checkmark$}
-          [.{$\alpha$ \\ $\beta$} ]
-          [.{$\lnot \alpha$ \\ $\beta$} ]
-          [.{$\lnot \alpha$ \\ $\lnot \beta$} ]
-      ]
-
-```
-
-* simplifying first on $\beta$ we get . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \to \beta) \checkmark$}
-          [.{$\beta$} ]
-          [.{$\lnot \alpha$ \\ $\lnot \beta$} ]
-      ]
-
-```
-
-* then simplifying on $\lnot \beta$ . . .
-
-. . .
-
-```{.tree}
-
-\Tree [.{$(\alpha \to \beta) \checkmark$}
-          [.{$\beta$} ]
-          [.{$\lnot \alpha$} ]
-      ]
-
-```
-
-. . .
-
-* in the case of conditional it is probably easier to just remember that $(\alpha \to \beta)$ is equivalent to $(\lnot \alpha \lor \beta)$
-* the tree rule (and the motivaiton for the rule) will then be obvious!
+* answer: either $\alpha$ *or* $\lnot\beta$ must be true
+* this is easy to remember if you keep the following equivalence in mind:
+   * $(\alpha \rightarrow \beta)$$\equiv$$(\lnot\alpha \lor \beta)$
 
 
 ## negated conditional
@@ -589,6 +480,7 @@ $\alpha$  $\beta$           $(\alpha \rightarrow \beta)$
 ```
 
 - let's think through the motivation for the rule in terms of truth tables
+- ask what must be true if the negated conditional is true?
 
 ::: ttable2
 
@@ -601,6 +493,12 @@ $\alpha$  $\beta$    $\lnot(\alpha \rightarrow \beta)$
 --------  -------  ------------------------------------
 
 :::
+
+. . . 
+
+- answer: $\alpha$ and $\lnot \beta$ must be true
+* this is easy if you remember the following equivalence:
+    * $\lnot(\alpha \rightarrow \beta)$$\equiv$$(\alpha \land \lnot \beta)$
 
 ## biconditional
 
@@ -618,6 +516,7 @@ $\alpha$  $\beta$    $\lnot(\alpha \rightarrow \beta)$
 ```
 
 - let's think through the motivation for the rule in terms of truth tables
+- ask: what must be true if the biconditional is true?
 
 ::: ttable2
 
@@ -630,6 +529,10 @@ $\alpha$  $\beta$    $(\alpha \leftrightarrow \beta)$
 --------  -------  ------------------------------------
 
 :::
+
+* answer: either both $\alpha$ and $\beta$ must be true or $\lnot\alpha$ and $\lnot\beta$ must be true.
+* this is easy if you remember the following equivalence:
+   * $(\alpha \leftrightarrow \beta)$$\equiv$$((\alpha \land \beta) \lor (\lnot\alpha \land \lnot\beta))$
 
 ## negated biconditional
 
@@ -659,6 +562,12 @@ $\alpha$  $\beta$    $\lnot(\alpha \leftrightarrow \beta)$
 --------  -------  -----------------------------------------
 
 :::
+
+. . . 
+
+* this is easy if you remember the following equivalence:
+   * $(\alpha \leftrightarrow \beta)$$\equiv$$((\alpha \land \lnot\beta) \lor (\lnot\alpha \land \beta))$
+
 
 ## double negation
 

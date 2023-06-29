@@ -46,10 +46,6 @@ build/$(L00).pdf: source/$(L00).md
 	pandoc -s -i source/$(L00).md -o build/$(L00)/$(L00).html -t slidy --css=$(STYLE) -i
 	pandoc -s build/$(L05)/$(L05).html -o build/$(L05)/$(L05)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
-	
-	
-	pandoc -s --embed-resources -i build/$(L00)/$(L00).html -o build/$(L00)/$(L00)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL) -i
-
 build/$(L01).pdf: source/$(L01).md
 	pandoc -s -i source/$(L01).md -o build/$(L01)/$(L01).html -t slidy --css=$(STYLE) -i	
 	pandoc -s build/$(L01)/$(L01).html -o build/$(L01)/$(L01)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
@@ -86,7 +82,7 @@ build/$(L09).pdf: source/$(L09).md
 	pandoc -s -i --mathml source/$(L09).md -o build/$(L09)/$(L09).html -t slidy --css=$(STYLE) -i	
 	pandoc -s build/$(L09)/$(L09).html -o build/$(L09)/$(L09)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 
-build/$(L10).pdf: source/$(L10).md
+build/$(L10).pdf : source/$(L10).md
 	pandoc -s -i --lua-filter=$(QTREE) --mathml source/$(L10).md -o build/$(L10)/$(L10).html -t slidy --css=$(STYLE) -i
 	pandoc -s build/$(L10)/$(L10).html -o build/$(L10)/$(L10)_handout.pdf  --pdf-engine=$(HTML2PDF) --css=$(STYLEL)
 	mv *.svg build/$(L10)
