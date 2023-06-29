@@ -3,9 +3,11 @@ STYLEX:= ../../styles/slidy_style.css
 STYLE:= slidy_style.css
 STYLEL:= styles/handout_style.css
 
-HTML2PDF:= wkhtmltopdf
 
-QTREE:= filters/tikz-qtree.lua
+HTML2PDF:= xelatex
+HTML2PDF2:= wkhtmltopdf
+
+QTREE:= filters/tikz-qtree_small.lua
 PROOFTREE:= filters/tikz-prooftree.lua
 
 QTREES:= filters/tikz-qtree.lua

@@ -198,7 +198,8 @@ applied
     $\alpha$($\underline{a}$/ $\underline{x}$) is false
     * it follows from
     this that $\lnot\alpha$($\underline{a}$/ $\underline{x}$) is true in
-    $\mathcal{M}$. It follows that
+    $\mathcal{M}$. 
+    * it follows that
     $\exists\underline{x}\lnot\alpha(\underline{x})$ is true in
     $\mathcal{M}$
 

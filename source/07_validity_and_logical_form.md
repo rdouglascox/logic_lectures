@@ -188,8 +188,7 @@ second conjunct is a conditional, whose consequent is a negation:
 
 * consider the following logical form:
     * $(\alpha \leftrightarrow (\lnot \beta \land \alpha))$
-* a **logical form** is like a formula, except that in place of basic
-propositions it has variables in the place of formulas
+* a **logical form** is like a formula, except that it has variables in the place of formulas
 * given a logical form, we can ask: what propositions have this form? We
 call such propositions **instances** of the form
 
@@ -237,9 +236,8 @@ proposition
 
 * consider the following argument form:
     * $\alpha$, $(\alpha \rightarrow (\beta \rightarrow \alpha))$ $\therefore \beta \rightarrow \alpha$\
-* an **argument form** is just like an argument except that, in place
-    of basic propositions, it has variables in the place of
-    propositions
+* an **argument form** is just like an argument except that it has variables in
+  the place of propositions
 * given an argument form, we can ask: what arguments have this form?
 * we call such arguments **instances** of the form
 
@@ -252,12 +250,7 @@ proposition
 
 ---
 
-* consider the following argument:
-    * $P$, $(P \rightarrow (Q \rightarrow P))$, $\therefore Q \rightarrow P$
 * an argument can be an instance of more than one form
-
----
-
 * for example . . .
     * $P$, $(P \rightarrow (Q \rightarrow P))$ $\therefore Q \rightarrow P$
         * $\alpha$, $(\alpha \rightarrow (\beta \rightarrow \alpha))$, $\therefore (\beta \rightarrow \alpha)$
@@ -374,7 +367,7 @@ unsatisfiability   satisfiability
 
 ## notable argument forms
 
-* now that we've introduced the idea of a valid\* argument form, and we've seen how to appeal to valid argument forms in establishing the validity of an argument, you should be on the lookout for shortcuts
+* now that we've introduced the idea of a **valid\*** argument form, and we've seen how to appeal to valid argument forms in establishing the validity of an argument, you should be on the lookout for shortcuts
 * here are some valid\* argument forms to be on the lookout for
 
 ---

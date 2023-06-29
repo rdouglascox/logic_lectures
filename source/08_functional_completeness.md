@@ -474,7 +474,7 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 
 ---
 
-* use can use this method to convert any proposition whatsoever into an equivalent proposition in **disjunctive normal form** 
+* we can use this method to convert any proposition whatsoever into an equivalent proposition in **disjunctive normal form** 
 * a proposition is in disjunctive normal form if it is a disjunction of conjunctions whose conjuncts are either basic propositions or negations of basic propositions
 
 # functionally complete sets of connectives
