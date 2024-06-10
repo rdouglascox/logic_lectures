@@ -8,7 +8,7 @@ subtitle: phil1012 introductory logic
 ## this lecture
 
 * what is logic?
-* what is logic for?
+* applications of formal/symbolic logic
 * central concepts of logic:
     * propositions and truth
     * arguments
@@ -34,46 +34,11 @@ subtitle: phil1012 introductory logic
 
 * what is logic?
 
-## a brief history of logic
+## what is logic?
 
-* logic is a subject with a history
-* this is not a course in the history of logic
-* nonetheless . . .
-
----
-
-* it is worth knowing the history in broad outline
-* some of the major events in the history of logic:
-    * aristotle, categorical propositions, and categorical syllogisms
-    * the stoics, propositional logic, 'if . . . then', 'and', 'or', etc.
-    * . . . 
-    * gotlob frege, quantified propositions, 'for all', 'for some'
-* it was only really in the 20th century that predicate logic received its canonical formulation
-
-## logic and the laws of truth
-
-* so what is logic?
-    * logic is the systematic study of the laws of truth
-    * logic concerns itself with the laws which govern the truth of propositions
+* logic, the subject, is **the systematic study of the laws of truth**
+* logic is concerned, with the laws which govern the truth of propositions
 * you can think of these claims as saying that *this* is what we mean by 'logic' in this class 
-* don't worry if you don't know what propositions are yet, we will come to this
-
-## formal logic vs informal logic
-
-* what are the varieties of logic?
-    * formal/symbolic logic
-    * informal/practical/applied logic or critical thinking
-* both may deal with notions like (deductively) valid arguments
-* formal logic is distinct in that it uses *formal methods* like translation into formal languages and formal proofs
-* our aim might ultimately to be to understand ordinary arguments, but we might also study the formal languages and proofs themselves (metalogic)
-
-## logic and human reasoning 
-
-* what is logic not?
-* logic is not the study of human reasoning
-* logic concerns itself with the laws of truth, not the laws of thought
-* a particular course of reasoning may be good because it accords with the
-laws of truth, but the laws of truth are explanatorily prior
 
 ## logic and the laws of truth
 
@@ -85,31 +50,91 @@ laws of truth, but the laws of truth are explanatorily prior
    * e.g. if a set of propositions with such and such a form are all true, then a proposition with such and such a form must be true
    * we will develop more precise ways of formulating laws of truth as we go
 
-# what is logic for?
+## logic and logics
 
-## applications of logic
+* this study of the laws of truth is often carried out using using formal languages and formal methods
+* these formal languages are often called 'logics'
+* these languages make it possible to study the laws of truth in a precise way
+* in this unit we we cover two logics: propositional logic and predicate logic with identity 
+
+## the history of logic
+
+* logic, the subject, has a long history
+* the history of logic is the history of the development of the study of the laws of truth
+* the history of logic is the history of the development of formal languages and formal methods for studying the laws of truth
+
+## the history of logic 
+
+* Aristotle studied the laws of truth in the context of categorical propositions and categorical syllogisms
+* he used variable symbols to represent classes of things and studied the relations between these classes
+* he studied laws of truth like the following: if all A are B and all B are C, then all A are C.
+
+## the history of logic 
+
+* around the same time, the ancient stoics studied the laws of truth in the context of propositional logic
+* they studied laws of truth like the following: if A then B, A, therefore B
+* the study of propositional logic was updated and refined in the 19th century by Boole, De Morgan, and others
+
+## the history of logic 
+
+* around the turn of the 20th century, Frege, Russell, and others developed predicate logic
+* they studied the laws of truth in the context of quantified propositions
+* they used variables to represent objects and studied the relations between these objects
+* it was only really in the 20th century that predicate logic received its canonical formulation
+
+## formal/symbolic logic vs informal logic
+
+* what are the varieties of logic?
+    * formal/symbolic logic
+    * informal/practical/applied logic or critical thinking
+* both may deal with notions like (deductively) valid arguments
+* formal logic is distinct in that it uses *formal methods* like translation into formal languages and formal proofs
+* our aim might ultimately to be to understand the laws of truth, but we might also study the formal languages and proofs themselves 
+* another part of the study of logic is the study of the formal languages and proofs themselves 
+* this is sometimes called "metalogic" as opposed to "logic"
+
+## logic and the laws of thought
+
+* it is sometimes said that logic is the systematic study of the laws of *thought*
+* but logic is not the study of the laws of thought or of human reasoning 
+* logic concerns itself with the laws of truth, not the laws of thought
+* a particular course of reasoning may be good because it accords with the laws of truth, but the laws of truth are explanatorily prior
+
+# applications of formal/symbolic logic
+
+## applications of formal/symbolic logic
 
 * logic has various applications 
    * computer science
+   * artificial intelligence 
    * linguistics
    * philosophy
    * the foundations of mathematics
-
-## applications of logic 
+ 
+## applications of formal/symbolic logic 
 
 * we focus on its application to
    * making the logical form of a proposition explicit
    * formally representing the structure of arguments
    * testing for the validity of arguments
-* that is, the main 'practical' skills we focus on in this class are these
-* this should help if you find yourself asking 'what's the point of this?'
 
-## applications of logic
+## applications of formal/symbolic logic 
 
 * this will involve 
    * learning to translate English into a formal language
    * identifying the elements of arguments in English 
    * learning how to *prove* that an argument is valid
+
+## applications of formal/symbolic logic 
+
+* the following quotation from one of the founders of modern symbolic logic, Whitehead, is apposite: 
+
+> [Formal languages] have invariably been introduced to make things easy. By the aid of symbolism, we can make transitions in reasoning almost mechanically by the eye, which otherwise would call into play the higher faculties of the brain. Civilisation advances by extending the number of important operations which can be performed without thinking about them. (Whitehead 1919 *An Introduction to Mathematics*)
+
+## applications of formal/symbolic logic 
+
+* these are the main 'practical' skills we focus on in this unit
+* this should help if you find yourself asking 'what's the point of this?'
 * these applications are all very well
 * but the aim of this course is to give you a much deeper understanding of what logic is
 * so let's turn to some fundamental concepts
@@ -118,7 +143,18 @@ laws of truth, but the laws of truth are explanatorily prior
 
 ## truth and propositions
 
-* a **proposition** is something which can be **true** or **false**
+* we said that logic is the systematic study of the laws of truth 
+* and that the laws of truth govern the truth of propositions
+* so what is a proposition?
+
+## truth and propositions
+
+* think of propositions, in the first instance, as the kind of thing you might express when you assert that something is the case 
+* you express a proposition when you assert that the sky is blue, that the earth is round, that the moon is made of cheese, and so on 
+* you express the proposition that the sky is blue when you assert that the sky is blue
+* what you assert is something that can be true or false 
+* propositions are the primary bearers of truth and falsity
+* the truth and falsity of propositions is what the laws of truth govern
 
 ## propositions and sentences
 
@@ -127,10 +163,6 @@ laws of truth, but the laws of truth are explanatorily prior
 * sentences can be said to *express* propositions
 * a declarative sentence is true (as used in a context) if it expresses a true
   proposition and is false if it expresses a false proposition
-
-## what is logic (again)?
-
-* logic concerns itself with the laws which govern the **truth** of **propositions**
 
 ## laws of truth for single propositions
 
@@ -474,7 +506,7 @@ argument are all true?
 ## this lecture
 
 * what is logic?
-* what is logic for?
+* applications of formal/symbolic logic
 * central concepts of logic:
     * propositions and truth
     * arguments
