@@ -61,6 +61,10 @@ not okay:
 not okay:
     * $A$: John is not short
 
+--- 
+
+* more about glossaries and translations in the next lecture
+
 ---
 
 * we have introduced symbols to represent propositions (sentence letters)
@@ -161,8 +165,12 @@ only if Jane is tall
 arbitrary, the choice we have made is final, and henceforth we will only use
 these symbols
 
+--- 
 
-<!-- do punctuation symbols! -->
+* in addition to the connectives, we need to introduce some punctuation symbols
+* these are used to group the symbols of PL together 
+* they are:
+    * `(` and `)` 
 
 ---
 
@@ -285,9 +293,8 @@ constructed
 * an introduction to the formal language PL
 * the vocabulary and syntax of PL
 * how formulas of PL are constructed
-* translating propositions from English into PL with the use of a glossary
 
 ## next lectures
 
-* lecture 4, issues in translation: assertability and implicature
+* lecture 4, lost in translation 1
 * lecture 5, the semantics of PL

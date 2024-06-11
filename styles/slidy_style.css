@@ -1,4 +1,3 @@
-
 /* style for tables in general */
 
 table {
@@ -6,12 +5,12 @@ table {
 }
 
 th {
-   border-bottom: 1px solid black;
-   border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
 }
 
 th:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 td {
@@ -31,9 +30,9 @@ td:last-child {
 }
 
 .ttable1 td {
-   border-right: 1px solid black;
-   text-align: center;
-   vertical-align: top;
+  border-right: 1px solid black;
+  text-align: center;
+  vertical-align: top;
 }
 
 .ttable1 td:last-child {
@@ -41,11 +40,11 @@ td:last-child {
 }
 
 .ttable1 td:nth-child(1) {
-   border-right: double black;
+  border-right: double black;
 }
 
 .ttable1 tr:nth-child(1) {
-   border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .ttable2 table {
@@ -55,26 +54,23 @@ td:last-child {
   border: 1px soild black;
 }
 
-
 .ttable2 td {
-   border-right: 1px solid black;
-   text-align: center;
-   vertical-align: top;
+  border-right: 1px solid black;
+  text-align: center;
+  vertical-align: top;
 }
 
 .ttable2 td:last-child {
   border-right: none;
 }
 
-
 .ttable2 td:nth-child(2) {
-   border-right: double black;
+  border-right: double black;
 }
 
 .ttable2 tr:nth-child(1) {
-   border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
-
 
 .ttable3 table {
   border-collapse: collapse;
@@ -83,26 +79,23 @@ td:last-child {
   border: 1px soild black;
 }
 
-
 .ttable3 td {
-   border-right: 1px solid black;
-   text-align: center;
-   vertical-align: top;
+  border-right: 1px solid black;
+  text-align: center;
+  vertical-align: top;
 }
 
 .ttable3 td:last-child {
   border-right: none;
 }
 
-
 .ttable3 td:nth-child(3) {
-   border-right: double black;
+  border-right: double black;
 }
 
 .ttable3 tr:nth-child(1) {
-   border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
-
 
 .ttable4 table {
   border-collapse: collapse;
@@ -110,27 +103,23 @@ td:last-child {
   vertical-align: top;
 }
 
-
 .ttable4 td {
-   border-right: 1px solid black;
-   text-align: center;
-   vertical-align: top;
+  border-right: 1px solid black;
+  text-align: center;
+  vertical-align: top;
 }
 
 .ttable4 td:last-child {
   border-right: none;
 }
 
-
 .ttable4 td:nth-child(4) {
-   border-right: double black;
+  border-right: double black;
 }
 
 .ttable4 tr:nth-child(1) {
-   border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
-
-
 
 /* style for arguments */
 
@@ -138,30 +127,27 @@ td:last-child {
   border-collapse: collapse;
 }
 
-.arg tr, td {
+.arg tr,
+td {
   text-align: left;
   vertical-align: top;
 }
 
-.arg tr:nth-last-child(1)  {
+.arg tr:nth-last-child(1) {
   border-top: 1px solid black;
   text-align: left;
-
 }
 
-.arg td:nth-child(1)  {
+.arg td:nth-child(1) {
   font-weight: bold;
   text-align: left;
-
 }
 
 /* style for trees */
 
-
 .tree {
   margin-left: 35px;
 }
-
 
 /*
 body {
@@ -171,8 +157,8 @@ body {
 */
 
 .slide.section.level2 {
-     padding: 20pt;
-     margin: 20pt;
+  padding: 20pt;
+  margin: 20pt;
 }
 
 div.slide.section.level1 h1 {
@@ -188,24 +174,22 @@ div.slide.section.level2 h1 {
 }
 
 .title-slide.section.level1 {
-     padding: 20pt;
-     margin: 20pt;
+  padding: 20pt;
+  margin: 20pt;
 }
 
 ul li {
-    list-style: disc;
+  list-style: disc;
 }
 
 li ul li {
-    font-size: 100%;
-    font-style: normal;
-    list-style: circle;
-
+  font-size: 100%;
+  font-style: normal;
+  list-style: circle;
 }
 
 li ul li ul li {
-    font-size: 100%;
-    font-style: normal;
-    list-style: circle;
-
+  font-size: 100%;
+  font-style: normal;
+  list-style: circle;
 }

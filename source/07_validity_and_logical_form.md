@@ -146,12 +146,12 @@ that one is valid, we know the other is, and vice versa?
 * consider the following proposition:
     * $(A \land (B \rightarrow \lnot C))$
 * what is its form?
-* there are many correct answers ranging from very course-grained to very
+* there are many correct answers ranging from very coarse-grained to very
 fine-grained
 
 ---
 
-* at its most course-grained it is just a proposition:
+* at its most coarse-grained it is just a proposition:
     * $\underline{(A \land (B \rightarrow \lnot C))}$
 *  so it has the following form: $\alpha$
 
@@ -180,7 +180,7 @@ second conjunct is a conditional, whose consequent is a negation:
 ---
 
 * propositions do not have a single form
-* they have many forms ranging from the course-grained to the fine-grained
+* they have many forms ranging from the coarse-grained to the fine-grained
 
 # instances: from forms to propositions
 

@@ -129,6 +129,8 @@ subtitle: phil1012 introductory logic
 
 * the following quotation from one of the founders of modern symbolic logic, Whitehead, is apposite: 
 
+. . .
+
 > [Formal languages] have invariably been introduced to make things easy. By the aid of symbolism, we can make transitions in reasoning almost mechanically by the eye, which otherwise would call into play the higher faculties of the brain. Civilisation advances by extending the number of important operations which can be performed without thinking about them. (Whitehead 1919 *An Introduction to Mathematics*)
 
 ## applications of formal/symbolic logic 
@@ -370,6 +372,19 @@ argument are all true?
 
 :::
 
+## valid arguemnt forms 
+
+* for instance: 
+
+:::arg 
+--------- -----------------------------------------
+  P1.     If it is raining then the ground is wet
+  P2.     It is raining
+  C1.     The ground is wet
+--------- -----------------------------------------
+:::
+
+
 ## valid argument forms
 
 ::: arg
@@ -384,6 +399,20 @@ argument are all true?
 
 ## valid argument forms
 
+* for instance: 
+
+:::arg 
+
+--------- -----------------------------------------
+  P1.     If it is raining then the ground is wet
+  P2.     The ground is not wet
+  C1.     It is not raining
+--------- -----------------------------------------
+
+:::
+
+## valid argument forms
+
 ::: arg
 
 --------- ---------------------
@@ -391,6 +420,20 @@ argument are all true?
   P2.     If **B** then **C**
   C1.     If **A** then **C**
 --------- ---------------------
+
+:::
+
+## valid argument forms
+
+* for instance:
+
+:::arg 
+
+--------- -----------------------------------------------------
+  P1.     If it is raining then the ground is wet
+  P2.     If the ground is wet then the grass is wet
+  C1.     If it is raining then the grass is wet
+--------- -----------------------------------------------------
 
 :::
 
