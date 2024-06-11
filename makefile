@@ -2,7 +2,7 @@
 STYLEX:= ../../styles/slidy_style.css
 STYLE:= slidy_style.css
 
-QTREE:= filters/tikz-qtree_small.lua
+QTREE:= filters/tikz-qtree.lua
 PROOFTREE:= filters/tikz-prooftree-embed.lua
 
 L00:= 00_introduction_and_overview
@@ -33,55 +33,55 @@ all : build/$(L00)/$(L00).html build/$(L01)/$(L01).html build/$(L02)/$(L02).html
 .PHONY: all	
 
 build/$(L00)/$(L00).html: source/$(L00).md
-	pandoc -s -i source/$(L00).md -o build/$(L00)/$(L00).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) source/$(L00).md -o build/$(L00)/$(L00).html -t slidy --css=$(STYLE) -i
 
 build/$(L01)/$(L01).html: source/$(L01).md
-	pandoc -s -i source/$(L01).md -o build/$(L01)/$(L01).html -t slidy --css=$(STYLE) -i	
+	pandoc -s -i --lua-filter=$(PROOFTREE) source/$(L01).md -o build/$(L01)/$(L01).html -t slidy --css=$(STYLE) -i	
 
 build/$(L02)/$(L02).html: source/$(L02).md
-	pandoc -s -i source/$(L02).md -o build/$(L02)/$(L02).html -t slidy --css=$(STYLE) -i	
+	pandoc -s -i --lua-filter=$(PROOFTREE) source/$(L02).md -o build/$(L02)/$(L02).html -t slidy --css=$(STYLE) -i	
 
 build/$(L03)/$(L03).html: source/$(L03).md
-	pandoc -s -i --mathml source/$(L03).md -o build/$(L03)/$(L03).html -t slidy --css=$(STYLE) -i	
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L03).md -o build/$(L03)/$(L03).html -t slidy --css=$(STYLE) -i	
 
 build/$(L04)/$(L04).html: source/$(L04).md
-	pandoc -s -i --mathml source/$(L04).md -o build/$(L04)/$(L04).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L04).md -o build/$(L04)/$(L04).html -t slidy --css=$(STYLE) -i
 
 build/$(L05)/$(L05).html: source/$(L05).md
-	pandoc -s -i --mathml source/$(L05).md -o build/$(L05)/$(L05).html -t slidy --css=$(STYLE) -i	
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L05).md -o build/$(L05)/$(L05).html -t slidy --css=$(STYLE) -i	
 
 build/$(L06)/$(L06).html: source/$(L06).md
-	pandoc -s -i --mathml source/$(L06).md -o build/$(L06)/$(L06).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L06).md -o build/$(L06)/$(L06).html -t slidy --css=$(STYLE) -i
 
 build/$(L07)/$(L07).html: source/$(L07).md
-	pandoc -s -i --mathml source/$(L07).md -o build/$(L07)/$(L07).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L07).md -o build/$(L07)/$(L07).html -t slidy --css=$(STYLE) -i
 
 build/$(L08)/$(L08).html: source/$(L08).md
-	pandoc -s -i --mathml source/$(L08).md -o build/$(L08)/$(L08).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L08).md -o build/$(L08)/$(L08).html -t slidy --css=$(STYLE) -i
 
 build/$(L09)/$(L09).html: source/$(L09).md
-	pandoc -s -i --lua-filter=$(QTREE) --mathml source/$(L09).md -o build/$(L09)/$(L09).html -t slidy --css=$(STYLE) -i	
+	pandoc -s -i --lua-filter=$(QTREE) --lua-filter=$(PROOFTREE) --mathml source/$(L09).md -o build/$(L09)/$(L09).html -t slidy --css=$(STYLE) -i	
 
 build/$(L10)/$(L10).html : source/$(L10).md
-	pandoc -s -i --lua-filter=$(QTREE) --mathml source/$(L10).md -o build/$(L10)/$(L10).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(QTREE) --lua-filter=$(PROOFTREE) --mathml source/$(L10).md -o build/$(L10)/$(L10).html -t slidy --css=$(STYLE) -i
 
 build/$(L11)/$(L11).html: source/$(L11).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L11).md -o build/$(L11)/$(L11).html -t slidy --css=$(STYLE) -i
 
 build/$(L12)/$(L12).html: source/$(L12).md
-	pandoc -s -i --mathml source/$(L12).md -o build/$(L12)/$(L12).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L12).md -o build/$(L12)/$(L12).html -t slidy --css=$(STYLE) -i
 
 build/$(L13)/$(L13).html: source/$(L13).md
-	pandoc -s -i --mathml source/$(L13).md -o build/$(L13)/$(L13).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L13).md -o build/$(L13)/$(L13).html -t slidy --css=$(STYLE) -i
 
 build/$(L14)/$(L14).html: source/$(L14).md
-	pandoc -s -i --mathml source/$(L14).md -o build/$(L14)/$(L14).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L14).md -o build/$(L14)/$(L14).html -t slidy --css=$(STYLE) -i
 
 build/$(L15)/$(L15).html: source/$(L15).md
-	pandoc -s -i --mathml source/$(L15).md -o build/$(L15)/$(L15).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L15).md -o build/$(L15)/$(L15).html -t slidy --css=$(STYLE) -i
 	
 build/$(L16)/$(L16).html: source/$(L16).md
-	pandoc -s -i --mathml source/$(L16).md -o build/$(L16)/$(L16).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L16).md -o build/$(L16)/$(L16).html -t slidy --css=$(STYLE) -i
 
 build/$(L17)/$(L17).html: source/$(L17).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L17).md -o build/$(L17)/$(L17).html -t slidy --css=$(STYLE) -i
