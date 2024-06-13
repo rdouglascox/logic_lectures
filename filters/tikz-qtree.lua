@@ -7,6 +7,7 @@ local tikz_doc_template = [[
 \usepackage{fouriernc}
 \usepackage{fontspec}
 \setmainfont{Gill Sans}
+\usepackage{amsmath}
 \begin{document}
 \nopagecolor
 \begin{Huge}
@@ -21,7 +22,7 @@ local function tikz2image(src, filetype, outfile)
 			local f = io.open("tikz.tex", "w")
 			f:write(tikz_doc_template:format(src))
 			f:close()
-			os.execute("pdflatex tikz.tex")
+			os.execute("xelatex tikz.tex")
 			if filetype == "pdf" then
 				os.rename("tikz.pdf", outfile)
 			else
