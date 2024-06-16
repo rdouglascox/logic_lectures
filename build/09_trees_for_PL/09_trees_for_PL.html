@@ -1,0 +1,2307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 09, trees for PL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 09, trees for PL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to <strong>truth trees</strong> for PL</li>
+<li>general motivation for the use of truth trees for PL</li>
+<li>particular motivations for each tree rule</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>how to construct truth trees in general</li>
+<li>how to use truth trees to test for particular logical
+properties</li>
+</ul>
+</div>
+<div id="learning-objectives" class="slide section level2">
+<h1>learning objectives</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain the motivation behind truth trees for PL</li>
+<li>write down the tree rules for PL from memory</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>all of chapter 7</li>
+</ul>
+</div>
+
+<div id="the-motivation-for-truth-trees"
+class="title-slide slide section level1">
+<h1>the motivation for truth trees</h1>
+
+</div>
+<div id="the-motivation-for-truth-trees-1" class="slide section level2">
+<h1>the motivation for truth trees</h1>
+<ul class="incremental">
+<li>the limitations of truth tables as a proof method</li>
+<li>proof trees are the only method of proof we will examine for MPL,
+GPL, and GPLI</li>
+</ul>
+</div>
+<div id="the-limitations-of-truth-tables-as-a-proof-method"
+class="slide section level2">
+<h1>the limitations of truth tables as a proof method</h1>
+<ul class="incremental">
+<li>recall the maths concerning truth tables
+<ul class="incremental">
+<li>2 basic propositions: 4 rows</li>
+<li>3 basic propositions: 8 rows</li>
+<li>4 basic propositions: 16 rows</li>
+<li>5 basic propositions: 32 rows</li>
+<li>6 basic propositions: 64 rows</li>
+<li>. . .</li>
+</ul></li>
+</ul>
+</div>
+<div id="the-limitations-of-truth-tables-as-a-proof-method-1"
+class="slide section level2">
+<h1>the limitations of truth tables as a proof method</h1>
+<ul class="incremental">
+<li>truth tables (or complete ones at least) involve a kind of
+enumerative search</li>
+<li>if an argument is valid, you’ve got to fill in every row to be
+sure</li>
+<li>truth tables may eventually provide an evaluation which is a
+counterexample</li>
+<li>might we work in a more direct fashion towards a
+counterexample?</li>
+<li>yes: truth trees</li>
+</ul>
+</div>
+
+<div id="the-basic-idea-behind-truth-trees"
+class="title-slide slide section level1">
+<h1>the basic idea behind truth trees</h1>
+
+</div>
+<div id="re-inventing-truth-trees" class="slide section level2">
+<h1>re-inventing truth trees</h1>
+<ul class="incremental">
+<li>let’s re-invent truth trees</li>
+<li>suppose you have some proposition or other, and you want to know
+whether it is satisfiable</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose we begin by assuming that it <em>is</em> satisfiable</li>
+<li>that is, suppose there is some assignment on which it is true</li>
+<li>what do we know?</li>
+<li>well, we know that the assignment is one on which both conjuncts
+must be satisfiable</li>
+<li>for now, let’s just write out a list like this to keep track:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>okay, now we’ve got another conjunction in there.</li>
+<li>if there is an assignment on which all these propositions are true
+together, it must be an assignment on which both conjuncts are
+satisfiable</li>
+<li>so let’s expand our list:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>okay, now comes the tricky part. how do we deal with the
+conditional?</li>
+<li>well, let’s ask under what conditions the conditional is
+satisfiable</li>
+<li>here it helps to remind ourselves that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A\rightarrow B)</annotation></semantics></math>
+is equivalent to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot A \lor B)</annotation></semantics></math><br />
+</li>
+<li>so we can either take an assignment on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+is true, or an assignment on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is satisfiable</li>
+<li>take the first first</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>uh oh. what is wrong with this list of propositions?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B)\land(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math></p>
+</blockquote>
+<ul class="incremental">
+<li>not all of the propositions can be true at once!
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math>
+cannot be true at once.</li>
+<li>this path isn’t going to make our initial assumption about
+satisfiability work out</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what about the other assignment, on which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+is satisfiable?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math></p>
+</blockquote>
+<ul class="incremental">
+<li>uh oh. not all of the propositions can be true at once!
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>
+cannot be true at once</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>our initial assumption was mistaken. the proposition is not
+satsfiable!</li>
+<li>this method looks like a good one for refuting the initial
+assumption of satisfiability</li>
+<li>if we reach a contradiction on a path, we can reject that path</li>
+<li>if we reach a contradiction on all paths, we know the proposition
+isn’t satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what if we don’t reach a contradiction?</li>
+<li>what if had started with a slightly different proposition?</li>
+<li>what if we had arrived at the following after splitting the
+conditional?</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((C \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(C \rightarrow B)</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land \lnot B))</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot C</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>well, assuming that we have broken down every proposition once</li>
+<li>we know that all of the propositions can be true together if and
+only if the basic propositions and negations of basic propositions can
+be true together</li>
+<li>and we can just see that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">\lnot B</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot C</annotation></semantics></math>
+can all be true together</li>
+<li>so we can conclude that the original proposition is satisfiable</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>even better</li>
+<li>we have derived an assignment on which the proposition is true:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+T,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+F,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+F</p>
+</blockquote>
+<ul class="incremental">
+<li>unlike truth tables, truth trees can take us directly to the
+relevant assignment</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>essential to the procedure is the idea of “splitting” or
+“branching”</li>
+<li>we must check <em>every</em> path we create after splitting or
+branching</li>
+<li>else we won’t know if there is <em>some</em> path without a
+contradiction on it</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>drawing this method as a tree going down the page is even
+better</li>
+</ul>
+</div>
+
+<div id="the-tree-method" class="title-slide slide section level1">
+<h1>the tree method</h1>
+
+</div>
+<div id="the-tree-method-described" class="slide section level2">
+<h1>the tree method described</h1>
+<ul class="incremental">
+<li>here is the tree proof of the unsatisfiability of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((A \rightarrow B) \land (A \land \lnot B))</annotation></semantics></math>
+from above</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c92d6824466be98.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="219.79" viewBox="0 0 218.25 219.79">
+<defs>
+<g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0">
+<path d="M 9.25 -11.125 L 12.0625 -11.125 L 7.484375 -5.65625 L 12.390625 0 L 9.578125 0 L 6.078125 -4 L 2.765625 0 L 0 0 L 4.6875 -5.65625 L 0 -11.125 L 2.765625 -11.125 L 6.078125 -7.3125 Z M 9.25 -11.125 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="6.887" y="20.917"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="14.563249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="23.974" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-0" x="45.442" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="72.736" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="89.864" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-1" x="100.569" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="120.008" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="129.419" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-1" x="149.676" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="169.105093" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="185.771" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="202.899" y="20.917"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="210.575249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="71.08" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="80.492" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-0" x="101.96" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="129.253" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="67.285" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="76.696" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-1" x="96.953" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="116.382093" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="133.048" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="150.176" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="104.823" y="110.581"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="95.676" y="140.469"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="112.333" y="140.469"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00163109 L 19.237182 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.014)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L -19.234548 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.014)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="75.719" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="93.863" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="87.208" y="210.823"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="123.293" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="125.536" y="210.823"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>how do we construct such a tree?</li>
+<li>well, we begin by writing down the proposition (or propositions) we
+want to test for satisfiability</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/bb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="29.89" viewBox="0 0 218.25 29.89">
+<defs>
+<g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-0" x="6.887" y="20.923"/>
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-0" x="14.563249" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-0" x="23.974" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-0" x="45.442" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-1" x="72.736" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-1" x="89.864" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-1" x="100.569" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-0" x="120.008" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-0" x="129.419" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-1" x="149.676" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-2-2" x="169.105093" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-1-1" x="185.771" y="20.923"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-1" x="202.899" y="20.923"/>
+<use xlink:href="#glyphbb31b30e6b8d75b39ae2e5b82dfd12fd97e544dd.svg-0-1" x="210.575249" y="20.923"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>think of this proposition as the “root” of the tree if you like (the
+tree is upside down)</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>now we write down other things which must be true assuming these are
+true (according to the tree rules)</li>
+<li>if it follows from the assumption that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is true that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+are true, we write
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+at the bottom of every open path on our tree</li>
+<li>in this case we only have one path</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/d185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="89.66" viewBox="0 0 218.25 89.66">
+<defs>
+<g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0" x="6.887" y="20.917"/>
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0" x="14.563249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-0" x="23.974" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-0" x="45.442" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-1" x="72.736" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1" x="89.864" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-1" x="100.569" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0" x="120.008" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-0" x="129.419" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-1" x="149.676" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-2" x="169.105093" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-1" x="185.771" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1" x="202.899" y="20.917"/>
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1" x="210.575249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0" x="71.08" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-0" x="80.492" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-0" x="101.96" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-1" x="129.253" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-0" x="67.285" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-0" x="76.696" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-1" x="96.953" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-2-2" x="116.382093" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-1-1" x="133.048" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd185ff60c0e73b70e7756f6d18ae7c9a1fd22bc4.svg-0-1" x="150.176" y="80.693"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in a moment, we will discuss the rules for building trees (the tree
+rules)</li>
+<li>these just encapsulate our claims about “what must be true” if some
+proposition is true<br />
+</li>
+<li>each time we apply a tree rule to a proposition we “check it off”
+with a tick</li>
+<li>this is just a way of keeping track that we’ve “dealt with” that
+proposition</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/cbd7b453baf9eb24faf11e3fd6090054ead0e706.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="89.66" viewBox="0 0 218.25 89.66">
+<defs>
+<g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="6.887" y="20.917"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="14.563249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="23.974" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-0" x="45.442" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="72.736" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="89.864" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1" x="100.569" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="120.008" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="129.419" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1" x="149.676" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2" x="169.105093" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="185.771" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="202.899" y="20.917"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="210.575249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="71.08" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="80.492" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-0" x="101.96" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="129.253" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="67.285" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="76.696" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1" x="96.953" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2" x="116.382093" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="133.048" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="150.176" y="80.693"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here is the step applied to the conjunction</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/846906ff5614fd6619858b0cb7dedad14f862c54.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="149.44" viewBox="0 0 218.25 149.44">
+<defs>
+<g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="6.887" y="20.921"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="14.563249" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="23.974" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-0" x="45.442" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="72.736" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="89.864" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-1" x="100.569" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="120.008" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="129.419" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-1" x="149.676" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2" x="169.105093" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="185.771" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="202.899" y="20.921"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="210.575249" y="20.921"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="71.08" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="80.492" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-0" x="101.96" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="129.253" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="146.381" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="67.285" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="76.696" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-1" x="96.953" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2" x="116.382093" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="133.048" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="150.176" y="80.697"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="104.823" y="110.585"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2" x="95.676" y="140.473"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="112.333" y="140.473"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>if it follows from the assumption that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+is true that either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>
+are true, or both are true, then we “split” the tree and write them down
+on either side of the new branch</li>
+<li>we split on every open path the proposition appears on</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534e43634dd6bd99.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="189.91" viewBox="0 0 218.25 189.91">
+<defs>
+<g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="6.887" y="20.925"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="14.563249" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="23.974" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-0" x="45.442" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="72.736" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="89.864" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-1" x="100.569" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="120.008" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="129.419" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-1" x="149.676" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="169.105093" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="185.771" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="202.899" y="20.925"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="210.575249" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="71.08" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="80.492" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-0" x="101.96" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="129.253" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="146.381" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="67.285" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="76.696" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-1" x="96.953" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="116.382093" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="133.048" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="150.176" y="80.701"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="104.823" y="110.589"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="95.676" y="140.477"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="112.333" y="140.477"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00144289 L 19.237182 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.022)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00144289 L -19.234548 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.022)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="75.719" y="180.943"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="93.863" y="180.943"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="123.293" y="180.943"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>note that each time we apply a rule, we write down propositions
+which are simpler than those we began with</li>
+<li>the process ends when we cannot apply any more rules</li>
+<li>whenever we encounter a contradiction on a path we immediately
+“close” the path/branch with a cross</li>
+<li>there’s no point continuing with that path</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in the case at hand, both paths close</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="219.79" viewBox="0 0 218.25 219.79">
+<defs>
+<g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0">
+<path d="M 10.1875 -16.984375 L 9.234375 -16.984375 L 1.640625 -3.875 C 0.421875 -1.84375 -0.53125 -1.078125 -1.78125 -1.078125 L -1.890625 0 L 4.3125 0 L 4.453125 -1.078125 L 3.890625 -1.078125 C 2.703125 -1.078125 2.3125 -1.3125 2.3125 -2 C 2.3125 -2.34375 2.4375 -2.8125 2.71875 -3.265625 L 3.984375 -5.484375 L 9.859375 -5.484375 L 10.390625 -2.65625 C 10.4375 -2.375 10.484375 -2.078125 10.484375 -1.90625 C 10.484375 -1.25 10.140625 -1.078125 8.828125 -1.078125 L 8.453125 -1.078125 L 8.34375 0 L 15.28125 0 L 15.390625 -1.078125 L 14.8125 -1.078125 C 13.546875 -1.078125 13.296875 -1.296875 13.0625 -2.484375 Z M 9.6875 -6.5625 L 4.609375 -6.5625 L 8.359375 -13.1875 Z M 9.6875 -6.5625 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1">
+<path d="M 2.828125 -16.640625 L 2.703125 -15.5625 L 3.296875 -15.5625 C 4.796875 -15.5625 5.109375 -15.4375 5.109375 -14.9375 C 5.109375 -14.75 5.03125 -14.265625 4.90625 -13.8125 L 1.953125 -2.828125 C 1.640625 -1.59375 1.609375 -1.59375 1.421875 -1.40625 C 1.203125 -1.203125 0.625 -1.078125 -0.25 -1.078125 L -0.59375 -1.078125 L -0.71875 0 L 7.65625 0 C 9.328125 0 10.734375 -0.203125 11.65625 -0.625 C 13.4375 -1.390625 14.515625 -2.953125 14.515625 -4.75 C 14.515625 -6.5625 13.34375 -7.8125 10.90625 -8.546875 C 12.03125 -8.765625 12.71875 -8.984375 13.484375 -9.453125 C 14.703125 -10.1875 15.390625 -11.40625 15.390625 -12.796875 C 15.390625 -14.125 14.703125 -15.28125 13.53125 -15.921875 C 12.578125 -16.453125 11.5625 -16.640625 9.765625 -16.640625 Z M 6.203125 -9.078125 L 7.53125 -13.984375 C 7.90625 -15.390625 8.09375 -15.5625 9.265625 -15.5625 L 9.9375 -15.5625 C 11.828125 -15.5625 12.65625 -14.8125 12.65625 -13.140625 C 12.65625 -11.84375 12.09375 -10.609375 11.203125 -9.90625 C 10.46875 -9.328125 9.46875 -9.078125 8.109375 -9.078125 Z M 5.921875 -8 L 7.375 -8 C 8.484375 -8 9.546875 -7.859375 10.046875 -7.65625 C 11.109375 -7.21875 11.703125 -6.3125 11.703125 -5.1875 C 11.703125 -3.984375 11.15625 -2.765625 10.28125 -2 C 9.59375 -1.40625 8.453125 -1.078125 7.078125 -1.078125 L 5.921875 -1.078125 C 4.671875 -1.078125 4.3125 -1.21875 4.3125 -1.703125 C 4.3125 -1.890625 4.359375 -2.171875 4.453125 -2.515625 Z M 5.921875 -8 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0">
+<path d="M 9.25 -11.125 L 12.0625 -11.125 L 7.484375 -5.65625 L 12.390625 0 L 9.578125 0 L 6.078125 -4 L 2.765625 0 L 0 0 L 4.6875 -5.65625 L 0 -11.125 L 2.765625 -11.125 L 6.078125 -7.3125 Z M 9.25 -11.125 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="6.887" y="20.917"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="14.563249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="23.974" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-0" x="45.442" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="72.736" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="89.864" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-1" x="100.569" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="120.008" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="129.419" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-1" x="149.676" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="169.105093" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="185.771" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="202.899" y="20.917"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="210.575249" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="71.08" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="80.492" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-0" x="101.96" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="129.253" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="67.285" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="76.696" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-1" x="96.953" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="116.382093" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="133.048" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="150.176" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="104.823" y="110.581"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="95.676" y="140.469"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="112.333" y="140.469"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00163109 L 19.237182 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.014)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L -19.234548 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.014)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="75.719" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="93.863" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="87.208" y="210.823"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="123.293" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="125.536" y="210.823"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>because the propositions we add always get simpler, we eventually
+end up with only basic propositions and negations of basic
+propositions</li>
+<li>if a path contains a contradiction, the propositions on that path
+cannot all be true at once</li>
+<li>if a finished path does not contain a contradiction, the
+propositions can all be true together<br />
+</li>
+<li>we can “read off” an assignment on which all the propositions are
+true from the basic propositions and negated propositions on such a
+path</li>
+</ul>
+</div>
+
+<div id="the-tree-rules" class="title-slide slide section level1">
+<h1>the tree rules</h1>
+
+</div>
+<div id="the-tree-rules-stated" class="slide section level2">
+<h1>the tree rules stated</h1>
+<ul class="incremental">
+<li>rather than thinking about “what must be true” every time we build a
+tree, we can write down some rules that capture the relevant claims for
+each connective</li>
+<li>we’ll go over the motivation here</li>
+<li>if you forget a tree rule, it is helpful to know the motivation</li>
+<li>if is also helpful to think of the truth table for the connectives
+(and connectives in the immediate scope of negation).</li>
+</ul>
+</div>
+<div id="disjunction" class="slide section level2">
+<h1>disjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for disjunction:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/433ce19a55169223fc9929fab255c6fa6d73428b.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74.92" height="80.7" viewBox="0 0 74.92 80.7">
+<defs>
+<g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-2-0">
+<path d="M 1.9375 -12.53125 L 7.296875 0 L 9.125 0 L 14.46875 -12.53125 L 12.921875 -12.53125 L 8.203125 -2 L 3.484375 -12.53125 Z M 1.9375 -12.53125 "/>
+</g>
+</g>
+<clipPath id="clip-0">
+<path clip-rule="nonzero" d="M 68 3 L 74.921875 3 L 74.921875 24 L 68 24 Z M 68 3 "/>
+</clipPath>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-0" x="6.887" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-0" x="14.563" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-2-0" x="33.183" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1" x="52.622" y="20.924"/>
+</g>
+<g clip-path="url(#clip-0)">
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-1" x="67.246" y="20.924"/>
+</g>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0019134 -0.000501875 L 13.584 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 27.373, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00150562 -0.000501875 L -13.580487 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 54.436, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-0" x="19.578" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1" x="47.124" y="71.734"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the disjunction is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>answer: either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<em>or</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+(or both)</li>
+</ul>
+</div>
+</div>
+<div id="negated-disjunction" class="slide section level2">
+<h1>negated disjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated disjunction:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/d4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91.33" height="89.66" viewBox="0 0 91.33 89.66">
+<defs>
+<g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-1">
+<path d="M 1.9375 -12.53125 L 7.296875 0 L 9.125 0 L 14.46875 -12.53125 L 12.921875 -12.53125 L 8.203125 -2 L 3.484375 -12.53125 Z M 1.9375 -12.53125 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-1-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-1-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="6.887" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-1-0" x="23.296" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-0" x="30.972" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-1" x="49.592" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1" x="69.031" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-1-1" x="83.655" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="33.109" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-0" x="49.518" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="33.592" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1" x="50.001" y="80.693"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the negated disjunction is
+true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \lor \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>answer:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\alpha</annotation></semantics></math>
+<em>and</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+must be true</li>
+<li>this one is easy if you remember the following equivalence:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \lor \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∧</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot\alpha \land \lnot\beta)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="conjunction" class="slide section level2">
+<h1>conjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for conjunction:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/91dc16ef11a487553c968bb091f3643c421004aa.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74.92" height="89.66" viewBox="0 0 74.92 89.66">
+<defs>
+<g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+</g>
+<clipPath id="clip-0">
+<path clip-rule="nonzero" d="M 68 3 L 74.921875 3 L 74.921875 24 L 68 24 Z M 68 3 "/>
+</clipPath>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0" x="6.887" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="14.563" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0" x="33.183" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="52.622" y="20.917"/>
+</g>
+<g clip-path="url(#clip-0)">
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1" x="67.246" y="20.917"/>
+</g>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="33.109" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="33.592" y="80.693"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the conjunction is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<p>answer:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<em>and</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+must be true</p>
+</div>
+</div>
+<div id="negated-conjunction" class="slide section level2">
+<h1>negated conjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated conjunction:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/71fc6691d662dc9b71790da75456a8fdf0df5b99.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91.33" height="80.7" viewBox="0 0 91.33 80.7">
+<defs>
+<g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-1">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-1-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-1-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="6.887" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-1-0" x="23.296" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-0" x="30.972" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-1" x="49.592" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1" x="69.031" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-1-1" x="83.655" y="20.924"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0019134 -0.000501875 L 21.817886 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 27.373, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00125469 -0.000501875 L -21.817134 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 70.845, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="11.373" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-0" x="27.782" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="55.328" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1" x="71.737" y="71.734"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be true if the negated conjunction is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \land \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>answer: either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\alpha</annotation></semantics></math>
+<em>or</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+(or both)</li>
+<li>this one is easy if you remember the following equivalence:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \land \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∨</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot\alpha \lor \lnot \beta)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="conditional" class="slide section level2">
+<h1>conditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for conditional:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/b9915540b371a07fc5d68ab26cdcaf39fc84b088.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.74" height="80.7" viewBox="0 0 83.74 80.7">
+<defs>
+<g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-0">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-1">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-0" x="6.887" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-0" x="14.563" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-0" x="34.395" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-1" x="61.441" y="20.924"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-1" x="76.065" y="20.924"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000313672 -0.000501875 L 17.698622 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 27.68, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00122332 -0.000501875 L -17.701633 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 62.948, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-1" x="11.68" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-0" x="28.089" y="71.734"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-1" x="55.635" y="71.734"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be true if the conditional is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>answer: either
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<em>or</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+must be true</li>
+<li>this is easy to remember if you keep the following equivalence in
+mind:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot\alpha \lor \beta)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="negated-conditional" class="slide section level2">
+<h1>negated conditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated conditional:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.15" height="89.66" viewBox="0 0 100.15 89.66">
+<defs>
+<g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-1">
+<path d="M 20.921875 -6.765625 C 19.484375 -7.234375 17.484375 -8.625 16.578125 -9.390625 L 16.140625 -8.78125 C 16.75 -8.25 17.296875 -7.484375 17.53125 -7.09375 L 1.640625 -7.09375 L 1.640625 -5.765625 L 17.53125 -5.765625 C 17.328125 -5.421875 16.75 -4.65625 16.140625 -4.078125 L 16.578125 -3.46875 C 17.484375 -4.234375 19.515625 -5.625 20.921875 -6.09375 Z M 20.921875 -6.765625 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-1-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-1-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0" x="6.887" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-1-0" x="23.296" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-0" x="30.972" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-1" x="50.804" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1" x="77.85" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-1-1" x="92.474" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-0" x="45.723" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0" x="38.002" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1" x="54.411" y="80.693"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask what must be true if the negated conditional is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \rightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>answer:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot \beta</annotation></semantics></math>
+must be true</li>
+<li>this is easy if you remember the following equivalence:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \rightarrow \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \lnot \beta)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="biconditional" class="slide section level2">
+<h1>biconditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for biconditional:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/acc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.74" height="110.59" viewBox="0 0 83.74 110.59">
+<defs>
+<g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-0">
+<path d="M 1.578125 -6.09375 C 3.015625 -5.625 5.015625 -4.234375 5.921875 -3.46875 L 6.359375 -4.078125 C 5.75 -4.609375 5.203125 -5.375 4.96875 -5.765625 L 17.828125 -5.765625 C 17.625 -5.421875 17.046875 -4.65625 16.4375 -4.078125 L 16.875 -3.46875 C 17.78125 -4.234375 19.8125 -5.625 21.21875 -6.09375 L 21.21875 -6.765625 C 19.78125 -7.234375 17.78125 -8.625 16.875 -9.390625 L 16.4375 -8.78125 C 17.046875 -8.25 17.59375 -7.484375 17.828125 -7.09375 L 4.96875 -7.09375 C 5.171875 -7.4375 5.75 -8.203125 6.359375 -8.78125 L 5.921875 -9.390625 C 5.015625 -8.625 2.984375 -7.234375 1.578125 -6.765625 Z M 1.578125 -6.09375 "/>
+</g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-0" x="6.887" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="14.563" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-0" x="34.395" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="61.441" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-1" x="76.065" y="20.926"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000501875 0.00150562 L 17.941529 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 27.438, 50.814)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00150562 0.00150562 L -17.943537 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 63.189, 50.814)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="19.643" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="20.126" y="101.624"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="47.189" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="63.598" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="47.673" y="101.624"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="64.082" y="101.624"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be true if the biconditional is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>answer: either both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+must be true or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+must be true.</li>
+<li>this is easy if you remember the following equivalence:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∧</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((\alpha \land \beta) \lor (\lnot\alpha \land \lnot\beta))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="negated-biconditional" class="slide section level2">
+<h1>negated biconditional</h1>
+<ul class="incremental">
+<li>here is the tree rule for negated biconditional:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/cba41b9310f3eff0866700bbbec7b5aaad9992fa.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.15" height="110.59" viewBox="0 0 100.15 110.59">
+<defs>
+<g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-1">
+<path d="M 1.578125 -6.09375 C 3.015625 -5.625 5.015625 -4.234375 5.921875 -3.46875 L 6.359375 -4.078125 C 5.75 -4.609375 5.203125 -5.375 4.96875 -5.765625 L 17.828125 -5.765625 C 17.625 -5.421875 17.046875 -4.65625 16.4375 -4.078125 L 16.875 -3.46875 C 17.78125 -4.234375 19.8125 -5.625 21.21875 -6.09375 L 21.21875 -6.765625 C 19.78125 -7.234375 17.78125 -8.625 16.875 -9.390625 L 16.4375 -8.78125 C 17.046875 -8.25 17.59375 -7.484375 17.828125 -7.09375 L 4.96875 -7.09375 C 5.171875 -7.4375 5.75 -8.203125 6.359375 -8.78125 L 5.921875 -9.390625 C 5.015625 -8.625 2.984375 -7.234375 1.578125 -6.765625 Z M 1.578125 -6.09375 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-1-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-1-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="6.887" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-1-0" x="23.296" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="30.972" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-1" x="50.804" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="77.85" y="20.926"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-1-1" x="92.474" y="20.926"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000752812 0.00150562 L 21.819047 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 31.782, 50.814)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0000941016 0.00150562 L -21.815973 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 75.254, 50.814)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="23.987" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="16.266" y="101.624"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="32.675" y="101.624"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="59.254" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="75.663" y="71.736"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="67.942" y="101.624"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(\alpha \leftrightarrow \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">T</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<ul class="incremental">
+<li>this is easy if you remember the following equivalence:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((\alpha \land \lnot\beta) \lor (\lnot\alpha \land \beta))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="double-negation" class="slide section level2">
+<h1>double negation</h1>
+<ul class="incremental">
+<li>here is the tree rule for double negation:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/39dd1eefeffa4a338369b1c8b32202eef67c3845.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55.3" height="59.78" viewBox="0 0 55.3 59.78">
+<defs>
+<g>
+<g id="glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-0-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-0-0" x="6.887" y="20.925"/>
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-0-0" x="23.305952" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0" x="39.705" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0" x="23.296" y="50.813"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule</li>
+</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\lnot\alpha</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="closure" class="slide section level2">
+<h1>closure</h1>
+<ul class="incremental">
+<li>finally, here is the closure rule:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38.89" height="166.13" viewBox="0 0 38.89 166.13">
+<defs>
+<g>
+<g id="glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-0-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-1-0">
+<path d="M 20.671875 -2.75 C 21.078125 -2.75 21.421875 -2.601562 21.703125 -2.3125 C 21.984375 -2.019531 22.125 -1.671875 22.125 -1.265625 C 22.125 -0.859375 21.984375 -0.515625 21.703125 -0.234375 C 21.421875 0.0429688 21.078125 0.1875 20.671875 0.1875 C 20.242188 0.1875 19.882812 0.0507812 19.59375 -0.21875 C 19.3125 -0.5 19.171875 -0.847656 19.171875 -1.265625 C 19.171875 -1.679688 19.3125 -2.03125 19.59375 -2.3125 C 19.882812 -2.601562 20.242188 -2.75 20.671875 -2.75 Z M 12.390625 -2.75 C 12.796875 -2.75 13.144531 -2.601562 13.4375 -2.3125 C 13.726562 -2.019531 13.875 -1.671875 13.875 -1.265625 C 13.875 -0.859375 13.726562 -0.515625 13.4375 -0.234375 C 13.144531 0.0429688 12.796875 0.1875 12.390625 0.1875 C 11.984375 0.1875 11.632812 0.0429688 11.34375 -0.234375 C 11.0625 -0.515625 10.921875 -0.859375 10.921875 -1.265625 C 10.921875 -1.671875 11.0625 -2.019531 11.34375 -2.3125 C 11.632812 -2.601562 11.984375 -2.75 12.390625 -2.75 Z M 4.109375 -2.71875 C 4.523438 -2.71875 4.878906 -2.566406 5.171875 -2.265625 C 5.460938 -1.972656 5.609375 -1.617188 5.609375 -1.203125 C 5.609375 -0.804688 5.460938 -0.46875 5.171875 -0.1875 C 4.890625 0.0820312 4.535156 0.21875 4.109375 0.21875 C 3.703125 0.21875 3.359375 0.0820312 3.078125 -0.1875 C 2.796875 -0.46875 2.65625 -0.804688 2.65625 -1.203125 C 2.65625 -1.628906 2.796875 -1.988281 3.078125 -2.28125 C 3.367188 -2.570312 3.710938 -2.71875 4.109375 -2.71875 Z M 4.109375 -2.71875 "/>
+</g>
+<g id="glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-1-1">
+<path d="M 9.25 -11.125 L 12.0625 -11.125 L 7.484375 -5.65625 L 12.390625 0 L 9.578125 0 L 6.078125 -4 L 2.765625 0 L 0 0 L 4.6875 -5.65625 L 0 -11.125 L 2.765625 -11.125 L 6.078125 -7.3125 Z M 9.25 -11.125 "/>
+</g>
+<g id="glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-2-0">
+<path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-0-0" x="15.091" y="20.919"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000282305 0.00021957 L -0.000282305 22.376787 " transform="matrix(0.996264, 0, 0, -0.996264, 22.887, 53.176)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-1-0" x="10.493" y="74.097"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000282305 -0.00147426 L -0.000282305 22.379014 " transform="matrix(0.996264, 0, 0, -0.996264, 22.887, 106.354)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-2-0" x="6.887" y="127.275"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-0-0" x="23.296" y="127.276"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph7f0b9b9c6236429d22305d5db5da3a7f6ea2ba26.svg-1-1" x="16.69" y="157.163"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule</li>
+<li>if a proposition and its negation both appear on a path, then it is
+not the case that all the propositions on that path can be true at the
+same time</li>
+<li>so we close that path</li>
+</ul>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>a note on closure: the closure rule applies to <em>all</em>
+propositions and their negations, not just basic propositions and their
+negations</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to <strong>truth trees</strong> for PL</li>
+<li>general motivation for the use of truth trees for PL</li>
+<li>particular motivations for each tree rule</li>
+</ul>
+</div>
+<div id="next-lecture-1" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li>how to construct truth trees in general</li>
+<li>how to use truth trees to test for particular logical
+properties</li>
+</ul>
+</div>
+<div id="next-lecture-2" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li><a href="10_uses_of_trees_for_PL.html">lecture 10, uses of trees for
+PL</a></li>
+</ul>
+</div>
+</body>
+</html>

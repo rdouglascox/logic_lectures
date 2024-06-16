@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 01, what is logic?</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 01, what is logic?</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>what is logic?</li>
+<li>applications of formal/symbolic logic</li>
+<li>central concepts of logic:
+<ul class="incremental">
+<li>propositions and truth</li>
+<li>arguments</li>
+<li>validity and soundness</li>
+</ul></li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain what logic is</li>
+<li>determine whether a sentence expresses a proposition or not</li>
+<li>explain what an argument is</li>
+<li>represent ordinary language arguments in standard form</li>
+<li>explain what it is for an argument to be valid</li>
+<li>determine whether an argument is valid or invalid in an informal
+way</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>sections 1.1, 1.2, 1.3, 1.4 and 1.5 of chapter 1</li>
+</ul>
+</div>
+
+<div id="what-is-logic" class="title-slide slide section level1">
+<h1>what is logic?</h1>
+
+</div>
+<div id="what-is-logic-1" class="slide section level2">
+<h1>what is logic?</h1>
+<ul class="incremental">
+<li>what is logic?</li>
+</ul>
+</div>
+<div id="what-is-logic-2" class="slide section level2">
+<h1>what is logic?</h1>
+<ul class="incremental">
+<li>logic, the subject, is <strong>the systematic study of the laws of
+truth</strong></li>
+<li>logic is concerned, with the laws which govern the truth of
+propositions</li>
+<li>you can think of these claims as saying that <em>this</em> is what
+we mean by ‘logic’ in this class</li>
+</ul>
+</div>
+<div id="logic-and-the-laws-of-truth" class="slide section level2">
+<h1>logic and the laws of truth</h1>
+<ul class="incremental">
+<li>the subject matter of logic:
+<ul class="incremental">
+<li>the laws of truth</li>
+<li>the laws governing the truth of <em>propositions</em></li>
+</ul></li>
+<li>laws of truth?
+<ul class="incremental">
+<li>e.g. if a proposition has such and such a form, it must be true</li>
+<li>e.g. if a set of propositions with such and such a form are all
+true, then a proposition with such and such a form must be true</li>
+<li>we will develop more precise ways of formulating laws of truth as we
+go</li>
+</ul></li>
+</ul>
+</div>
+<div id="logic-and-logics" class="slide section level2">
+<h1>logic and logics</h1>
+<ul class="incremental">
+<li>this study of the laws of truth is often carried out using using
+formal languages and formal methods</li>
+<li>these formal languages are often called ‘logics’</li>
+<li>these languages make it possible to study the laws of truth in a
+precise way</li>
+<li>in this unit we we cover two logics: propositional logic and
+predicate logic with identity</li>
+</ul>
+</div>
+<div id="the-history-of-logic" class="slide section level2">
+<h1>the history of logic</h1>
+<ul class="incremental">
+<li>logic, the subject, has a long history</li>
+<li>the history of logic is the history of the development of the study
+of the laws of truth</li>
+<li>the history of logic is the history of the development of formal
+languages and formal methods for studying the laws of truth</li>
+</ul>
+</div>
+<div id="the-history-of-logic-1" class="slide section level2">
+<h1>the history of logic</h1>
+<ul class="incremental">
+<li>Aristotle studied the laws of truth in the context of categorical
+propositions and categorical syllogisms</li>
+<li>he used variable symbols to represent classes of things and studied
+the relations between these classes</li>
+<li>he studied laws of truth like the following: if all A are B and all
+B are C, then all A are C.</li>
+</ul>
+</div>
+<div id="the-history-of-logic-2" class="slide section level2">
+<h1>the history of logic</h1>
+<ul class="incremental">
+<li>around the same time, the ancient stoics studied the laws of truth
+in the context of propositional logic</li>
+<li>they studied laws of truth like the following: if A then B, A,
+therefore B</li>
+<li>the study of propositional logic was updated and refined in the 19th
+century by Boole, De Morgan, and others</li>
+</ul>
+</div>
+<div id="the-history-of-logic-3" class="slide section level2">
+<h1>the history of logic</h1>
+<ul class="incremental">
+<li>around the turn of the 20th century, Frege, Russell, and others
+developed predicate logic</li>
+<li>they studied the laws of truth in the context of quantified
+propositions</li>
+<li>they used variables to represent objects and studied the relations
+between these objects</li>
+<li>it was only really in the 20th century that predicate logic received
+its canonical formulation</li>
+</ul>
+</div>
+<div id="formalsymbolic-logic-vs-informal-logic"
+class="slide section level2">
+<h1>formal/symbolic logic vs informal logic</h1>
+<ul class="incremental">
+<li>what are the varieties of logic?
+<ul class="incremental">
+<li>formal/symbolic logic</li>
+<li>informal/practical/applied logic or critical thinking</li>
+</ul></li>
+<li>both may deal with notions like (deductively) valid arguments</li>
+<li>formal logic is distinct in that it uses <em>formal methods</em>
+like translation into formal languages and formal proofs</li>
+<li>our aim might ultimately to be to understand the laws of truth, but
+we might also study the formal languages and proofs themselves</li>
+<li>another part of the study of logic is the study of the formal
+languages and proofs themselves</li>
+<li>this is sometimes called “metalogic” as opposed to “logic”</li>
+</ul>
+</div>
+<div id="logic-and-the-laws-of-thought" class="slide section level2">
+<h1>logic and the laws of thought</h1>
+<ul class="incremental">
+<li>it is sometimes said that logic is the systematic study of the laws
+of <em>thought</em></li>
+<li>but logic is not the study of the laws of thought or of human
+reasoning</li>
+<li>logic concerns itself with the laws of truth, not the laws of
+thought</li>
+<li>a particular course of reasoning may be good because it accords with
+the laws of truth, but the laws of truth are explanatorily prior</li>
+</ul>
+</div>
+
+<div id="applications-of-formalsymbolic-logic"
+class="title-slide slide section level1">
+<h1>applications of formal/symbolic logic</h1>
+
+</div>
+<div id="applications-of-formalsymbolic-logic-1"
+class="slide section level2">
+<h1>applications of formal/symbolic logic</h1>
+<ul class="incremental">
+<li>logic has various applications
+<ul class="incremental">
+<li>computer science</li>
+<li>artificial intelligence</li>
+<li>linguistics</li>
+<li>philosophy</li>
+<li>the foundations of mathematics</li>
+</ul></li>
+</ul>
+</div>
+<div id="applications-of-formalsymbolic-logic-2"
+class="slide section level2">
+<h1>applications of formal/symbolic logic</h1>
+<ul class="incremental">
+<li>we focus on its application to
+<ul class="incremental">
+<li>making the logical form of a proposition explicit</li>
+<li>formally representing the structure of arguments</li>
+<li>testing for the validity of arguments</li>
+</ul></li>
+</ul>
+</div>
+<div id="applications-of-formalsymbolic-logic-3"
+class="slide section level2">
+<h1>applications of formal/symbolic logic</h1>
+<ul class="incremental">
+<li>this will involve
+<ul class="incremental">
+<li>learning to translate English into a formal language</li>
+<li>identifying the elements of arguments in English</li>
+<li>learning how to <em>prove</em> that an argument is valid</li>
+</ul></li>
+</ul>
+</div>
+<div id="applications-of-formalsymbolic-logic-4"
+class="slide section level2">
+<h1>applications of formal/symbolic logic</h1>
+<ul class="incremental">
+<li>the following quotation from one of the founders of modern symbolic
+logic, Whitehead, is apposite:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p>[Formal languages] have invariably been introduced to make things
+easy. By the aid of symbolism, we can make transitions in reasoning
+almost mechanically by the eye, which otherwise would call into play the
+higher faculties of the brain. Civilisation advances by extending the
+number of important operations which can be performed without thinking
+about them. (Whitehead 1919 <em>An Introduction to Mathematics</em>)</p>
+</blockquote>
+</div>
+</div>
+<div id="applications-of-formalsymbolic-logic-5"
+class="slide section level2">
+<h1>applications of formal/symbolic logic</h1>
+<ul class="incremental">
+<li>these are the main ‘practical’ skills we focus on in this unit</li>
+<li>this should help if you find yourself asking ‘what’s the point of
+this?’</li>
+<li>these applications are all very well</li>
+<li>but the aim of this course is to give you a much deeper
+understanding of what logic is</li>
+<li>so let’s turn to some fundamental concepts</li>
+</ul>
+</div>
+
+<div id="propositions" class="title-slide slide section level1">
+<h1>propositions</h1>
+
+</div>
+<div id="truth-and-propositions" class="slide section level2">
+<h1>truth and propositions</h1>
+<ul class="incremental">
+<li>we said that logic is the systematic study of the laws of truth</li>
+<li>and that the laws of truth govern the truth of propositions</li>
+<li>so what is a proposition?</li>
+</ul>
+</div>
+<div id="truth-and-propositions-1" class="slide section level2">
+<h1>truth and propositions</h1>
+<ul class="incremental">
+<li>think of propositions, in the first instance, as the kind of thing
+you might express when you assert that something is the case</li>
+<li>you express a proposition when you assert that the sky is blue, that
+the earth is round, that the moon is made of cheese, and so on</li>
+<li>you express the proposition that the sky is blue when you assert
+that the sky is blue</li>
+<li>what you assert is something that can be true or false</li>
+<li>propositions are the primary bearers of truth and falsity</li>
+<li>the truth and falsity of propositions is what the laws of truth
+govern</li>
+</ul>
+</div>
+<div id="propositions-and-sentences" class="slide section level2">
+<h1>propositions and sentences</h1>
+<ul class="incremental">
+<li>propositions are not sentences, even though sentences are the kind
+of thing that can be true or false</li>
+<li>sentences can be said to <em>express</em> propositions</li>
+<li>a declarative sentence is true (as used in a context) if it
+expresses a true proposition and is false if it expresses a false
+proposition</li>
+</ul>
+</div>
+<div id="laws-of-truth-for-single-propositions"
+class="slide section level2">
+<h1>laws of truth for single propositions</h1>
+<ul class="incremental">
+<li>logic, as we will see will often not tell us whether a proposition
+is true or false but sometimes it will</li>
+<li>e.g. if a proposition has so-and-so a form, it must be true / it
+must be false</li>
+</ul>
+</div>
+<div id="laws-of-truth-for-sequences-of-propositions"
+class="slide section level2">
+<h1>laws of truth for sequences of propositions</h1>
+<ul class="incremental">
+<li>we are often more interested in the question of whether a
+proposition with some form or another <em>must be true</em> if a
+sequence of propositions with some other form or another are true</li>
+<li>these sequences are what we call <strong>arguments</strong> . .
+.</li>
+</ul>
+</div>
+
+<div id="arguments" class="title-slide slide section level1">
+<h1>arguments</h1>
+
+</div>
+<div id="what-is-an-argument" class="slide section level2">
+<h1>what is an argument?</h1>
+<ul class="incremental">
+<li>an <strong>argument</strong> is a sequence of propositions</li>
+<li>a <strong>sequence</strong> is a collection of objects in a
+particular order</li>
+<li>the final proposition in the sequence is the
+<strong>conclusion</strong> of the argument</li>
+<li>the other propositions in the sequence (if any) are the
+<strong>premises</strong> of the argument</li>
+</ul>
+</div>
+<div id="identifying-conclusions" class="slide section level2">
+<h1>identifying conclusions</h1>
+<ul class="incremental">
+<li>in ordinary language, conclusions are often introduced by words like
+‘therefore’, ‘hence’, ‘thus’, ‘so’, ‘it follows that’</li>
+</ul>
+</div>
+<div id="identifying-premises" class="slide section level2">
+<h1>identifying premises</h1>
+<ul class="incremental">
+<li>in ordinary language premises are often introduced by words like
+‘because’, ‘since’, and ‘given that’</li>
+</ul>
+</div>
+<div id="an-argument" class="slide section level2">
+<h1>an argument</h1>
+<ul class="incremental">
+<li>all humans are mortal. socrates is a human. therefore, socrates is
+mortal</li>
+<li>what is the conclusion of this argument?</li>
+<li>what are its premises?</li>
+</ul>
+</div>
+<div id="an-argument-1" class="slide section level2">
+<h1>an argument</h1>
+<ul class="incremental">
+<li>since all humans are mortal and socrates is a human, socrates is
+mortal</li>
+<li>what is the conclusion of this argument?</li>
+<li>what are its premises?</li>
+</ul>
+</div>
+<div id="standard-form" class="slide section level2">
+<h1>standard form</h1>
+<ul class="incremental">
+<li>we can represent the argument (in <strong>standard form</strong>) as
+follows:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">All humans are mortal</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Socrates is a human</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Socrates is mortal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>is this a good argument? why?</li>
+<li>this is a <strong>valid</strong> argument</li>
+</ul>
+</div>
+</div>
+<div id="an-argument-2" class="slide section level2">
+<h1>an argument</h1>
+<ul class="incremental">
+<li>all humans are mortal. socrates is not a human. therefore, socrates
+is not mortal</li>
+<li>what is the conclusion of this argument? what are its premises?</li>
+</ul>
+</div>
+<div id="an-argument-3" class="slide section level2">
+<h1>an argument</h1>
+<ul class="incremental">
+<li>since all humans are mortal and socrates is a human, socrates is not
+mortal</li>
+<li>what is the conclusion of this argument? what are its premises?</li>
+</ul>
+</div>
+<div id="in-standard-form" class="slide section level2">
+<h1>in standard form</h1>
+<ul class="incremental">
+<li>we can represent the argument as follows:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">All humans are mortal</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Socrates is not a human</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Socrates is not mortal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>is this a good argument?</li>
+<li>this is an <strong>invalid</strong> argument</li>
+<li>bad arguments are arguments too</li>
+</ul>
+</div>
+</div>
+<div id="good-and-bad-arguments" class="slide section level2">
+<h1>good and bad arguments</h1>
+<ul class="incremental">
+<li>there are good arguments and there are bad arguments</li>
+<li>there are <strong>valid</strong> arguments and there are
+<strong>invalid</strong> arguments</li>
+<li>there are <strong>sound</strong> arguments and there are
+<strong>unsound</strong> arguments</li>
+<li>validity and soundness have precise definitions in logic . . .</li>
+</ul>
+</div>
+
+<div id="arguments-and-validity"
+class="title-slide slide section level1">
+<h1>arguments and validity</h1>
+
+</div>
+<div id="validity" class="slide section level2">
+<h1>validity</h1>
+<ul class="incremental">
+<li>an argument is <strong>valid</strong> if and only if, in virtue of
+its form, it is impossible for its conclusion to be false if its
+premises are true</li>
+<li>an argument is <strong>valid</strong> if and only if, because of its
+form, the conclusion cannot be false if the premises are true</li>
+</ul>
+</div>
+<div id="validity-1" class="slide section level2">
+<h1>validity</h1>
+<ul class="incremental">
+<li>an argument is <strong>valid</strong> if and only if, in virtue of
+its form, the conclusion must be true if the premises are true</li>
+<li>an argument is <strong>valid</strong> if and only if, because of its
+form, it is necessary for its conclusion to be true if its premises are
+true</li>
+</ul>
+</div>
+<div id="validity-2" class="slide section level2">
+<h1>validity</h1>
+<ul class="incremental">
+<li>we can develop our understanding of validity in two steps</li>
+<li>first: an argument is valid if and only if, in virtue of its form,
+<em>it is impossible for its conclusion to be false if its premises are
+true</em></li>
+<li>second: an argument is valid if and only if, <em>in virtue of its
+form, it is impossible for its conclusion to be false if its premises
+are true</em></li>
+</ul>
+</div>
+<div id="necessary-truth-preservation" class="slide section level2">
+<h1>necessary truth preservation</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If Trump colluded with Russia, he will go to jail</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Trump colluded with Russia</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Trump will go to jail</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>is it possible for the conclusion to be false if the premises of
+this argument are all true?</li>
+</ul>
+</div>
+<div id="necessary-truth-preservation-1" class="slide section level2">
+<h1>necessary truth preservation</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If Trump colluded with Russia, he will go to jail</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Trump will go to jail</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Trump colluded with Russia</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>is it possible for the conclusion to be false if the premises of
+this argument are all true?</li>
+</ul>
+</div>
+<div id="argument-forms" class="slide section level2">
+<h1>argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">Either Trump will go to jail or he will be
+re-elected</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Trump will not go to jail</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Trump will be re-elected</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="argument-forms-1" class="slide section level2">
+<h1>argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">Either Bolsanaro will be deposed or he will be
+re-elected</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Bolsanaro will not be deposed</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Bolsanaro will be re-elected</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="argument-forms-2" class="slide section level2">
+<h1>argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">Either <strong>A</strong> or <strong>B</strong></td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Not <strong>A</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left"><strong>B</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="argument-forms-and-the-laws-of-truth"
+class="slide section level2">
+<h1>argument forms and the laws of truth</h1>
+<ul class="incremental">
+<li>any argument with this form is a valid argument</li>
+<li>this is a valid argument form</li>
+<li>we have discovered a law of truth: any argument with premises of the
+form above and with a conclusion of the form above is such that if the
+premises are true, then, in virtue of its form, it is not possible for
+its conclusion to be false</li>
+</ul>
+</div>
+<div id="valid-argument-forms" class="slide section level2">
+<h1>valid argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If <strong>A</strong> then <strong>B</strong></td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left"><strong>A</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left"><strong>B</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="valid-argument-forms-1" class="slide section level2">
+<h1>valid argument forms</h1>
+<ul class="incremental">
+<li>for instance:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If it is raining then the ground is wet</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">It is raining</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">The ground is wet</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="valid-argument-forms-2" class="slide section level2">
+<h1>valid argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If <strong>A</strong> then <strong>B</strong></td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Not <strong>B</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Not <strong>A</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="valid-argument-forms-3" class="slide section level2">
+<h1>valid argument forms</h1>
+<ul class="incremental">
+<li>for instance:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If it is raining then the ground is wet</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">The ground is not wet</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">It is not raining</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="valid-argument-forms-4" class="slide section level2">
+<h1>valid argument forms</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If <strong>A</strong> then <strong>B</strong></td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">If <strong>B</strong> then <strong>C</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">If <strong>A</strong> then <strong>C</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="valid-argument-forms-5" class="slide section level2">
+<h1>valid argument forms</h1>
+<ul class="incremental">
+<li>for instance:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If it is raining then the ground is wet</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">If the ground is wet then the grass is wet</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">If it is raining then the grass is wet</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="validity-and-form" class="slide section level2">
+<h1>validity and form</h1>
+<ul class="incremental">
+<li>sometimes it is impossible for the conclusion of an argument to be
+false if its premises are all true, but not in virtue of the form of the
+argument</li>
+</ul>
+</div>
+<div id="validity-and-form-1" class="slide section level2">
+<h1>validity and form</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">This chair is red</td>
+</tr>
+<tr class="even">
+<td align="center">C1.</td>
+<td align="left">This chair is coloured</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>is it possible for the conclusion to be false if the premises of
+this argument are all true?</li>
+</ul>
+</div>
+<div id="validity-and-form-2" class="slide section level2">
+<h1>validity and form</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left"><strong>A</strong></td>
+</tr>
+<tr class="even">
+<td align="center">C1.</td>
+<td align="left"><strong>B</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="incremental">
+<li>this is not a valid argument form</li>
+<li>to see why, we need only consider the following argument which has
+the same form, but whose conclusion can be false even when its premises
+are true</li>
+</ul>
+</div>
+<div id="validity-and-form-3" class="slide section level2">
+<h1>validity and form</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">This chair is red</td>
+</tr>
+<tr class="even">
+<td align="center">C1.</td>
+<td align="left">This chair is blue</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="validity-and-form-4" class="slide section level2">
+<h1>validity and form</h1>
+<ul class="incremental">
+<li>beware! In other areas of philosophy, validity is often defined
+without reference to the form of the argument</li>
+<li>the notion of validity we are interested in is sometimes called
+<strong>formal validity</strong> to distinguish it from this sense of
+validity</li>
+</ul>
+</div>
+<div id="validity-and-form-5" class="slide section level2">
+<h1>validity and form</h1>
+<ul class="incremental">
+<li>we are going to develop a more precise analysis of validity</li>
+<li>we are going to develop a more precise conception of the form of an
+argument</li>
+<li>we are going to look at methods for determining whether a particular
+argument is formally valid</li>
+</ul>
+</div>
+
+<div id="soundness" class="title-slide slide section level1">
+<h1>soundness</h1>
+
+</div>
+<div id="what-is-soundness" class="slide section level2">
+<h1>what is soundness?</h1>
+<ul class="incremental">
+<li>an argument is <strong>sound</strong> if and only if (i) it is valid
+and (ii) all of its premises are true</li>
+</ul>
+</div>
+<div id="an-argument-4" class="slide section level2">
+<h1>an argument</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If Australia is a republic then it has a president</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Australia is a republic</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Australia has a president</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="an-argument-5" class="slide section level2">
+<h1>an argument</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If Australia is a republic then it has a president</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">Australia is not a republic</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">Australia does not have a president</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="an-argument-6" class="slide section level2">
+<h1>an argument</h1>
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">If Australia is a republic then the monarchists
+lost</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">If the monarchists lost then the republicans won</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">If Australia is a republic then republicans won</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="soundness-1" class="slide section level2">
+<h1>soundness</h1>
+<ul class="incremental">
+<li>while soundness is a very important feature of an argument, we will
+be focusing almost entirely on validity</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>what is logic?</li>
+<li>applications of formal/symbolic logic</li>
+<li>central concepts of logic:
+<ul class="incremental">
+<li>propositions and truth</li>
+<li>arguments</li>
+<li>validity and soundness</li>
+</ul></li>
+</ul>
+</div>
+<div id="upcoming-lectures" class="slide section level2">
+<h1>upcoming lectures</h1>
+<ul class="incremental">
+<li><a href="02_connectives_and_logical_form.html">lecture 2,
+connectives and logical form</a></li>
+</ul>
+</div>
+</body>
+</html>

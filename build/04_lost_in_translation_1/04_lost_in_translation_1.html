@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 04, lost in translation 1</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 04, lost in translation 1</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="last-lecture" class="slide section level2">
+<h1>last lecture</h1>
+<ul class="incremental">
+<li>in the last lecture we introduced the formal language PL</li>
+<li>one thing we did not discuss was how to translate sentences of
+English into PL</li>
+</ul>
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>in this lecture we take up the issue of translating English
+sentences into PL</li>
+<li>we also say a little bit about translating PL back into English</li>
+<li>we talk about the distinction between what is said and what is
+merely implied or implicated by an utterance of a sentence</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain the difference between what is said, what is implied, and
+what is implicated by the utterance of a sentence</li>
+<li>distinguish between what is said, the proposition expressed by an
+utterance of a sentence in a context, and what is merely implied or
+implicated by an utterance of a sentence in a context</li>
+<li>translate English sentences into PL using a glossary of symbols</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>section 6.1 of chapter 6</li>
+</ul>
+</div>
+
+<div id="translating-english-sentences-into-pl"
+class="title-slide slide section level1">
+<h1>translating English sentences into PL</h1>
+
+</div>
+<div id="translating-english-sentences-into-pl-1"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>translating English sentences into PL is a bit like translating from
+one natural language into another</li>
+<li>when translating from English into PL, we are aiming to capture the
+<strong>truth conditions</strong> of the English sentence in PL</li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-2"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>earlier we learned about the connectives and the corresponding
+English expressions</li>
+<li>we used ‘and’ to introduce conjunction
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∧</mi><annotation encoding="application/x-tex">\land</annotation></semantics></math></li>
+<li>we used ‘or’ to introduce disjunction
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math></li>
+<li>we used ‘if . . . then’ to introduce the conditional
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math><br />
+</li>
+<li>we used ‘not’ to introduce negation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math></li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-3"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>we also learned about the idea of a basic proposition as opposed to
+a compound proposition</li>
+<li>when we are translating English into PL we will want to identify the
+basic propositions in the English sentence</li>
+<li>and we will want to identify the connectives that connect these
+basic propositions</li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-4"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>one important thing to keep in mind is that negations are compound
+propositions</li>
+<li>the proposition expressed by “Jane is not tall” is a compound
+proposition</li>
+<li>it is made up of the basic proposition “Jane is tall” and connective
+negation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math></li>
+</ul>
+</div>
+<div id="glossaries" class="slide section level2">
+<h1>glossaries</h1>
+<ul class="incremental">
+<li>we translate basic propositions using symbols like:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>,
+etc.</li>
+<li>but we need a way of keeping track of what these symbols stand
+for<br />
+</li>
+<li>so we use a <strong>glossary</strong></li>
+<li>a glossary is a list of symbols and their meanings</li>
+</ul>
+</div>
+<div id="glossaries-1" class="slide section level2">
+<h1>glossaries</h1>
+<ul class="incremental">
+<li>here is an example of a glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Jane is tall</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+Jane is smart</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+Jane is happy</li>
+</ul></li>
+<li>we can use this glossary to translate “Jane is tall and Jane is
+smart but Jane is not happy” as:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi><mo>∧</mo><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">A \land B \land \lnot C</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-5"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>often English sentences do not wear their form on their sleeve, and
+you will have to think about how to translate them</li>
+<li>the question to ask yourself when faced with an English sentence is
+this: what is the main connective?</li>
+<li>then, of each of the parts of the sentence, ask yourself: what is
+the main connective?<br />
+</li>
+<li>keep doing this until you have identified the basic propositions and
+the connectives that connect them</li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-6"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>one thing you’ll quickly discover is that a proposition may be a
+conjunction even though it doesn’t involve the word ‘and’</li>
+<li>the following is a conjunction even though it doesn’t involve the
+word ‘and’: Jane is tall but smart</li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-7"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>another thing you’ll discover is that sometimes you need to ‘expand’
+the English sentence to see its logical form<br />
+</li>
+<li>this is the case when you encounter a conjunctive or disjunctive
+noun, verb, or adjectival phrase</li>
+</ul>
+</div>
+<div id="expanding-conjunctive-phrases" class="slide section level2">
+<h1>expanding conjunctive phrases</h1>
+<ul class="incremental">
+<li>consider the following sentence:
+<ul class="incremental">
+<li>Jane and John are tall</li>
+</ul></li>
+<li>this sentence is a conjunction of two propositions: Jane is tall and
+John is tall (namely:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \land B</annotation></semantics></math>)</li>
+<li>consider the following sentence:
+<ul class="incremental">
+<li>Jane is tall and smart</li>
+</ul></li>
+<li>this sentence is a conjunction of two propositions: Jane is tall and
+Jane is smart (namely:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \land B</annotation></semantics></math>)</li>
+</ul>
+</div>
+<div id="expanding-disjunctive-phrases" class="slide section level2">
+<h1>expanding disjunctive phrases</h1>
+<ul class="incremental">
+<li>consider the following sentence:
+<ul class="incremental">
+<li>Jane or John is tall</li>
+</ul></li>
+<li>this sentence is a disjunction of two propositions: Jane is tall and
+John is tall (namely:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \lor B</annotation></semantics></math>)</li>
+<li>consider the following sentence:
+<ul class="incremental">
+<li>Jane is tall or smart</li>
+</ul></li>
+<li>this sentence is a disjunction of two propositions: Jane is tall and
+Jane is smart (namely:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \lor B</annotation></semantics></math>)</li>
+</ul>
+</div>
+<div id="translating-english-sentences-into-pl-8"
+class="slide section level2">
+<h1>translating English sentences into PL</h1>
+<ul class="incremental">
+<li>finally, note that “if” doesn’t always introduce the antecedent of a
+conditional<br />
+</li>
+<li>it does in “if Jane is tall then Jane is smart”</li>
+<li>but it doesn’t in “Jane is tall only if she is smart”</li>
+<li>the inclusion of “only” before “if” reverses the role of “if”</li>
+</ul>
+</div>
+
+<div id="truth-and-appropriateness"
+class="title-slide slide section level1">
+<h1>truth and appropriateness</h1>
+
+</div>
+<div id="truth-and-appropriateness-1" class="slide section level2">
+<h1>truth and appropriateness</h1>
+<ul class="incremental">
+<li>one of the main challenges, when translating English sentences into
+PL, is to capture the <strong>truth conditions</strong> of the English
+sentence</li>
+<li>the truth conditions relate to what would make the English sentence
+true or false in a given context</li>
+<li>we need to distinguish between the truth conditions of an English
+sentence and its <strong>appropriateness</strong> in a given
+context</li>
+</ul>
+</div>
+<div id="truth-and-appropriateness-2" class="slide section level2">
+<h1>truth and appropriateness</h1>
+<ul class="incremental">
+<li>there is a distinction between <strong>sentences</strong> and
+<strong>utterances</strong></li>
+<li>a speaker might utter a sentence, and express a proposition, which
+may be true or false</li>
+<li>the act of uttering a sentence is itself called an
+<strong>utterance</strong></li>
+<li>an utterance can be <strong>appropriate</strong> or
+<strong>inappropriate</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider the following exchange:
+<ul class="incremental">
+<li>you: where is the general lecture theatre?</li>
+<li>me: through the main entry, across the lawn, and on the right</li>
+</ul></li>
+<li>my utterance is <strong>true</strong> and
+<strong>appropriate</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider the following exchange:
+<ul class="incremental">
+<li>you: Where is the general lecture theatre?</li>
+<li>me: # in Sydney</li>
+</ul></li>
+<li>my utterance is <strong>true</strong> and
+<strong>inappropriate</strong></li>
+<li>in what sense was my utterance inappropriate?</li>
+<li>it was uncooperative</li>
+<li>what are the rules governing appropriate utterances?</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what’s the point of knowing the distinction between truth and
+falsity and appropriateness and inappropriateness?</li>
+<li>well, we are aiming to capture the <strong>truth conditions of an
+utterance</strong> in our translations</li>
+<li>so we need to be able to tell the difference between a sentence
+being true but inappropriate to utter in a context and its being false
+as uttered in a context</li>
+</ul>
+</div>
+
+<div id="what-is-said-and-what-is-merely-implicated"
+class="title-slide slide section level1">
+<h1>what is said and what is merely implicated</h1>
+
+</div>
+<div id="what-is-said-and-what-is-merely-implicated-1"
+class="slide section level2">
+<h1>what is said and what is merely implicated</h1>
+<ul class="incremental">
+<li>there is another important distinction between . . .
+<ul class="incremental">
+<li>what is <strong>said</strong></li>
+<li>what is <strong>implicated</strong></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>consider another example:
+<ul class="incremental">
+<li>you: Did you pass the exam?</li>
+<li>me: If I didn’t, I’m fool</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what is <strong>said</strong>: if I didn’t pass the exam, I am a
+fool
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+I passed the exam</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+I am a fool</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>→</mo><mi>F</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \rightarrow F)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what is <strong>implicated</strong>: I passed the exam
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>:
+I passed the exam</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>:
+I am a fool</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>interestingly, it was by <strong>flouting</strong> a conversational
+maxim that I managed to convey this</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>what’s the point of knowing the distinction between what is said and
+what is implicated by an utterance?</li>
+<li>well, we are aiming to translate what is said by an utterance</li>
+<li>so it is important to be able to distinguish between what is said
+and what is merely implicated</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>we looked at some important distinctions in the philosophy of
+language which can help us with our translations</li>
+<li>we are aiming, in our translations, to capture only what is said,
+not what is implied or implicated by an utterance</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li><a href="05_the_semantics_of_PL.html">lecture 05, the semantics of
+PL</a></li>
+</ul>
+</div>
+</body>
+</html>

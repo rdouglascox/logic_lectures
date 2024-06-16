@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 03, the formal language PL</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 03, the formal language PL</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to the formal language PL</li>
+<li>the vocabulary and syntax of PL</li>
+<li>how formulas of PL are constructed</li>
+<li>translating propositions from English into PL with the use of a
+glossary</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain what the different symbols of PL mean</li>
+<li>translate PL formulas into English</li>
+<li>translate propositions from English into PL, providing a glossary
+for your translation</li>
+<li>identify well-formed formulas of PL</li>
+<li>construct construction tables for formulas of PL</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>all of chapter 2</li>
+</ul>
+</div>
+
+<div id="the-language-of-propositional-logic-pl"
+class="title-slide slide section level1">
+<h1>the language of propositional logic (PL)</h1>
+
+</div>
+<div id="the-language-of-propositional-logic-pl-1"
+class="slide section level2">
+<h1>the language of propositional logic (PL)</h1>
+<ul class="incremental">
+<li>the formal symbolic language of propositional logic (PL)</li>
+<li>the language of PL consists of a <strong>vocabulary</strong> and a
+<strong>syntax</strong></li>
+<li>the vocabulary concerns the basic symbols</li>
+<li>the syntax concerns how basic symbols can be put together to form
+complex symbols</li>
+</ul>
+</div>
+
+<div id="the-vocabulary-of-pl" class="title-slide slide section level1">
+<h1>the vocabulary of PL</h1>
+
+</div>
+<div id="the-vocabulary-of-pl-1" class="slide section level2">
+<h1>the vocabulary of PL</h1>
+<ul class="incremental">
+<li>basic propositions are represented in PL by simple capital letters
+with or without numerical subscripts</li>
+<li>they are called <strong>sentence letters</strong>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><msub><mi>A</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mi>B</mi><mo>,</mo><msub><mi>B</mi><mn>2</mn></msub><mo>,</mo><msub><mi>B</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><mi>C</mi><mo>,</mo><msub><mi>C</mi><mn>2</mn></msub><mo>,</mo><msub><mi>C</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><mi>Z</mi><mo>,</mo><msub><mi>Z</mi><mn>2</mn></msub><mo>,</mo><msub><mi>Z</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">A, A_2, A_3, \ldots B, B_2, B_3, \ldots, C, C_2, C_3, \ldots, Z, Z_2,
+Z_3</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>suppose you want to use ‘A’ to represent the proposition expressed
+by the sentence ‘John is short’</li>
+<li>in order to do this you would write a <strong>glossary</strong> like
+this:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+John is short</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we use sentence letters only for basic propositions. so the
+following is not okay:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+John is short and Jane is tall</li>
+</ul></li>
+<li>remember that a negation is not a basic proposition. so the
+following is not okay:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+John is not short</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>more about glossaries and translations in the next lecture</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we have introduced symbols to represent propositions (sentence
+letters)</li>
+<li>now we introduce symbols to represent the
+<strong>connectives</strong>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mo>,</mo><mi>∧</mi><mo>,</mo><mi>∨</mi><mo>,</mo><mo>→</mo><mo>,</mo><mo>↔</mo></mrow><annotation encoding="application/x-tex">\lnot, \land, \lor, \rightarrow, \leftrightarrow</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div id="conjunction" class="slide section level2">
+<h1>conjunction</h1>
+<ul class="incremental">
+<li>the connective conjunction is represented in PL by the symbol:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∧</mi><annotation encoding="application/x-tex">\land</annotation></semantics></math></li>
+</ul></li>
+<li>the name of the symbol is <strong>caret</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can use caret to represent the conjunction of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land B)</annotation></semantics></math></li>
+</ul></li>
+<li>we can use this to represent the proposition that John is short and
+Jane is tall</li>
+</ul>
+</div>
+<div id="disjunction" class="slide section level2">
+<h1>disjunction</h1>
+<ul class="incremental">
+<li>the connective disjunction is represented in PL by the symbol:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math></li>
+</ul></li>
+<li>the name of the symbol is <strong>vel</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can use vel to represent the disjunction of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \lor B)</annotation></semantics></math></li>
+</ul></li>
+<li>we can use this to represent the proposition that John is short or
+Jane is tall</li>
+</ul>
+</div>
+<div id="conditional" class="slide section level2">
+<h1>conditional</h1>
+<ul class="incremental">
+<li>the connective conditional is represented in PL by the symbol:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></li>
+</ul></li>
+<li>the name of the symbol is <strong>arrow</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can use arrow to represent a conditional with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+as its antecedent and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+as its consequent as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>→</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \rightarrow B)</annotation></semantics></math></li>
+</ul></li>
+<li>we can use this to represent the proposition that if John is short,
+then Jane is tall</li>
+</ul>
+</div>
+<div id="biconditional" class="slide section level2">
+<h1>biconditional</h1>
+<ul class="incremental">
+<li>the connective biconditional is represented in PL by the symbol:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>↔</mo><annotation encoding="application/x-tex">\leftrightarrow</annotation></semantics></math></li>
+</ul></li>
+<li>the name of the symbol is <strong>double arrow</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can use double arrow to represent a biconditional with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+as its left-hand side and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>
+as its right-hand side as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>↔</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \leftrightarrow B)</annotation></semantics></math></li>
+</ul></li>
+<li>we can use this to represent the proposition that John is short if
+and only if Jane is tall</li>
+</ul>
+</div>
+<div id="negation" class="slide section level2">
+<h1>negation</h1>
+<ul class="incremental">
+<li>the connective negation is represented in PL by the symbol:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math></li>
+</ul></li>
+<li>the name of the symbol is <strong>neg</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we can use neg to represent a negation with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+as its negand as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot A</annotation></semantics></math></li>
+</ul></li>
+<li>we can use this to represent the proposition that John is not
+tall</li>
+</ul>
+</div>
+<div id="the-connectives-of-pl" class="slide section level2">
+<h1>the connectives of PL</h1>
+<ul class="incremental">
+<li><p>here are the symbols for the connectives in PL:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">connective</th>
+<th align="left">name</th>
+<th align="center">symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">negation</td>
+<td align="left">neg</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">conjunction</td>
+<td align="left">caret</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∧</mi><annotation encoding="application/x-tex">\land</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td align="left">disjunction</td>
+<td align="left">vel</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">conditional</td>
+<td align="left">arrow</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>→</mo><annotation encoding="application/x-tex">\rightarrow</annotation></semantics></math></td>
+</tr>
+<tr class="odd">
+<td align="left">biconditional</td>
+<td align="left">double arrow</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>↔</mo><annotation encoding="application/x-tex">\leftrightarrow</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><p>here are some alternative symbols for the connectives</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">connective</th>
+<th align="center">symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">negation</td>
+<td align="center"><code>~</code></td>
+</tr>
+<tr class="even">
+<td align="left">conjunction</td>
+<td align="center"><code>&amp;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">disjunction</td>
+<td align="center"><code>v</code></td>
+</tr>
+<tr class="even">
+<td align="left">conditional</td>
+<td align="center"><code>-&gt;</code></td>
+</tr>
+<tr class="odd">
+<td align="left">biconditional</td>
+<td align="center"><code>&lt;-&gt;</code></td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>note! although the choice of symbols for the connectives is entirely
+arbitrary, the choice we have made is final, and henceforth we will only
+use these symbols</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in addition to the connectives, we need to introduce some
+punctuation symbols</li>
+<li>these are used to group the symbols of PL together</li>
+<li>they are:
+<ul class="incremental">
+<li><code>(</code> and <code>)</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we now have the most important parts of the vocabulary of PL:
+sentence letters, connective symbols, and punctuation symbols ‘(’ and
+‘)’</li>
+<li>now we need to say how these can be put together</li>
+</ul>
+</div>
+
+<div id="the-syntax-of-pl" class="title-slide slide section level1">
+<h1>the syntax of PL</h1>
+
+</div>
+<div id="the-syntax-of-pl-1" class="slide section level2">
+<h1>the syntax of PL</h1>
+<ul class="incremental">
+<li>we are now ready to precisely state the syntax of PL</li>
+<li>see the handout on the syntax of PL</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we use lowercase Greek letters like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+to express general claims about the formulas of PL</li>
+<li>these are called <strong>well-formed formula variables</strong></li>
+<li>well-formed formula variables can stand in for single sentence
+letters like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+or for complex formulas like
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(A \land B)</annotation></semantics></math></li>
+<li>they are not part of the language of PL</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the symbols of PL are:
+<ul class="incremental">
+<li>sentence letters (basic propositions):
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><msub><mi>A</mi><mn>2</mn></msub><mo>,</mo><msub><mi>A</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mi>B</mi><mo>,</mo><msub><mi>B</mi><mn>2</mn></msub><mo>,</mo><msub><mi>B</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><mi>C</mi><mo>,</mo><msub><mi>C</mi><mn>2</mn></msub><mo>,</mo><msub><mi>C</mi><mn>3</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><mi>Z</mi><mo>,</mo><msub><mi>Z</mi><mn>2</mn></msub><mo>,</mo><msub><mi>Z</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">A, A_2, A_3, \ldots B, B_2, B_3, \ldots, C, C_2, C_3, \ldots, Z, Z_2, Z_3</annotation></semantics></math></li>
+</ul></li>
+<li>connectives:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mspace width="0.5em"></mspace><mo>∧</mo><mspace width="0.5em"></mspace><mo>∨</mo><mspace width="0.5em"></mspace><mo>→</mo><mspace width="0.5em"></mspace><mo>↔</mo></mrow><annotation encoding="application/x-tex">\lnot \hspace{6pt} \land \hspace{6pt} \lor \hspace{6pt} \rightarrow \hspace{6pt} \leftrightarrow</annotation></semantics></math></li>
+</ul></li>
+<li>punctuation symbols (parentheses):
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mspace width="1.0em"></mspace><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">( \hspace{12pt} )</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>wffs of PL are defined as follows:
+<ul class="incremental">
+<li>any basic proposition is a wff</li>
+<li>if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+are wffs, then so are:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot \alpha</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta )</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∨</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \lor \beta )</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>→</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \rightarrow \beta)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math></li>
+</ul></li>
+<li>nothing else is a wff</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the syntax of PL is specified by a <strong>recursive
+definition</strong></li>
+<li>the <strong>base clause</strong> of the definition states certain
+things are wffs</li>
+<li>the <strong>recursive clause</strong> states that certain other
+things are wffs in terms of things we already know to be wffs</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>all of the following can be generated using this definition:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>→</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((R\rightarrow P)\leftrightarrow R)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>∧</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(B\leftrightarrow ((C\land A)\lor C))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mo>↔</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (B\lor (B\leftrightarrow A))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>H</mi><mo>→</mo><mi>G</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>H</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mo>∨</mo><mi>H</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((H\rightarrow G)\rightarrow (H\leftrightarrow (G\lor H)))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Z</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Y</mi><mo>∨</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Z</mi><mo>→</mo><mi>Z</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mi>Y</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((Z\lor (((Y\lor Y)\land (Z\rightarrow Z))\lor Y))\lor Y)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>G</mi><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>D</mi><mo>∧</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mi>I</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>D</mi><mo>↔</mo><mi>J</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mi>J</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(((C\lor ((G\leftrightarrow (D\land A))\rightarrow A))\lor I)\land ((D\leftrightarrow J)\leftrightarrow J))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the symbols of PL can be divided into the following categories:
+<ul class="incremental">
+<li><strong>logical symbols</strong> (the connective symbols)</li>
+<li><strong>nonlogical symbols</strong> (sentence letters)</li>
+<li><strong>auxiliary symbols</strong> (parentheses)</li>
+</ul></li>
+<li>the nonlogical symbols do not have a fixed meaning and need to be
+specified in a glossary</li>
+<li>this is why you must always provide a glossary for your
+translations</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>given this syntax for PL we can show how any well-formed formula of
+PL is constructed</li>
+<li>suppose we want to construct
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math></li>
+<li>we might construct it as follows using a <strong>construction
+table</strong></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">step</th>
+<th align="center">wff constructed at this step</th>
+<th align="center">from steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">step</th>
+<th align="center">wff constructed at this step</th>
+<th align="center">from steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">\lnot P</annotation></semantics></math></td>
+<td align="center">1 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Q \lor R)</annotation></semantics></math></td>
+<td align="center">2,3 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">step</th>
+<th align="center">wff constructed at this step</th>
+<th align="center">from steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math></td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">\lnot P</annotation></semantics></math></td>
+<td align="center">1 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Q \lor R)</annotation></semantics></math></td>
+<td align="center">2,3 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math></td>
+<td align="center">4, 5 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∧</mi><annotation encoding="application/x-tex">\land</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>the other wffs in the construction are <strong>subformulas</strong>
+of the formula</li>
+<li>the connective added last in the construction is the <strong>main
+connective</strong></li>
+<li>the main connectives gives its name to the formula it
+constructs</li>
+</ul>
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to the formal language PL</li>
+<li>the vocabulary and syntax of PL</li>
+<li>how formulas of PL are constructed</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li><a href="04_lost_in_translation_1.html">lecture 4, lost in
+translation 1</a></li>
+</ul>
+</div>
+</body>
+</html>

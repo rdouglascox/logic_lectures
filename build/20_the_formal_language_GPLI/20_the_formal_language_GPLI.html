@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>lecture 20, the formal language GPLI</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="slidy_style.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">lecture 20, the formal language GPLI</h1>
+  <p class="subtitle">phil1012 introductory logic</p>
+</div>
+<div id="overview" class="title-slide slide section level1">
+<h1>overview</h1>
+
+</div>
+<div id="this-lecture" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>an introduction to the formal language GPLI</li>
+<li>some of the limitations of GPL which motivate the shift to GPLI</li>
+<li>the identity relation</li>
+<li>translations into GPLI</li>
+<li>the semantics of identity</li>
+</ul>
+</div>
+<div id="learning-outcomes" class="slide section level2">
+<h1>learning outcomes</h1>
+<ul class="incremental">
+<li>after doing the relevant reading for this lecture, listening to the
+lecture, and attending the relevant tutorial, you will be able to:
+<ul class="incremental">
+<li>explain the limitations of GPL and the motivations for GPLI</li>
+<li>explain what the identity relation is</li>
+<li>translate propositions from English into GPLI</li>
+<li>explain the motivation behind the semantics of identity</li>
+<li>determine whether a GPLI proposition is true or false on a
+model</li>
+</ul></li>
+</ul>
+</div>
+<div id="required-reading" class="slide section level2">
+<h1>required reading</h1>
+<ul class="incremental">
+<li>sections 13.1, 13.2, and 13.3 of chapter 13</li>
+</ul>
+</div>
+
+<div id="expressive-limitations-of-gpl"
+class="title-slide slide section level1">
+<h1>expressive limitations of GPL</h1>
+
+</div>
+<div id="expressive-limitations-of-gpl-1" class="slide section level2">
+<h1>expressive limitations of GPL</h1>
+<ul class="incremental">
+<li>consider the following argument</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">John loves something</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">John does not love himself</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">John loves something other than himself</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we have the following glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math></li>
+</ul></li>
+<li>and we translate the premises as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mi>L</mi><mi>j</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\exists x Ljx</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>L</mi><mi>j</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">\lnot Ljj</annotation></semantics></math></li>
+</ul></li>
+<li>but we have no way of translating the conclusion</li>
+<li>we have no way of saying that John loves someone other than
+himself</li>
+</ul>
+</div>
+
+<div id="introducing-gpli" class="title-slide slide section level1">
+<h1>introducing GPLI</h1>
+
+</div>
+<div id="introducing-gpli-1" class="slide section level2">
+<h1>introducing GPLI</h1>
+<ul class="incremental">
+<li>we introduce a new two-place predicate into our logical language:
+the <strong>identity</strong> predicate
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in GPL
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+is not used for a two-place predicate. Although
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>1</mn></msup><annotation encoding="application/x-tex">I^1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>3</mn></msup><annotation encoding="application/x-tex">I^3</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>4</mn></msup><annotation encoding="application/x-tex">I^4</annotation></semantics></math>,
+and so on are</li>
+<li>we are extending GPL to GPLI which includes the symbol
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+in addition to all the symbols of GPL</li>
+<li>syntactically,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+functions just like a two-place predicate in GPL</li>
+<li>semantically,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+is treated differently
+<ul class="incremental">
+<li>its meaning does not vary from model to model</li>
+<li>it is not given a glossary</li>
+<li>in every model it expresses the <strong>identity
+relation</strong></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>since the two-place predicate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+is so special in GPLI we usually abbreviate it as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math></li>
+</ul></li>
+<li>and we abbreviate negations involving
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+using:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≠</mo><annotation encoding="application/x-tex">\neq</annotation></semantics></math></li>
+</ul></li>
+<li>it is important to remember, however, that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math>
+is just an abbreviation of a two-place preciate</li>
+</ul>
+</div>
+
+<div id="the-identity-relation"
+class="title-slide slide section level1">
+<h1>the identity relation</h1>
+
+</div>
+<div id="the-identity-relation-1" class="slide section level2">
+<h1>the identity relation</h1>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math>
+expresses the identity relation</li>
+<li>but what is the relation of identity?</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>B1 and B2 are identical</li>
+<li>B1 is identical to B2</li>
+<li>B1 and B2 are <em>exactly the same in all respects</em></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>B1 and B2 are identical</li>
+<li>B1 is identical to B2</li>
+<li>B1 and B2 are <em>one and the same thing</em></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we have two relations:
+<ul class="incremental">
+<li><strong>identity</strong> (being one and the same thing)</li>
+<li><strong>exact similarity</strong> (being the same in all
+respects)</li>
+</ul></li>
+<li>how are they related?
+<ul class="incremental">
+<li>Leibniz’s Law/Indiscernability of Identicals: if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is identical to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is exactly similar to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>.
+(a logical truth)</li>
+<li>Identity of Indiscernibles: if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is exactly similar to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>
+then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is identical to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>.
+(controversial)</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>
+are identical (the names
+‘<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>’
+and
+‘<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>’
+pick out the same thing):</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/98afcaeb5ccea2bdbc57186ce426577b14f45878.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="118.96" height="66.5" viewBox="0 0 118.96 66.5">
+<defs>
+<g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-0-0">
+<path d="M 9.125 -10.484375 L 8.5 -8.40625 C 8.34375 -9.84375 7.1875 -10.828125 5.6875 -10.828125 C 4.28125 -10.828125 2.96875 -10.09375 1.890625 -8.71875 C 0.71875 -7.1875 0.015625 -5.25 0.015625 -3.40625 C 0.015625 -1.15625 1.390625 0.34375 3.4375 0.34375 C 4.859375 0.34375 5.78125 -0.234375 6.9375 -1.890625 C 6.84375 -1.546875 6.828125 -1.390625 6.828125 -1.15625 C 6.828125 -0.25 7.390625 0.34375 8.234375 0.34375 C 9.234375 0.34375 10.125 -0.203125 10.921875 -1.34375 C 11.390625 -1.984375 11.78125 -2.625 12.046875 -3.25 L 11.34375 -3.640625 C 10.46875 -1.890625 9.65625 -0.921875 9.0625 -0.921875 C 8.796875 -0.921875 8.578125 -1.171875 8.578125 -1.5 C 8.578125 -1.734375 8.671875 -2.171875 8.828125 -2.75 L 11.125 -10.484375 Z M 6.078125 -9.5625 C 7.171875 -9.5625 7.84375 -8.78125 7.84375 -7.515625 C 7.84375 -6.203125 7.375 -4.359375 6.65625 -2.90625 C 5.953125 -1.46875 5.109375 -0.828125 3.96875 -0.828125 C 2.8125 -0.828125 2.125 -1.6875 2.125 -3.09375 C 2.125 -5.109375 3.015625 -7.515625 4.234375 -8.765625 C 4.75 -9.28125 5.390625 -9.5625 6.078125 -9.5625 Z M 6.078125 -9.5625 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-0-1">
+<path d="M 6.6875 -16.984375 L 2.265625 -16.640625 L 2.171875 -15.8125 L 2.71875 -15.8125 C 3.671875 -15.8125 4.03125 -15.609375 4.03125 -15.078125 C 4.03125 -14.890625 3.96875 -14.59375 3.828125 -14.078125 L 1.0625 -4.765625 C 0.859375 -4.0625 0.734375 -3.40625 0.734375 -2.953125 C 0.734375 -0.9375 2.21875 0.34375 4.5 0.34375 C 6.296875 0.34375 7.65625 -0.203125 8.921875 -1.421875 C 10.421875 -2.875 11.25 -4.8125 11.25 -6.921875 C 11.25 -9.28125 9.90625 -10.828125 7.859375 -10.828125 C 6.515625 -10.828125 5.53125 -10.25 4.234375 -8.734375 Z M 7.09375 -9.421875 C 8.28125 -9.421875 8.96875 -8.53125 8.96875 -7.03125 C 8.96875 -5.546875 8.5 -3.96875 7.71875 -2.65625 C 6.84375 -1.203125 5.875 -0.53125 4.671875 -0.53125 C 3.4375 -0.53125 2.703125 -1.359375 2.703125 -2.765625 C 2.703125 -4.171875 3.25 -6 4.0625 -7.328125 C 4.9375 -8.71875 5.953125 -9.421875 7.09375 -9.421875 Z M 7.09375 -9.421875 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-1-0">
+<path d="M -2.625 -4.609375 L -2.625 -4.5625 C -2.09375 -2.765625 -1.234375 -1.203125 -0.15625 0.125 L -0.125 0.15625 L -0.0625 0.1875 L 0 0.203125 C 0.125 0.1875 0.1875 0.125 0.203125 0 L 0.1875 -0.0625 L 0.15625 -0.125 C -0.890625 -1.421875 -1.71875 -2.90625 -2.25 -4.671875 L -2.265625 -4.734375 L -2.3125 -4.78125 L -2.375 -4.8125 L -2.4375 -4.8125 C -2.546875 -4.8125 -2.625 -4.734375 -2.625 -4.609375 Z M -2.625 -4.609375 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-1-1">
+<path d="M 4.609375 -2.625 L 4.5625 -2.625 C 2.765625 -2.09375 1.203125 -1.234375 -0.125 -0.15625 L -0.15625 -0.125 L -0.1875 -0.0625 L -0.203125 0 C -0.1875 0.125 -0.125 0.1875 0 0.203125 L 0.0625 0.1875 L 0.125 0.15625 C 1.421875 -0.890625 2.90625 -1.71875 4.671875 -2.25 L 4.734375 -2.265625 L 4.78125 -2.3125 L 4.8125 -2.375 L 4.8125 -2.4375 C 4.8125 -2.546875 4.734375 -2.625 4.609375 -2.625 Z M 4.609375 -2.625 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-2-0">
+<path d="M 0.203125 0 L 0.1875 -0.0625 L 0.15625 -0.125 L 0.125 -0.15625 C -1.203125 -1.234375 -2.765625 -2.09375 -4.5625 -2.625 L -4.609375 -2.625 C -4.734375 -2.625 -4.8125 -2.546875 -4.8125 -2.4375 L -4.8125 -2.375 L -4.78125 -2.3125 L -4.734375 -2.265625 L -4.671875 -2.25 C -2.90625 -1.71875 -1.421875 -0.890625 -0.125 0.15625 L -0.0625 0.1875 L 0 0.203125 C 0.125 0.1875 0.1875 0.125 0.203125 0 Z M 0.203125 0 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-2-1">
+<path d="M 0 0.203125 L 0.0625 0.1875 L 0.125 0.15625 L 0.15625 0.125 C 1.234375 -1.203125 2.09375 -2.765625 2.625 -4.5625 L 2.625 -4.609375 C 2.625 -4.734375 2.546875 -4.8125 2.4375 -4.8125 L 2.375 -4.8125 L 2.3125 -4.78125 L 2.265625 -4.734375 L 2.25 -4.671875 C 1.71875 -2.90625 0.890625 -1.421875 -0.15625 -0.125 L -0.1875 -0.0625 L -0.203125 0 C -0.1875 0.125 -0.125 0.1875 0 0.203125 Z M 0 0.203125 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0">
+<path d="M 3.671875 3.578125 L 3.65625 3.515625 L 3.625 3.453125 C 2.46875 2.25 1.296875 1.046875 0.125 -0.15625 L 0.0625 -0.1875 L 0 -0.203125 C -0.125 -0.1875 -0.1875 -0.125 -0.203125 0 L -0.1875 0.0625 L -0.15625 0.125 C 1 1.328125 2.171875 2.53125 3.34375 3.734375 L 3.40625 3.765625 L 3.46875 3.78125 C 3.59375 3.765625 3.65625 3.703125 3.671875 3.578125 Z M 3.671875 3.578125 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1">
+<path d="M 3.46875 -3.78125 L 3.40625 -3.765625 L 3.34375 -3.734375 C 2.171875 -2.53125 1 -1.328125 -0.15625 -0.125 L -0.1875 -0.0625 L -0.203125 0 C -0.1875 0.125 -0.125 0.1875 0 0.203125 L 0.0625 0.1875 L 0.125 0.15625 C 1.296875 -1.046875 2.46875 -2.25 3.625 -3.453125 L 3.65625 -3.515625 L 3.671875 -3.578125 C 3.65625 -3.703125 3.59375 -3.765625 3.46875 -3.78125 Z M 3.46875 -3.78125 "/>
+</g>
+<g id="glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-4-0">
+<path d="M 2.046875 -6.421875 C 2.046875 -4.421875 3.671875 -2.796875 5.671875 -2.796875 C 7.6875 -2.796875 9.296875 -4.421875 9.296875 -6.421875 C 9.296875 -8.4375 7.6875 -10.046875 5.671875 -10.046875 C 3.671875 -10.046875 2.046875 -8.4375 2.046875 -6.421875 Z M 2.046875 -6.421875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-0-0" x="10.371" y="19.86"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-1-0" x="52.763" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-2-0" x="52.763" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="49.297" y="46.659"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="46.029" y="43.31"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="42.761" y="39.962"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="39.493" y="36.614"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="36.225" y="33.266"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="32.957" y="29.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="29.689" y="26.569"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-0" x="26.421" y="23.221"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-0-1" x="95.777" y="19.86"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-1-1" x="66.139" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-2-1" x="66.139" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="66.139" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="69.407" y="46.888"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="72.675" y="43.539"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="75.943" y="40.191"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="79.211" y="36.843"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="82.48" y="33.495"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="85.748" y="30.146"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-3-1" x="89.016" y="26.798"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph98afcaeb5ccea2bdbc57186ce426577b14f45878.svg-4-0" x="53.743" y="63.511"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>
+are non-identical (the names
+‘<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>’
+and
+‘<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>’
+pick out different things):</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/fbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="77.43" height="66.5" viewBox="0 0 77.43 66.5">
+<defs>
+<g>
+<g id="glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-0-0">
+<path d="M 7.859375 -3.046875 C 6.703125 -1.546875 5.484375 -0.765625 4.375 -0.765625 C 3.015625 -0.765625 2.234375 -1.78125 2.234375 -3.5 C 2.234375 -5.140625 2.765625 -6.953125 3.671875 -8.25 C 4.46875 -9.40625 5.296875 -9.953125 6.3125 -9.953125 C 7.046875 -9.953125 7.796875 -9.59375 7.796875 -9.203125 C 7.796875 -9.0625 7.671875 -8.9375 7.421875 -8.84375 C 6.796875 -8.578125 6.5625 -8.296875 6.5625 -7.75 C 6.5625 -7.078125 7.078125 -6.609375 7.796875 -6.609375 C 8.625 -6.609375 9.234375 -7.359375 9.234375 -8.34375 C 9.234375 -9.71875 7.90625 -10.828125 6.25 -10.828125 C 3.015625 -10.828125 0.109375 -7.515625 0.109375 -3.828125 C 0.109375 -1.296875 1.6875 0.34375 4.078125 0.34375 C 5.8125 0.34375 7.3125 -0.625 8.53125 -2.53125 Z M 7.859375 -3.046875 "/>
+</g>
+<g id="glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-0-1">
+<path d="M 12.3125 -3.640625 C 10.96875 -1.46875 10.390625 -0.875 9.640625 -0.875 C 9.265625 -0.875 9.0625 -1.109375 9.0625 -1.5 C 9.0625 -1.828125 9.171875 -2.34375 9.40625 -3.15625 L 13.5 -16.984375 L 8.921875 -16.640625 L 8.828125 -15.8125 L 9.546875 -15.8125 C 10.484375 -15.8125 10.859375 -15.609375 10.859375 -15.09375 C 10.859375 -14.859375 10.78125 -14.546875 10.640625 -14.078125 L 9.125 -8.9375 C 8.9375 -9.5 8.796875 -9.71875 8.546875 -10 C 8.0625 -10.515625 7.28125 -10.828125 6.46875 -10.828125 C 3.15625 -10.828125 0.0625 -7.28125 0.0625 -3.453125 C 0.0625 -1.203125 1.546875 0.34375 3.6875 0.34375 C 5.25 0.34375 6.40625 -0.328125 7.421875 -1.796875 C 7.390625 -1.609375 7.390625 -1.390625 7.390625 -1.296875 C 7.390625 -0.234375 7.953125 0.34375 8.96875 0.34375 C 10.421875 0.34375 11.703125 -0.78125 13 -3.234375 Z M 6.546875 -9.796875 C 7.671875 -9.796875 8.5 -8.921875 8.5 -7.703125 C 8.5 -6.46875 7.921875 -4.375 7.1875 -2.96875 C 6.4375 -1.5 5.46875 -0.734375 4.359375 -0.734375 C 3.140625 -0.734375 2.3125 -1.734375 2.3125 -3.234375 C 2.3125 -4.546875 2.78125 -6.21875 3.53125 -7.515625 C 4.40625 -9.03125 5.421875 -9.796875 6.546875 -9.796875 Z M 6.546875 -9.796875 "/>
+</g>
+<g id="glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-1-0">
+<path d="M 1.546875 -5.1875 L 1.484375 -5.171875 L 1.421875 -5.140625 L 1.390625 -5.109375 C 0.546875 -3.5625 0 -1.921875 -0.203125 0 C -0.1875 0.125 -0.125 0.1875 0 0.203125 L 0.0625 0.1875 L 0.125 0.15625 L 0.15625 0.125 L 0.1875 0.0625 L 0.203125 0 C 0.375 -1.734375 0.828125 -3.171875 1.5625 -4.609375 C 1.625 -4.71875 1.71875 -4.828125 1.75 -4.984375 C 1.734375 -5.109375 1.671875 -5.171875 1.546875 -5.1875 Z M 1.546875 -5.1875 "/>
+</g>
+<g id="glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-2-0">
+<path d="M 0.203125 0 C 0.015625 -1.78125 -0.4375 -3.25 -1.1875 -4.71875 C -1.25 -4.859375 -1.3125 -5.03125 -1.421875 -5.140625 L -1.484375 -5.171875 L -1.546875 -5.1875 C -1.671875 -5.171875 -1.734375 -5.109375 -1.75 -4.984375 L -1.734375 -4.921875 C -1.0625 -3.609375 -0.515625 -2.15625 -0.28125 -0.640625 C -0.234375 -0.40625 -0.234375 -0.171875 -0.1875 0.0625 L -0.15625 0.125 L -0.125 0.15625 L -0.0625 0.1875 L 0 0.203125 C 0.125 0.1875 0.1875 0.125 0.203125 0 Z M 0.203125 0 "/>
+</g>
+<g id="glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-3-0">
+<path d="M 2.046875 -6.421875 C 2.046875 -4.421875 3.671875 -2.796875 5.671875 -2.796875 C 7.6875 -2.796875 9.296875 -4.421875 9.296875 -6.421875 C 9.296875 -8.4375 7.6875 -10.046875 5.671875 -10.046875 C 3.671875 -10.046875 2.046875 -8.4375 2.046875 -6.421875 Z M 2.046875 -6.421875 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-0-0" x="11.115" y="19.86"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-1-0" x="15.861" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-2-0" x="15.861" y="50.236"/>
+</g>
+<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -56.140625 21.769625 L -56.140625 48.781344 " transform="matrix(1, 0, 0, -1, 72, 72.004)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-0-1" x="52.479" y="19.86"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-1-0" x="59.643" y="50.236"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-2-0" x="59.643" y="50.236"/>
+</g>
+<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -12.355469 21.769625 L -12.355469 48.781344 " transform="matrix(1, 0, 0, -1, 72, 72.004)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-3-0" x="10.16" y="63.511"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphfbd302e33244d18cabe2c694e3ed7884b15fb0e9.svg-3-0" x="53.921068" y="63.511"/>
+</g>
+</svg>
+
+</div>
+</div>
+</div>
+
+<div id="the-predicate" class="title-slide slide section level1">
+<h1>the predicate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math></h1>
+
+</div>
+<div id="the-predicate-1" class="slide section level2">
+<h1>the predicate
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math></h1>
+<ul class="incremental">
+<li>consider the following sentences:</li>
+<li>B1 is a banana</li>
+<li>B1 is B2</li>
+<li>the word ‘is’ has a different meaning in each. in the first case, it
+is the ‘is’ of predication. in the second, it is the ‘is’ of
+identity.</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we have the following glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+B1</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+B2</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">By</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a banana</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we have the following translations:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Ba</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a=b</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>recall that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+(or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math>)
+is part of the logical vocabulary</li>
+<li>we do not put an entry for it in the glossary</li>
+</ul>
+</div>
+
+<div id="translations-into-gpli"
+class="title-slide slide section level1">
+<h1>translations into GPLI</h1>
+
+</div>
+<div id="translations-into-gpli-1" class="slide section level2">
+<h1>translations into GPLI</h1>
+<ul class="incremental">
+<li>GPLI allows us to express more than just that a and b are
+identical</li>
+<li>let’s take a look at the expressive power we have gained</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>return to our example:</li>
+</ul>
+<div class="incremental">
+<div class="arg">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">P1.</td>
+<td align="left">John loves something</td>
+</tr>
+<tr class="even">
+<td align="center">P2.</td>
+<td align="left">John does not love himself</td>
+</tr>
+<tr class="odd">
+<td align="center">C1.</td>
+<td align="left">John loves something other than himself</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>how should we translate the conclusion of the argument?
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Ljx \land \lnot I^2jx)</annotation></semantics></math></li>
+</ul></li>
+<li>there is something that John loves and that thing is not John</li>
+<li>John loves something other than himself!</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s look at some other examples . . .</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John isn’t Mary</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>j</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\lnot I^2 jm</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>≠</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">j \neq m</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John loves someone other than himself</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Px \land Ljx \land \lnot I^2xj)</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Px \land Ljx \land x \neq j)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John loves everyone except Sam</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x ((Px \land \lnot I^2xs) \rightarrow Ljx)</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x ((Px \land x \neq s) \rightarrow Ljx)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>Some baker other than John loves Mary</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>j</mi><mo>∧</mo><mi>L</mi><mi>x</mi><mi>m</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Bx \land \lnot I^2xj \land Lxm)</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∃</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><mi>x</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>j</mi><mo>∧</mo><mi>L</mi><mi>x</mi><mi>m</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\exists x (Bx \land x \neq j \land Lxm)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>Everyone loves themselves</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>→</mo><mi>L</mi><mi>x</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x(Px \rightarrow Lxx)</annotation></semantics></math><br />
+</p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John loves everyone other than himself</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x((Px \land \lnot I^2xj) \rightarrow Ljx)</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x((Px \land x \neq j) \rightarrow Ljx)</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John loves everyone other than himself</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mi>¬</mi><mi>L</mi><mi>j</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">\forall x((Px \land \lnot I^2xj) \rightarrow Ljx) \land \lnot Ljj</annotation></semantics></math><br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mi>x</mi><mo>∧</mo><mi>x</mi><mo>≠</mo><mi>j</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>L</mi><mi>j</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mi>¬</mi><mi>L</mi><mi>j</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">\forall x((Px \land x \neq j) \rightarrow Ljx) \land \lnot Ljj</annotation></semantics></math></p>
+</blockquote>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a glossary:</li>
+</ul>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>:
+John,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>:
+Mary,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>:
+Sam<br />
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>x</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Lxy</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+loves
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>y</mi><annotation encoding="application/x-tex">y</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Sx</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a baker,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Px</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>
+is a person</p>
+</blockquote>
+<ul class="incremental">
+<li>translate the following into GPLI:</li>
+</ul>
+</div>
+<div class="incremental">
+<blockquote>
+<p>John loves everything but does not love himself</p>
+</blockquote>
+</div>
+<div class="incremental">
+<blockquote>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mi>L</mi><mi>j</mi><mi>x</mi><mo>∧</mo><mi>¬</mi><mi>L</mi><mi>j</mi><mi>j</mi></mrow><annotation encoding="application/x-tex">\forall x Ljx \land \lnot Ljj</annotation></semantics></math><br />
+</p>
+</blockquote>
+<ul class="incremental">
+<li>(this is a contradiction. it is false in every model.)</li>
+</ul>
+</div>
+</div>
+
+<div id="the-semantics-of" class="title-slide slide section level1">
+<h1>the semantics of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math></h1>
+
+</div>
+<div id="the-semantics-of-1" class="slide section level2">
+<h1>the semantics of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>=</mo><annotation encoding="application/x-tex">=</annotation></semantics></math></h1>
+<ul class="incremental">
+<li>since
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+is a two-place predicate, its extension is a set of ordered pairs of
+members of the domain</li>
+<li>once we have an extension for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>,
+the semantics for GPLI is just like the semantics of GPL</li>
+<li>so all we need is an extension for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in a model in which the domain is {1, 2, 3}, the extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+will be the following set of ordered pairs:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mn>3</mn><mo>,</mo><mn>3</mn><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{ \langle 1, 1 \rangle, \langle 2, 2 \rangle, \langle 3, 3 \rangle \}</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>in a model in which the domain is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo>,</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Bill, Ben\}</annotation></semantics></math>,
+the extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+will be the following set of ordered pairs:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo>,</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo>,</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{ \langle Bill, Bill \rangle, \langle Ben, Ben \rangle\}</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>whatever the domain is, the extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+will contain exactly one ordered pair for each object in the domain: the
+pair containing that object in both the first and second place</li>
+<li>the identity relation is a relation which holds between each object
+and itself and between no other objects</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>note! The extension of the identity predicate is not exactly the
+same on all models</li>
+<li>given a domain, however, the extension of the identity predicate is
+fixed</li>
+<li>this is not true of other predicates</li>
+<li>this is why it is part of the logical vocabulary</li>
+</ul>
+</div>
+<div id="propositions-of-the-form-i2ab" class="slide section level2">
+<h1>propositions of the form
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mn>2</mn></msup><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">I^2ab</annotation></semantics></math></h1>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mn>2</mn></msup><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">I^2ab</annotation></semantics></math>
+is true in a model if and only if the pair consisting of the referent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
+and the referent of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>
+is in the extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+<ul class="incremental">
+<li>Domain:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo>,</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Bill, Ben\}</annotation></semantics></math></li>
+<li>Referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Bill</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Bill</annotation></semantics></math></li>
+<li>Extension of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>I</mi><mn>2</mn></msup><annotation encoding="application/x-tex">I^2</annotation></semantics></math>
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo>,</mo><mi>B</mi><mi>i</mi><mi>l</mi><mi>l</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo>,</mo><mi>B</mi><mi>e</mi><mi>n</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{ \langle Bill, Bill \rangle, \langle Ben, Ben \rangle\}</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>I</mi><mn>2</mn></msup><mi>a</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">I^2ab</annotation></semantics></math>
+is true in a model if and only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>
+have the same referent on that model</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>let’s run through a couple of examples</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a model:
+<ul class="incremental">
+<li>Domain:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>,</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Sydney, Canberra, Melbourne\}</annotation></semantics></math></li>
+<li>Referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Melbourne</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Canberra</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Sydney</annotation></semantics></math><br />
+</li>
+<li>Extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>,</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\{ \langle Sydney, Canberra \rangle,</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">⟨</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\langle Canberra, Sydney \rangle, \langle Melbourne,</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">Canberra \rangle, \langle Canberra, Melbourne \rangle \}</annotation></semantics></math></li>
+</ul></li>
+<li>is the following true or false in the model?
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>N</mi><mi>x</mi><mi>y</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>I</mi><mn>2</mn></msup><mi>x</mi><mi>b</mi><mo>∨</mo><msup><mi>I</mi><mn>2</mn></msup><mi>y</mi><mi>b</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\forall x \forall y (Nxy \rightarrow (I^2xb \lor I^2yb))</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here’s a model:
+<ul class="incremental">
+<li>Domain:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>,</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{Sydney, Canberra, Melbourne\}</annotation></semantics></math></li>
+<li>Referents:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">Melbourne</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">Canberra</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">Sydney</annotation></semantics></math><br />
+</li>
+<li>Extensions:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><mo stretchy="false" form="prefix">⟨</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo>,</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\{ \langle Sydney, Canberra \rangle,</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">⟨</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>S</mi><mi>y</mi><mi>d</mi><mi>n</mi><mi>e</mi><mi>y</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">\langle Canberra, Sydney \rangle, \langle Melbourne,</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mo stretchy="false" form="prefix">⟨</mo><mi>C</mi><mi>a</mi><mi>n</mi><mi>b</mi><mi>e</mi><mi>r</mi><mi>r</mi><mi>a</mi><mo>,</mo><mi>M</mi><mi>e</mi><mi>l</mi><mi>b</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>n</mi><mi>e</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">Canberra \rangle, \langle Canberra, Melbourne \rangle \}</annotation></semantics></math></li>
+</ul></li>
+<li>is the following true or false in the model?
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>I</mi><mn>2</mn></msup><mi>a</mi><mi>b</mi><mo>→</mo><mo>∀</mo><mi>x</mi><mo>∀</mo><mi>y</mi><mi>N</mi><mi>x</mi><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(I^2ab \rightarrow \forall x \forall y Nxy)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<!--
+
+---
+
+* if possible give a model on which the following is (a) true and (b) false
+    * $\forall x(\lnot I^2 xa \rightarrow \lnot Px)$
+
+---
+
+* answers:
+    * it is true on any model where nothing other than $a$ is in the
+extension of $P$
+    * it is false on any model where something other than $a$ is in the
+    extension of $P$
+
+---
+
+* if possible give a model on which the following is (a) true and (b) false
+    * $\exists x \exists y (I^2 xa \land I^2 xb \land I^2yc)$
+
+---
+
+* answers:
+    it is true on any model where $a$ and $b$ have the same referent
+    it is false on any model where $a$ and $b$ have different referents
+
+---
+
+* if possible give a model on which the following is (a) true and (b)
+    false
+    * $Rab \land \lnot Raa \land \lnot I^2ab \land \forall x \forall y Rxy$
+
+---
+
+* answers:
+   * there is no model on which it is true
+   * it is false on any model that assigns referents to $a$ and $b$ and an
+extension to $R$
+
+-->
+</div>
+
+<div id="wrapping-up" class="title-slide slide section level1">
+<h1>wrapping up</h1>
+
+</div>
+<div id="this-lecture-1" class="slide section level2">
+<h1>this lecture</h1>
+<ul class="incremental">
+<li>some of the limitations of GPL which motivate the shift to GPLI</li>
+<li>introducing GPLI</li>
+<li>the identity relation</li>
+<li>translations into GPLI</li>
+<li>the semantics of identity</li>
+</ul>
+</div>
+<div id="next-lecture" class="slide section level2">
+<h1>next lecture</h1>
+<ul class="incremental">
+<li><a href="21_trees_for_GPLI.html">lecture 21, trees for GPLI</a></li>
+</ul>
+</div>
+</body>
+</html>
