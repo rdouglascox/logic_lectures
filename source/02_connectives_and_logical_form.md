@@ -238,4 +238,4 @@ proposition
 
 ## next lecture
 
-* lecture 03, the formal language PL
+* [lecture 03, the formal language PL](03_the_formal_language_PL.html)

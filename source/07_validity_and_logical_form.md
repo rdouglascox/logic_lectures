@@ -394,5 +394,4 @@ unsatisfiability   satisfiability
 
 ## next lecture
 
-* lecture 08, functional completeness
-
+* [lecture 08, functional completeness](08_functional_completeness.html)

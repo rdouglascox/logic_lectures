@@ -668,4 +668,4 @@ no row on which all T     **unsatisfiable**
 
 ## next lecture
 
-* lecture 07, validity and logical form
+* [lecture 07, validity and logical form](07_validity_and_logical_form.html)

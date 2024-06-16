@@ -294,7 +294,6 @@ constructed
 * the vocabulary and syntax of PL
 * how formulas of PL are constructed
 
-## next lectures
+## next lecture 
 
-* lecture 4, lost in translation 1
-* lecture 5, the semantics of PL
+* [lecture 4, lost in translation 1](04_lost_in_translation_1.html)

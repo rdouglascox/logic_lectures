@@ -519,4 +519,4 @@ propositions
 
 ## next lecture
 
-* lecture 6, uses of truth tables
+* [lecture 6, uses of truth tables](06_uses_of_truth_tables.html)

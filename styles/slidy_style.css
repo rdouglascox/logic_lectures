@@ -193,3 +193,18 @@ li ul li ul li {
   font-style: normal;
   list-style: circle;
 }
+
+ol li {
+  list-style: decimal;
+  font-size: 100%;
+  font-style: normal;
+}
+
+math {
+  background-color: #ffcc99;
+}
+
+blockquote {
+  font-size: 100%;
+  font-style: normal;
+}

@@ -90,7 +90,7 @@ build/$(L18)/$(L18).html: source/$(L18).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L18).md -o build/$(L18)/$(L18).html -t slidy --css=$(STYLE) -i
 
 build/$(L19)/$(L19).html: source/$(L19).md
-	pandoc -s -i --mathml source/$(L19).md -o build/$(L19)/$(L19).html -t slidy --css=$(STYLE) -i
+	pandoc -s -i --lua-filter=$(PROOFTREE)  --mathml source/$(L19).md -o build/$(L19)/$(L19).html -t slidy --css=$(STYLE) -i
 
 build/$(L20)/$(L20).html: source/$(L20).md
 	pandoc -s -i --lua-filter=$(PROOFTREE) --mathml source/$(L20).md -o build/$(L20)/$(L20).html -t slidy --css=$(STYLE) -i

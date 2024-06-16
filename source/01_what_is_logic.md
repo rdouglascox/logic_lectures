@@ -372,9 +372,11 @@ argument are all true?
 
 :::
 
-## valid arguemnt forms 
+## valid argument forms 
 
 * for instance: 
+
+. . .
 
 :::arg 
 --------- -----------------------------------------
@@ -401,6 +403,8 @@ argument are all true?
 
 * for instance: 
 
+. . .
+
 :::arg 
 
 --------- -----------------------------------------
@@ -426,6 +430,8 @@ argument are all true?
 ## valid argument forms
 
 * for instance:
+
+. . .
 
 :::arg 
 
@@ -557,5 +563,4 @@ argument are all true?
 
 ## upcoming lectures
 
-* lecture 2, connectives and logical form
-* lecture 3, the formal language PL
+* [lecture 2, connectives and logical form](02_connectives_and_logical_form.html)

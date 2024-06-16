@@ -541,5 +541,4 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 
 ## next lectures
 
-* lecture 09, issues in translation: conjunction
-* lecture 10, trees for PL
+* [lecture 09, trees for PL](09_trees_for_PL.html) 
