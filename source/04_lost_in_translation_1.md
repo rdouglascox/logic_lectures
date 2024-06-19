@@ -14,7 +14,7 @@ subtitle: phil1012 introductory logic
 
 * in this lecture we take up the issue of translating English sentences into PL
 * we also say a little bit about translating PL back into English
-* we talk about the distinction between what is said and what is merely implied or implicated by an utterance of a sentence
+* we talk briefly about the distinction between what is said and what is merely implied or implicated by an utterance of a sentence
 
 ## learning outcomes
 
@@ -105,10 +105,73 @@ subtitle: phil1012 introductory logic
     * Jane is tall or smart 
 * this sentence is a disjunction of two propositions: Jane is tall and Jane is smart (namely: $A \lor B$)
 
-## translating English sentences into PL  
+## making ellipses explicit
+
+* English sentences often involve ellipsis 
+* for instance: 
+  * Jane is tall and John is too. 
+  * Jane is tall and so is John. 
+* don't include things like this in your glossary: 
+  * $A$: John is too. 
+
+## making ellipses explicit
+
+* you should always "expand" the English sentence to make the ellipsis explicit 
+* a better glossary would be: 
+  * $A$: Jane is tall 
+  * $B$: John is tall 
+
+## removing indexicals 
+
+* English sentences often involve indexicals  
+* for instance: 
+  * I am lecturing (as asserted by me). 
+* don't include things like this in your glossary: 
+  * $A$: I am lecturing. 
+
+## removing indexicals 
+
+* you should use sentences that are not indexical in your glossaries 
+* an equivalent non-indexical sentence in this case would be: 
+  * $A$: Ryan is lecturing
+
+## capturing the logical form of the proposition 
+
+* as the unit goes on, you will become increasingly tempted to translate English sentences into PL using propositions that are truth-conditionally equivalent to the proposition you are trying to translate but which doesn't have the same logical form 
+* for instance, you might be asked to translate "it is not the case that Jane is not tall" 
+* you might translate this as follows: 
+   * $A$: Jane is tall 
+   * $A$
+
+## capturing the logical form of the proposition 
+
+* but this doesn't capture the form of the original proposition 
+* the original proposition is a negation of a negation  
+* so you should translate it as follows: 
+  * $A$: Jane is tall 
+  * $\lnot \lnot A$
+* side note, what is wrong with: $\lnot (\lnot A)$?
+
+## capturing the logical form of the proposition  
+
+* ah, but how can you say that when you tell us that we should translate conjunctive phrases as conjunctions of sentences? 
+* ($A \land B$) captures the form of "Anne is tall and Anne is smart" 
+* it doesn't capture the form of "Anne is tall and smart"
+
+## capturing the logical form of the proposition  
+
+* okay, okay. 
+* what I should say is that you should aim to capture the logical form of the proposition or you should translate the proposition in the way we tell you to translate it!
+* a better translation for "Anne is tall and smart" requires a different formal language 
+* we could translate it as follows: 
+* $(\lambda x . (Tx \land Sx))(a)$
+* but even the most expressive language we consider in this course can't express *this*!
+
+## translating English conditionals into PL 
 
 * finally, note that "if" doesn't always introduce the antecedent of a conditional  
 * it does in "if Jane is tall then Jane is smart" 
+* and it does in "Jane is smart if Jane is tall"
 * but it doesn't in "Jane is tall only if she is smart" 
 * the inclusion of "only" before "if" reverses the role of "if"
 
@@ -189,11 +252,71 @@ subtitle: phil1012 introductory logic
 * well, we are aiming to translate what is said by an utterance
 * so it is important to be able to distinguish between what is said and what is merely implicated
 
+# lots of examples 
+
+## lots of examples
+
+* let's do some examples together 
+* we will translate some English sentences into PL 
+
+--- 
+
+* Jane is going to the party only if John is 
+* Jane is going to the party and John is not 
+* Bill and Sue are going to the party 
+* Only if Jane is going to the party are Bill and Sue
+* If and only if Jane is going to the party is Bill crying 
+* It is not the case that John and Jane are going to the party
+* Both John and Jane are not going to the party 
+* Neither John nor Jane are going to the party 
+* It is not the case that it is not the case that John smokes
+* It is the case that that it is not the case that John smokes 
+
+## now for some challenging examples 
+
+* these examples are a bit more challenging  
+* the connective involved is not so obvious
+* let's translate them into PL 
+
+--- 
+
+* Jane is tall but not happy
+* Unless Jane is tall, she is not smart  
+* Supposing that Jane is tall, she is smart 
+* Only supposing that Jane is tall is she smart
+* Just in case Jane is tall, she is smart  
+* Jane is tall just if she is smart  
+* Jane is tall if but only if she is smart  
+* Jane is tall on the condition that she is smart  
+* Only on the condition that Jane is tall is she smart  
+
+## even more examples
+
+* let's translate some examples into English  
+* here's our glossary: 
+  * $A$: Jane is tall  
+  * $B$: Jane is smart   
+  * $C$: Jane is happy   
+
+--- 
+
+* here are some examples:
+  * $A \land B \land \lnot C$ 
+  * $A \lor B \lor C$  
+  * $\lnot A \land \lnot B \land \lnot C$   
+  * $\lnot A \lor \lnot B \lor \lnot C$    
+  * $\lnot (A \land B \land C)$   
+  * $\lnot (A \lor B \lor C)$   
+  * $\lnot \lnot A$    
+  * $\lnot \lnot \lnot A$    
+  * $\lnot (A \land B)$     
+  * $\lnot (A \lor B)$
 
 # wrapping up
 
 ## this lecture
 
+* we took up the issue of translating English sentences into PL
 * we looked at some important distinctions in the philosophy of language which can help us with our translations
 * we are aiming, in our translations, to capture only what is said, not what is implied or implicated by an utterance
 

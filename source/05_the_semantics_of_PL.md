@@ -492,7 +492,7 @@ $\alpha$   $\beta$    $(\alpha$$\lor$$\beta)$
 
 * so, instead of doing two things at once with truth tables for connectives, we could instead define a truth function and then declare that the truth function is the meaning of the connective
 * finally, we are able to say more precisely what a truth functional connective is: it is any connective whose meaning can be specified as a truth function
-
+* later in the unit we will ask whether we are able to express all possible truth-functions using the connectives of PL (it turns out that we can)
 
 # truth values of complex propositions
 
@@ -500,15 +500,53 @@ $\alpha$   $\beta$    $(\alpha$$\lor$$\beta)$
 
 * consider the following complex proposition
     * $(\lnot P \land (Q \lor R))$
-* is this true if $P$ is true, $Q$ is false, and $R$ is false?
-* we call this an **assignment** of truth values to basic
-propositions
-* let's work through the example together
+* how do we determine the truth value of this proposition?
 
----
+## truth values of complex propositions
+
+* well, first we need to know what the truth values of the basic propositions are
+* we need an **assignment** of truth values to basic propositions
+* for example, let's say that $P$ is true, $Q$ is false, and $R$ is false
+* we can write our assignment slightly more formally like this: 
+  * {P = T, Q = F, R = F}
+
+## truth values of complex propositions
+
+* now we can ask whether our proposition: 
+  * $(\lnot P \land (Q \lor R))$
+* is true on the assignment: 
+  * {P = T, Q = F, R = F}
+
+## truth values of complex propositions
+
+* we ask:
+  * is $\lnot P$ true on the assignment {P = T, Q = F, R = F}?
+  * is $(Q \lor R)$ true on the assignment {P = T, Q = F, R = F}?
+  * is $(\lnot P \land (Q \lor R))$ true on the assignment {P = T, Q = F, R = F}?
+
+## truth values of complex propositions
 
 * each step corresponds to a step in the construction table for the formula
-* we apply the semantic rule for the relevant connective
+* we apply the semantic rule for the relevant connective as we construct the formula
+
+## truth values of complex propositions
+
+   step   wff constructed at this step       from steps/by clause
+  ------ ---------------------------------- ----------------------
+    1                 $P$ = T                       /(2i)
+    2                 $Q$ = F                       /(2i)
+    3                 $R$ = F                       /(2i)
+    4              $\lnot P$ = F               1 /(2ii $\lnot$)
+    5             $(Q \lor R)$ =  F           2,3 /(2ii $\lor$)
+    6     $(\lnot P \land (Q \lor R))$ = F    4, 5 /(2ii $\land$)
+
+## truth values of complex propositions 
+
+* work through some examples yourself:
+  * assignment: {P = T, Q = T, R = F}
+  * $(\lnot P \land (Q \lor R))$
+  * $(P \lor (Q \land R))$ 
+  * $\lnot ((P \land Q) \rightarrow R)$
 
 # wrapping up
 

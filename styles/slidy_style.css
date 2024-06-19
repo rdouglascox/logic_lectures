@@ -200,8 +200,15 @@ ol li {
   font-style: normal;
 }
 
+/* we put a line-height rounded border around maths environments */
+/* it is a an opaque version of the color #e64626 */
+/* we round the corners with a scaled radius */
+/* we make it heighly opaque */
+
 math {
-  background-color: #ffcc99;
+  border: 0.1em solid rgba(230, 70, 38, 0.2);
+  padding: 0.1em;
+  border-radius: 0.2em;
 }
 
 blockquote {

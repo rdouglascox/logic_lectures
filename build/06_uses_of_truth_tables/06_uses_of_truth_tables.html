@@ -97,21 +97,142 @@ truth values to basic propositions</li>
 <li>we set up our table so that the rows in the columns on the left
 correspond to the possible assignments of truth values to basic
 propositions</li>
-<li>and, we “copy over” those values to the basic propositions on the
-right for each row</li>
+<li>for example, if we have the basic propositions
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>,
+the rows of the table will correspond to the four possible assignments
+of truth values to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="left">T</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="left">F</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="left">T</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="left">F</td>
+<td align="center">…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>we add the proposition we are interested in evaluating in the
+rightmost column</li>
+<li>suppose we want to construct a table for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(P \land \lnot Q)</annotation></semantics></math></li>
+</ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td
+align="right"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(P \land \lnot Q)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="center">T</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="center">F</td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="center">T</td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="center">F</td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
 <li>we proceed as in the case of a single assignment, calculating the
 truth value of the more complex propositions in terms of the truth value
 of their constituents</li>
 <li>until we have the values of the complex proposition for each
 possible assignment of values to the basic propositions</li>
 </ul>
+<div class="incremental">
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td
+align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(P \land \lnot Q)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td align="left">T</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">T</td>
+<td align="center">F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="center">T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td align="left">F</td>
+<td align="center">F</td>
+<td align="center">T</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="slide section level2">
-
-<ul class="incremental">
-<li>let’s work through a simple example involving
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot(P \land \lnot Q)</annotation></semantics></math></li>
-</ul>
+</div>
 </div>
 
 <div id="truth-tables-for-multiple-propositions"
@@ -176,6 +297,94 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 class="title-slide slide section level1">
 <h1>general points about drawing truth tables</h1>
 
+</div>
+<div id="names-for-metavariables" class="slide section level2">
+<h1>names for metavariables</h1>
+<ul class="incremental">
+<li>if, like me, you never learned about Greek letters at school, you
+might benefit from a quick primer
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>:
+alpha</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>:
+beta</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>γ</mi><annotation encoding="application/x-tex">\gamma</annotation></semantics></math>:
+gamma<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math>:
+delta</li>
+</ul></li>
+</ul>
+</div>
+<div id="names-for-metavariables-1" class="slide section level2">
+<h1>names for metavariables</h1>
+<ul class="incremental">
+<li>that will do for now, but here are a few more
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϵ</mi><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math>:
+epsilon<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ζ</mi><annotation encoding="application/x-tex">\zeta</annotation></semantics></math>:
+zeta<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>η</mi><annotation encoding="application/x-tex">\eta</annotation></semantics></math>:
+eta</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>:
+theta<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ι</mi><annotation encoding="application/x-tex">\iota</annotation></semantics></math>:
+iota<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>κ</mi><annotation encoding="application/x-tex">\kappa</annotation></semantics></math>:
+kappa<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math>:
+lambda<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>μ</mi><annotation encoding="application/x-tex">\mu</annotation></semantics></math>:
+mu</li>
+</ul></li>
+</ul>
+</div>
+<div id="names-for-metavariables-2" class="slide section level2">
+<h1>names for metavariables</h1>
+<ul class="incremental">
+<li>and a few more
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ν</mi><annotation encoding="application/x-tex">\nu</annotation></semantics></math>:
+nu<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ξ</mi><annotation encoding="application/x-tex">\xi</annotation></semantics></math>:
+xi<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>π</mi><annotation encoding="application/x-tex">\pi</annotation></semantics></math>:
+pi<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>:
+rho<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>σ</mi><annotation encoding="application/x-tex">\sigma</annotation></semantics></math>:
+sigma<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>:
+tau<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>υ</mi><annotation encoding="application/x-tex">\upsilon</annotation></semantics></math>:
+upsilon<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math>:
+phi<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>χ</mi><annotation encoding="application/x-tex">\chi</annotation></semantics></math>:
+chi<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ψ</mi><annotation encoding="application/x-tex">\psi</annotation></semantics></math>:
+psi<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ω</mi><annotation encoding="application/x-tex">\omega</annotation></semantics></math>:
+omega</li>
+</ul></li>
+</ul>
 </div>
 <div id="general-points-about-drawing-truth-tables-1"
 class="slide section level2">
@@ -892,6 +1101,48 @@ definition of validity)</li>
 </ul>
 </div>
 </div>
+<div id="some-examples" class="slide section level2">
+<h1>some examples</h1>
+<ul class="incremental">
+<li>here are some arguments that are instances of common argument forms
+for propositional logic. check for yourself that they are valid:
+<ul class="incremental">
+<li>modus ponens
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∴</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P, (P \rightarrow Q) \therefore Q</annotation></semantics></math></li>
+</ul></li>
+<li>modus tollens
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mi>Q</mi><mo>,</mo><mi>¬</mi><mi>Q</mi><mo>∴</mo><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \rightarrow Q, \lnot Q \therefore \lnot P</annotation></semantics></math></li>
+</ul></li>
+<li>disjunctive syllogism
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi>Q</mi><mo>,</mo><mi>¬</mi><mi>P</mi><mo>∴</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P \lor Q, \lnot P \therefore Q</annotation></semantics></math></li>
+</ul></li>
+<li>hypothetical syllogism
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mi>Q</mi><mo>,</mo><mi>Q</mi><mo>→</mo><mi>R</mi><mo>∴</mo><mi>P</mi><mo>→</mo><mi>R</mi></mrow><annotation encoding="application/x-tex">P \rightarrow Q, Q \rightarrow R \therefore P \rightarrow R</annotation></semantics></math></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="even-more-examples" class="slide section level2">
+<h1>even more examples</h1>
+<ul class="incremental">
+<li>constructive dilemma
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>R</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∴</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">(P \rightarrow Q), (R \rightarrow Q), (P \lor R) \therefore Q</annotation></semantics></math></li>
+</ul></li>
+<li>conditional proof
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∴</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P \therefore (P \rightarrow Q)</annotation></semantics></math></li>
+</ul></li>
+<li>reductio ad absurdum
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∴</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">\lnot P \rightarrow (Q \land \lnot Q) \therefore P</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="using-truth-tables-to-test-single-propositions"
 class="title-slide slide section level1">
@@ -1072,6 +1323,31 @@ table</li>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="some-example-tautologies" class="slide section level2">
+<h1>some example tautologies</h1>
+<ul class="incremental">
+<li>here are some common propositional logic tautologies
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>∨</mo><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">P \lor \lnot P</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">P \rightarrow P</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">(P \land Q) \rightarrow P</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \rightarrow Q) \rightarrow (\lnot P \lor Q)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor Q) \rightarrow (Q \lor P)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land Q) \rightarrow (Q \land P)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor Q) \rightarrow (Q \lor P)</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land (Q \lor R)) \rightarrow ((P \land Q) \lor (P \land R))</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor (Q \land R)) \rightarrow ((P \lor Q) \land (P \lor R))</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>↔</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land (Q \lor R)) \leftrightarrow ((P \land Q) \lor (P \land R))</annotation></semantics></math></li>
+</ul></li>
+</ul>
 </div>
 
 <div id="using-truth-tables-to-test-pairs-of-propositions"
@@ -1431,6 +1707,44 @@ which they are both true and some row on which they are both false</li>
 </tr>
 </tbody>
 </table>
+</div>
+<div id="some-examples-1" class="slide section level2">
+<h1>some examples</h1>
+<ul class="incremental">
+<li>here are some common propositional logic equivalences with their
+common names
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land Q) \equiv (Q \land P)</annotation></semantics></math>:
+commutativity of conjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor Q) \equiv (Q \lor P)</annotation></semantics></math>:
+commutativity of disjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land (Q \land R)) \equiv ((P \land Q) \land R)</annotation></semantics></math>:
+associativity of conjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor (Q \lor R)) \equiv ((P \lor Q) \lor R)</annotation></semantics></math>:
+associativity of disjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \land (Q \lor R)) \equiv ((P \land Q) \lor (P \land R))</annotation></semantics></math>:
+distributivity of conjunction over disjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \lor (Q \land R)) \equiv ((P \lor Q) \land (P \lor R))</annotation></semantics></math>:
+distributivity of disjunction over conjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∨</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (P \land Q) \equiv (\lnot P \lor \lnot Q)</annotation></semantics></math>:
+De Morgan’s law for conjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mi>¬</mi><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (P \lor Q) \equiv (\lnot P \land \lnot Q)</annotation></semantics></math>:
+De Morgan’s law for disjunction<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∨</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \rightarrow Q) \equiv (\lnot P \lor Q)</annotation></semantics></math>:
+material implication<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>↔</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>≡</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>→</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>→</mo><mi>P</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(P \leftrightarrow Q) \equiv ((P \rightarrow Q) \land (Q \rightarrow P))</annotation></semantics></math>:
+material equivalence</li>
+</ul></li>
+</ul>
 </div>
 
 <div id="using-truth-tables-to-test-sets-of-propositions"

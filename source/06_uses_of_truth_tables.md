@@ -40,15 +40,62 @@ determine whether sets of propositions are jointly satisfiable
 ---
 
 * we set up our table so that the rows in the columns on the left correspond to the possible assignments of truth values to basic propositions
-* and, we "copy over" those values to the basic propositions on the right for each row
+* for example, if we have the basic propositions $P$ and $Q$, the rows of the table will correspond to the four possible assignments of truth values to $P$ and $Q$
+
+. . . 
+
+:::{.ttable2}
+
+----- ----- ------
+$P$   $Q$    ...
+T     T      ...
+T     F      ...
+F     T      ...
+F     F      ...
+----- ----- ------
+
+:::
+
+--- 
+
+* we add the proposition we are interested in evaluating in the rightmost column
+* suppose we want to construct a table for $\lnot(P \land \lnot Q)$ 
+
+. . .
+
+:::{.ttable2} 
+
+----- ----- --------------------------
+$P$    $Q$    $\lnot(P \land \lnot Q)$
+T      T                
+T      F                
+F      T                 
+F      F                 
+----- ----- --------------------------
+
+:::
+
+---
+
 * we proceed as in the case of a single assignment, calculating the truth value of the more complex propositions in terms of the truth value of their
 constituents
 * until we have the values of the complex proposition for each possible
   assignment of values to the basic propositions
 
----
+. . . 
 
-* let's work through a simple example involving $\lnot(P \land \lnot Q)$
+
+:::{.ttable2} 
+
+----- ----- -----------------------------
+$P$    $Q$    $\lnot(P \land \lnot Q)$
+T      T             T   
+T      F             F  
+F      T             T      
+F      F             T       
+----- ----- -----------------------------
+
+:::
 
 # truth tables for multiple propositions
 
@@ -74,6 +121,42 @@ F     F                T                           T
 :::
 
 # general points about drawing truth tables 
+
+## names for metavariables 
+
+* if, like me, you never learned about Greek letters at school, you might benefit from a quick primer 
+  * $\alpha$: alpha 
+  * $\beta$: beta 
+  * $\gamma$: gamma  
+  * $\delta$: delta  
+
+## names for metavariables 
+
+* that will do for now, but here are a few more
+  * $\epsilon$: epsilon   
+  * $\zeta$: zeta  
+  * $\eta$: eta 
+  * $\theta$: theta   
+  * $\iota$: iota   
+  * $\kappa$: kappa  
+  * $\lambda$: lambda  
+  * $\mu$: mu  
+
+## names for metavariables 
+
+* and a few more
+  * $\nu$: nu  
+  * $\xi$: xi  
+  * $\pi$: pi  
+  * $\rho$: rho  
+  * $\sigma$: sigma  
+  * $\tau$: tau  
+  * $\upsilon$: upsilon  
+  * $\phi$: phi   
+  * $\chi$: chi   
+  * $\psi$: psi   
+  * $\omega$: omega   
+
 
 ## general points about drawing truth tables 
 
@@ -354,6 +437,27 @@ F       F                F              F      F
 * this does not show that the argument is valid. (recall the definition of
   validity)
 
+## some examples 
+
+* here are some arguments that are instances of common argument forms for propositional logic. check for yourself that they are valid: 
+  * modus ponens
+      * $P, (P \rightarrow Q) \therefore Q$ 
+  * modus tollens 
+      * $P \rightarrow Q, \lnot Q \therefore \lnot P$
+  * disjunctive syllogism  
+    * $P \lor Q, \lnot P \therefore Q$
+  * hypothetical syllogism 
+    * $P \rightarrow Q, Q \rightarrow R \therefore P \rightarrow R$ 
+
+## even more examples
+
+  * constructive dilemma 
+    * $(P \rightarrow Q), (R \rightarrow Q), (P \lor R) \therefore Q$ 
+  * conditional proof 
+    * $P \therefore (P \rightarrow Q)$
+  * reductio ad absurdum 
+    * $\lnot P \rightarrow (Q \land \lnot Q) \therefore P$
+
 # using truth tables to test single propositions
 
 ## using truth tables to test single propositions
@@ -446,6 +550,20 @@ T in every row          **tautology**
 F in every row          **contradiction**
 T in some or all rows   **satisfiable proposition**
 F in some or all rows   **nontautology**
+
+## some example tautologies 
+
+* here are some common propositional logic tautologies 
+  * $P \lor \lnot P$ 
+  * $P \rightarrow P$  
+  * $(P \land Q) \rightarrow P$  
+  * $(P \rightarrow Q) \rightarrow (\lnot P \lor Q)$   
+  * $(P \lor Q) \rightarrow (Q \lor P)$   
+  * $(P \land Q) \rightarrow (Q \land P)$    
+  * $(P \lor Q) \rightarrow (Q \lor P)$ 
+  * $(P \land (Q \lor R)) \rightarrow ((P \land Q) \lor (P \land R))$  
+  * $(P \lor (Q \land R)) \rightarrow ((P \lor Q) \land (P \lor R))$  
+  * $(P \land (Q \lor R)) \leftrightarrow ((P \land Q) \lor (P \land R))$  
 
 # using truth tables to test pairs of propositions
 
@@ -590,6 +708,20 @@ some row in which both T                             **jointly satisfiable**
 no row in which both T                               **jointly unsatisfiable**
 j-unsat and no row in which both F                   **contradictory**
 j-unsat and some row in which both F                 **contraries**
+
+## some examples  
+
+* here are some common propositional logic equivalences with their common names 
+  * $(P \land Q) \equiv (Q \land P)$: commutativity of conjunction  
+  * $(P \lor Q) \equiv (Q \lor P)$: commutativity of disjunction   
+  * $(P \land (Q \land R)) \equiv ((P \land Q) \land R)$: associativity of conjunction   
+  * $(P \lor (Q \lor R)) \equiv ((P \lor Q) \lor R)$: associativity of disjunction    
+  * $(P \land (Q \lor R)) \equiv ((P \land Q) \lor (P \land R))$: distributivity of conjunction over disjunction   
+  * $(P \lor (Q \land R)) \equiv ((P \lor Q) \land (P \lor R))$: distributivity of disjunction over conjunction   
+  * $\lnot (P \land Q) \equiv (\lnot P \lor \lnot Q)$: De Morgan's law for conjunction   
+  * $\lnot (P \lor Q) \equiv (\lnot P \land \lnot Q)$: De Morgan's law for disjunction    
+  * $(P \rightarrow Q) \equiv (\lnot P \lor Q)$: material implication   
+  * $(P \leftrightarrow Q) \equiv ((P \rightarrow Q) \land (Q \rightarrow P))$: material equivalence   
 
 # using truth tables to test sets of propositions
 

@@ -53,8 +53,8 @@ English into PL</li>
 <li>in this lecture we take up the issue of translating English
 sentences into PL</li>
 <li>we also say a little bit about translating PL back into English</li>
-<li>we talk about the distinction between what is said and what is
-merely implied or implicated by an utterance of a sentence</li>
+<li>we talk briefly about the distinction between what is said and what
+is merely implied or implicated by an utterance of a sentence</li>
 </ul>
 </div>
 <div id="learning-outcomes" class="slide section level2">
@@ -244,14 +244,135 @@ Jane is smart (namely:
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \lor B</annotation></semantics></math>)</li>
 </ul>
 </div>
-<div id="translating-english-sentences-into-pl-8"
+<div id="making-ellipses-explicit" class="slide section level2">
+<h1>making ellipses explicit</h1>
+<ul class="incremental">
+<li>English sentences often involve ellipsis</li>
+<li>for instance:
+<ul class="incremental">
+<li>Jane is tall and John is too.</li>
+<li>Jane is tall and so is John.</li>
+</ul></li>
+<li>don’t include things like this in your glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+John is too.</li>
+</ul></li>
+</ul>
+</div>
+<div id="making-ellipses-explicit-1" class="slide section level2">
+<h1>making ellipses explicit</h1>
+<ul class="incremental">
+<li>you should always “expand” the English sentence to make the ellipsis
+explicit</li>
+<li>a better glossary would be:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Jane is tall</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+John is tall</li>
+</ul></li>
+</ul>
+</div>
+<div id="removing-indexicals" class="slide section level2">
+<h1>removing indexicals</h1>
+<ul class="incremental">
+<li>English sentences often involve indexicals<br />
+</li>
+<li>for instance:
+<ul class="incremental">
+<li>I am lecturing (as asserted by me).</li>
+</ul></li>
+<li>don’t include things like this in your glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+I am lecturing.</li>
+</ul></li>
+</ul>
+</div>
+<div id="removing-indexicals-1" class="slide section level2">
+<h1>removing indexicals</h1>
+<ul class="incremental">
+<li>you should use sentences that are not indexical in your
+glossaries</li>
+<li>an equivalent non-indexical sentence in this case would be:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Ryan is lecturing</li>
+</ul></li>
+</ul>
+</div>
+<div id="capturing-the-logical-form-of-the-proposition"
 class="slide section level2">
-<h1>translating English sentences into PL</h1>
+<h1>capturing the logical form of the proposition</h1>
+<ul class="incremental">
+<li>as the unit goes on, you will become increasingly tempted to
+translate English sentences into PL using propositions that are
+truth-conditionally equivalent to the proposition you are trying to
+translate but which doesn’t have the same logical form</li>
+<li>for instance, you might be asked to translate “it is not the case
+that Jane is not tall”</li>
+<li>you might translate this as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Jane is tall</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+<div id="capturing-the-logical-form-of-the-proposition-1"
+class="slide section level2">
+<h1>capturing the logical form of the proposition</h1>
+<ul class="incremental">
+<li>but this doesn’t capture the form of the original proposition</li>
+<li>the original proposition is a negation of a negation<br />
+</li>
+<li>so you should translate it as follows:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Jane is tall</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot \lnot A</annotation></semantics></math></li>
+</ul></li>
+<li>side note, what is wrong with:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>A</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (\lnot A)</annotation></semantics></math>?</li>
+</ul>
+</div>
+<div id="capturing-the-logical-form-of-the-proposition-2"
+class="slide section level2">
+<h1>capturing the logical form of the proposition</h1>
+<ul class="incremental">
+<li>ah, but how can you say that when you tell us that we should
+translate conjunctive phrases as conjunctions of sentences?</li>
+<li>(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A \land B</annotation></semantics></math>)
+captures the form of “Anne is tall and Anne is smart”</li>
+<li>it doesn’t capture the form of “Anne is tall and smart”</li>
+</ul>
+</div>
+<div id="capturing-the-logical-form-of-the-proposition-3"
+class="slide section level2">
+<h1>capturing the logical form of the proposition</h1>
+<ul class="incremental">
+<li>okay, okay.</li>
+<li>what I should say is that you should aim to capture the logical form
+of the proposition or you should translate the proposition in the way we
+tell you to translate it!</li>
+<li>a better translation for “Anne is tall and smart” requires a
+different formal language</li>
+<li>we could translate it as follows:</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>λ</mi><mi>x</mi><mi>.</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>T</mi><mi>x</mi><mo>∧</mo><mi>S</mi><mi>x</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(\lambda x . (Tx \land Sx))(a)</annotation></semantics></math></li>
+<li>but even the most expressive language we consider in this course
+can’t express <em>this</em>!</li>
+</ul>
+</div>
+<div id="translating-english-conditionals-into-pl"
+class="slide section level2">
+<h1>translating English conditionals into PL</h1>
 <ul class="incremental">
 <li>finally, note that “if” doesn’t always introduce the antecedent of a
 conditional<br />
 </li>
 <li>it does in “if Jane is tall then Jane is smart”</li>
+<li>and it does in “Jane is smart if Jane is tall”</li>
 <li>but it doesn’t in “Jane is tall only if she is smart”</li>
 <li>the inclusion of “only” before “if” reverses the role of “if”</li>
 </ul>
@@ -399,6 +520,106 @@ and what is merely implicated</li>
 </ul>
 </div>
 
+<div id="lots-of-examples" class="title-slide slide section level1">
+<h1>lots of examples</h1>
+
+</div>
+<div id="lots-of-examples-1" class="slide section level2">
+<h1>lots of examples</h1>
+<ul class="incremental">
+<li>let’s do some examples together</li>
+<li>we will translate some English sentences into PL</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>Jane is going to the party only if John is</li>
+<li>Jane is going to the party and John is not</li>
+<li>Bill and Sue are going to the party</li>
+<li>Only if Jane is going to the party are Bill and Sue</li>
+<li>If and only if Jane is going to the party is Bill crying</li>
+<li>It is not the case that John and Jane are going to the party</li>
+<li>Both John and Jane are not going to the party</li>
+<li>Neither John nor Jane are going to the party</li>
+<li>It is not the case that it is not the case that John smokes</li>
+<li>It is the case that that it is not the case that John smokes</li>
+</ul>
+</div>
+<div id="now-for-some-challenging-examples"
+class="slide section level2">
+<h1>now for some challenging examples</h1>
+<ul class="incremental">
+<li>these examples are a bit more challenging<br />
+</li>
+<li>the connective involved is not so obvious</li>
+<li>let’s translate them into PL</li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>Jane is tall but not happy</li>
+<li>Unless Jane is tall, she is not smart<br />
+</li>
+<li>Supposing that Jane is tall, she is smart</li>
+<li>Only supposing that Jane is tall is she smart</li>
+<li>Just in case Jane is tall, she is smart<br />
+</li>
+<li>Jane is tall just if she is smart<br />
+</li>
+<li>Jane is tall if but only if she is smart<br />
+</li>
+<li>Jane is tall on the condition that she is smart<br />
+</li>
+<li>Only on the condition that Jane is tall is she smart</li>
+</ul>
+</div>
+<div id="even-more-examples" class="slide section level2">
+<h1>even more examples</h1>
+<ul class="incremental">
+<li>let’s translate some examples into English<br />
+</li>
+<li>here’s our glossary:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>:
+Jane is tall<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>:
+Jane is smart<br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>:
+Jane is happy</li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level2">
+
+<ul class="incremental">
+<li>here are some examples:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∧</mo><mi>B</mi><mo>∧</mo><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">A \land B \land \lnot C</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>∨</mo><mi>B</mi><mo>∨</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">A \lor B \lor C</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi><mo>∧</mo><mi>¬</mi><mi>B</mi><mo>∧</mo><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot A \land \lnot B \land \lnot C</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>A</mi><mo>∨</mo><mi>¬</mi><mi>B</mi><mo>∨</mo><mi>¬</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\lnot A \lor \lnot B \lor \lnot C</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mo>∧</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \land B \land C)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∨</mo><mi>B</mi><mo>∨</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \lor B \lor C)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot \lnot A</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>¬</mi><mi>¬</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">\lnot \lnot \lnot A</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∧</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \land B)</annotation></semantics></math><br />
+</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>A</mi><mo>∨</mo><mi>B</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot (A \lor B)</annotation></semantics></math></li>
+</ul></li>
+</ul>
+</div>
+
 <div id="wrapping-up" class="title-slide slide section level1">
 <h1>wrapping up</h1>
 
@@ -406,6 +627,7 @@ and what is merely implicated</li>
 <div id="this-lecture-1" class="slide section level2">
 <h1>this lecture</h1>
 <ul class="incremental">
+<li>we took up the issue of translating English sentences into PL</li>
 <li>we looked at some important distinctions in the philosophy of
 language which can help us with our translations</li>
 <li>we are aiming, in our translations, to capture only what is said,

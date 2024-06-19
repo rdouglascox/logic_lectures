@@ -896,6 +896,9 @@ that the truth function is the meaning of the connective</li>
 <li>finally, we are able to say more precisely what a truth functional
 connective is: it is any connective whose meaning can be specified as a
 truth function</li>
+<li>later in the unit we will ask whether we are able to express all
+possible truth-functions using the connectives of PL (it turns out that
+we can)</li>
 </ul>
 </div>
 
@@ -912,24 +915,143 @@ class="slide section level2">
 <ul class="incremental">
 <li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math></li>
 </ul></li>
-<li>is this true if
+<li>how do we determine the truth value of this proposition?</li>
+</ul>
+</div>
+<div id="truth-values-of-complex-propositions-2"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
+<ul class="incremental">
+<li>well, first we need to know what the truth values of the basic
+propositions are</li>
+<li>we need an <strong>assignment</strong> of truth values to basic
+propositions</li>
+<li>for example, let’s say that
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
 is true,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
 is false, and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
-is false?</li>
-<li>we call this an <strong>assignment</strong> of truth values to basic
-propositions</li>
-<li>let’s work through the example together</li>
+is false</li>
+<li>we can write our assignment slightly more formally like this:
+<ul class="incremental">
+<li>{P = T, Q = F, R = F}</li>
+</ul></li>
 </ul>
 </div>
-<div class="slide section level2">
-
+<div id="truth-values-of-complex-propositions-3"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
+<ul class="incremental">
+<li>now we can ask whether our proposition:
+<ul class="incremental">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math></li>
+</ul></li>
+<li>is true on the assignment:
+<ul class="incremental">
+<li>{P = T, Q = F, R = F}</li>
+</ul></li>
+</ul>
+</div>
+<div id="truth-values-of-complex-propositions-4"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
+<ul class="incremental">
+<li>we ask:
+<ul class="incremental">
+<li>is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">\lnot P</annotation></semantics></math>
+true on the assignment {P = T, Q = F, R = F}?</li>
+<li>is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Q \lor R)</annotation></semantics></math>
+true on the assignment {P = T, Q = F, R = F}?</li>
+<li>is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math>
+true on the assignment {P = T, Q = F, R = F}?</li>
+</ul></li>
+</ul>
+</div>
+<div id="truth-values-of-complex-propositions-5"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
 <ul class="incremental">
 <li>each step corresponds to a step in the construction table for the
 formula</li>
-<li>we apply the semantic rule for the relevant connective</li>
+<li>we apply the semantic rule for the relevant connective as we
+construct the formula</li>
+</ul>
+</div>
+<div id="truth-values-of-complex-propositions-6"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="center">step</th>
+<th align="center">wff constructed at this step</th>
+<th align="center">from steps/by clause</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math>
+= T</td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Q</mi><annotation encoding="application/x-tex">Q</annotation></semantics></math>
+= F</td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
+= F</td>
+<td align="center">/(2i)</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">\lnot P</annotation></semantics></math>
+= F</td>
+<td align="center">1 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>¬</mi><annotation encoding="application/x-tex">\lnot</annotation></semantics></math>)</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(Q \lor R)</annotation></semantics></math>
+= F</td>
+<td align="center">2,3 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∨</mi><annotation encoding="application/x-tex">\lor</annotation></semantics></math>)</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math>
+= F</td>
+<td align="center">4, 5 /(2ii
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>∧</mi><annotation encoding="application/x-tex">\land</annotation></semantics></math>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="truth-values-of-complex-propositions-7"
+class="slide section level2">
+<h1>truth values of complex propositions</h1>
+<ul class="incremental">
+<li>work through some examples yourself:
+<ul class="incremental">
+<li>assignment: {P = T, Q = T, R = F}</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>P</mi><mo>∧</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∨</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\lnot P \land (Q \lor R))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>Q</mi><mo>∧</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(P \lor (Q \land R))</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>P</mi><mo>∧</mo><mi>Q</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>→</mo><mi>R</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\lnot ((P \land Q) \rightarrow R)</annotation></semantics></math></li>
+</ul></li>
 </ul>
 </div>
 
