@@ -402,7 +402,7 @@ F     F           F          F     F
 :::{.ttable2}
 
 ------- ------- -------------------- ------ -------
-$P$     $D$      $(\lnot P \lor D)$    $D$    $P$
+$P$     $D$      $(P \lor D)$           $D$    $P$
 T       T                T              T      T
 T       F                T              F      T
 **F**   **T**          **T**          **T**  **F**
@@ -412,7 +412,7 @@ F       F                F              F     F
 :::
 
 * we write a counterexample as follows:
-    * $P$: F, $D$: T
+    * $P$ = F, $D$ = T
 
 ---
 

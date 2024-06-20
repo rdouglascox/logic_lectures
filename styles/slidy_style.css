@@ -205,11 +205,13 @@ ol li {
 /* we round the corners with a scaled radius */
 /* we make it heighly opaque */
 
+/*
 math {
   border: 0.1em solid rgba(230, 70, 38, 0.2);
   padding: 0.1em;
   border-radius: 0.2em;
 }
+*/
 
 blockquote {
   font-size: 100%;

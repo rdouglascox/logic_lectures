@@ -121,7 +121,7 @@ $A$  $B$      $(A \veebar B)$       $\lnot (A \leftrightarrow B)$
 * a set of connectives is **functionally complete** if we can define all
   possible connectives from the connectives in that set
 * let's prove it!
-* first we'll get clearer on what it means to define one connective in terms of
+* first, we'll get clearer on what it means to define one connective in terms of
  other connectives
 * then we'll get clearer on the space of possible connectives
 * then we'll prove that the set of connectives use in PL is functionally
@@ -131,7 +131,7 @@ $A$  $B$      $(A \veebar B)$       $\lnot (A \leftrightarrow B)$
 
 ## defining one connective in terms of others
 
-* we can define connectives in terms of other connectives
+* we can define some connectives in terms of other connectives
 * we show that a form using the connective to be defined is equivalent to a
   form using only the other connectives
 * recall that two forms are **equivalent** if and only if they have the same
@@ -501,6 +501,25 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 * **proof**: $\lnot$, $\land$, and $\lor$ can be defined in terms of $\lnot$
   and $\land$ alone, and {$\lnot$, $\land$, and $\lor$} is functionally
   complete
+* recall...
+
+---
+
+* the connective $\lor$ can be defined in terms of $\land$ and $\lnot$
+
+. . .
+
+::: ttable2
+
+---------- --------- ------------------------- -----------------------------------------------
+ $\alpha$   $\beta$   $(\alpha$$\lor$$\beta)$   $\lnot(\lnot$$\alpha$$\land$$\lnot$$\beta)$
+    T          T                 T                                    T
+    T          F                 T                                    T
+    F          T                 T                                    T
+    F          F                 F                                    F
+---------- --------- ------------------------- -----------------------------------------------
+
+:::
 
 ---
 
@@ -508,6 +527,25 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 * **proof**: $\lnot$, $\land$, and $\lor$ can be defined in terms of $\lnot$
   and $\lor$ alone, and {$\lnot$, $\land$, and $\lor$} is functionally
   complete
+* recall: 
+
+---
+
+* the connective $\land$ can be defined in terms of $\lor$ and $\lnot$
+
+. . . 
+
+::: ttable2
+
+---------- --------- -------------------------- ----------------------------------------------
+ $\alpha$   $\beta$   $(\alpha$$\land$$\beta)$    $\lnot(\lnot$$\alpha$$\lor$$\lnot$$\beta)$
+    T          T                 T                                    T
+    T          F                 F                                    F
+    F          T                 F                                    F
+    F          F                 F                                    F
+---------- --------- -------------------------- ----------------------------------------------
+
+:::
 
 ---
 
@@ -524,6 +562,37 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
   show that there is *some* connective that cannot be defined in terms of those
   in the set
 
+## some exercises 
+
+* let's use the truth table method to convert the following propositions into disjunctive normal form: 
+  * $(A \rightarrow B) \land (A \land B)$ 
+  * $(A \rightarrow B) \land (A \rightarrow \lnot B)$ 
+  * $(A \rightarrow B) \land \lnot (B \rightarrow A)$ 
+  * $(A \leftrightarrow B) \land (A \rightarrow B)$  
+  * $(A \leftrightarrow B) \land (B \rightarrow A)$  
+  * $(A \leftrightarrow B) \land (A \rightarrow B) \land (B \rightarrow A)$ 
+  * $(A \leftrightarrow B) \land (A \rightarrow B) \land (B \rightarrow A) \land (A \land B)$ 
+
+---
+
+* just for fun, we could extend our earlier proof about functional completeness by taking our proposition in disjunctive normal form and converting it into a proposition involving either just conjunction and negation or just disjunction and negation 
+
+--- 
+
+* recall from above that a conjunction of $\alpha$ and $\beta$ is equivalent to a negated disjunction of $\lnot \alpha$ and $\lnot \beta$
+* that is: $(\alpha \land \beta)$ is equivalent to $\lnot (\lnot \alpha \lor \lnot \beta)$
+* we can use this fact to convert a proposition in disjunctive normal form into a proposition involving just disjunction and negation
+
+---
+
+* and recall from above that a disjunction of $\alpha$ and $\beta$ is equivalent to a negated conjunction of $\lnot \alpha$ and $\lnot \beta$
+* that is: $(\alpha \lor \beta)$ is equivalent to $\lnot (\lnot \alpha \land \lnot \beta)$
+* we can use this fact to convert a proposition in disjunctive normal form into a proposition involving just conjunction and negation
+
+--- 
+
+* shall we try it?
+
 # wrapping up
 
 ## this lecture
@@ -539,6 +608,6 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 * to do so, you need only show that $\lnot$, $\land$ and $\lor$ can be defined
   in terms of the connectives you are given
 
-## next lectures
+## next lecture
 
 * [lecture 09, trees for PL](09_trees_for_PL.html) 
