@@ -564,14 +564,7 @@ $\alpha$   $\beta$    $(\alpha$ \* $\beta)$
 
 ## some exercises 
 
-* let's use the truth table method to convert the following propositions into disjunctive normal form: 
-  * $(A \rightarrow B) \land (A \land B)$ 
-  * $(A \rightarrow B) \land (A \rightarrow \lnot B)$ 
-  * $(A \rightarrow B) \land \lnot (B \rightarrow A)$ 
-  * $(A \leftrightarrow B) \land (A \rightarrow B)$  
-  * $(A \leftrightarrow B) \land (B \rightarrow A)$  
-  * $(A \leftrightarrow B) \land (A \rightarrow B) \land (B \rightarrow A)$ 
-  * $(A \leftrightarrow B) \land (A \rightarrow B) \land (B \rightarrow A) \land (A \land B)$ 
+* ...
 
 ---
 
