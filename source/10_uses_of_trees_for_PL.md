@@ -615,7 +615,7 @@ the relevant rule
 * so one tree can yield multiple assignments
 * these are related to the rows of a truth table
 
-
+. . .
 ``` prooftree
 \begin{tabular}{|c|c|c||c|c|}\hline A&B&C&(A$\vee{}$B)&(B$\wedge{}$C)\tabularnewline \hline T&T&T&T&T\tabularnewline T&T&F&T&F\tabularnewline T&F&T&T&F\tabularnewline T&F&F&T&F\tabularnewline F&T&T&T&T\tabularnewline F&T&F&T&F\tabularnewline F&F&T&F&F\tabularnewline F&F&F&F&F\tabularnewline \hline \end{tabular}
 ```

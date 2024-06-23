@@ -17,7 +17,8 @@
 - [10_uses_of_trees_for_PL](10_uses_of_trees_for_PL.html)
 - [11_the_formal_language_MPL](11_the_formal_language_MPL.html)
 - [12_the_syntax_of_MPL](12_the_syntax_of_MPL.html)
-- [13_lost_in_translation_2](13_lost_in_translation_2.html)
+- 13_lost_in_translation_2
+<!-- - [13_lost_in_translation_2](13_lost_in_translation_2.html) -->
 - [14_the_semantics_of_MPL_part1](14_the_semantics_of_MPL_part1.html)
 - [15_the_semantics_of_MPL_part2](15_the_semantics_of_MPL_part2.html)
 

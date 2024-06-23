@@ -68,7 +68,7 @@ subtitle: phil1012 introductory logic
 - suppose we begin by assuming that it *is* satisfiable
 - that is, suppose there is some assignment on which it is true
 - what do we know?
-- well, we know that the assignment is one on which both conjuncts must be satisfiable
+- well, we know that the assignment is one on which both conjuncts must be satisfiable (and, in fact must be jointly satisfiable)
 - for now, let's just write out a list like this to keep track:
 
 . . . 
@@ -120,7 +120,7 @@ subtitle: phil1012 introductory logic
 
 ---
 
-- our initial assumption was mistaken. the proposition is not satsfiable!
+- our initial assumption was mistaken. the proposition is not satisfiable!
 - this method looks like a good one for refuting the initial assumption of satisfiability
 - if we reach a contradiction on a path, we can reject that path
 - if we reach a contradiction on all paths, we know the proposition isn't satisfiable
@@ -260,7 +260,7 @@ subtitle: phil1012 introductory logic
 - note that each time we apply a rule, we write down propositions which are simpler than those we began with
 - the process ends when we cannot apply any more rules
 - whenever we encounter a contradiction on a path we immediately "close" the path/branch with a cross
-- there's no point continuing with that path
+- there's no point continuing with that path because not all propositions on that path can be true together
 
 ---
 
@@ -312,6 +312,8 @@ subtitle: phil1012 introductory logic
 - let's think through the motivation for the rule in terms of truth tables
 - ask: what must be *true* if the disjunction is true?
 
+. . .
+
 ::: ttable2
 
 --------  -------  ------------------------------------
@@ -327,38 +329,6 @@ $\alpha$  $\beta$           $(\alpha \lor \beta)$
 . . . 
 
 * answer: either $\alpha$ *or*  $\beta$ (or both) 
-
-## negated disjunction
-
-* here is the tree rule for negated disjunction:
-
-. . .
-
-```{.tree}
-
-\Tree [.{$\lnot(\alpha \lor \beta) \checkmark$ \\ $\lnot \alpha$ \\ $\lnot \beta$}
-      ]
-
-```
-
-- let's think through the motivation for the rule in terms of truth tables
-* ask: what must be *true* if the negated disjunction is true?
-
-::: ttable2
-
---------  -------  ------------------------------------
-$\alpha$  $\beta$           $\lnot(\alpha \lor \beta)$
-   T         T                       F
-   T         F                       F
-   F         T                       F
-   F         F                       T
---------  -------  ------------------------------------
-
-:::
-
-* answer: $\lnot\alpha$ *and*  $\lnot\beta$ must be true
-* this one is easy if you remember the following equivalence:
-   * $\lnot(\alpha \lor \beta)$$\equiv$$(\lnot\alpha \land \lnot\beta)$ 
 
 ## conjunction
 
@@ -392,6 +362,37 @@ $\alpha$  $\beta$           $(\alpha \land \beta)$
 
 answer: $\alpha$ *and* $\beta$ must be true
 
+## negated disjunction
+
+* here is the tree rule for negated disjunction:
+
+. . .
+
+```{.tree}
+
+\Tree [.{$\lnot(\alpha \lor \beta) \checkmark$ \\ $\lnot \alpha$ \\ $\lnot \beta$}
+      ]
+
+```
+
+- let's think through the motivation for the rule in terms of truth tables
+* ask: what must be *true* if the negated disjunction is true?
+
+::: ttable2
+
+--------  -------  ------------------------------------
+$\alpha$  $\beta$           $\lnot(\alpha \lor \beta)$
+   T         T                       F
+   T         F                       F
+   F         T                       F
+   F         F                       T
+--------  -------  ------------------------------------
+
+:::
+
+* answer: $\lnot\alpha$ *and*  $\lnot\beta$ must be true
+* this one is easy if you remember the following equivalence:
+   * $\lnot(\alpha \lor \beta)$$\equiv$$(\lnot\alpha \land \lnot\beta)$ 
 
 ## negated conjunction
 
@@ -565,6 +566,7 @@ $\alpha$  $\beta$    $\lnot(\alpha \leftrightarrow \beta)$
 
 . . . 
 
+* answer: either both $\alpha$ and $\lnot\beta$ must be true or $\lnot\alpha$ and $\beta$ must be true.
 * this is easy if you remember the following equivalence:
    * $(\alpha \leftrightarrow \beta)$$\equiv$$((\alpha \land \lnot\beta) \lor (\lnot\alpha \land \beta))$
 

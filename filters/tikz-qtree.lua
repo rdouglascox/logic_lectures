@@ -8,6 +8,7 @@ local tikz_doc_template = [[
 \usepackage{fontspec}
 \setmainfont{Gill Sans}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \begin{document}
 \nopagecolor
 \begin{Huge}

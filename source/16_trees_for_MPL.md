@@ -622,7 +622,7 @@ PL
 
 ## this lecture
 
-* introducting the tree rules for MPL
+* introducing the tree rules for MPL
 * the rationale for the rules
 * finished trees, saturated paths
 

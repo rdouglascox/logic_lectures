@@ -142,7 +142,7 @@ whether it is satisfiable</li>
 <li>that is, suppose there is some assignment on which it is true</li>
 <li>what do we know?</li>
 <li>well, we know that the assignment is one on which both conjuncts
-must be satisfiable</li>
+must be satisfiable (and, in fact must be jointly satisfiable)</li>
 <li>for now, let’s just write out a list like this to keep track:</li>
 </ul>
 <div class="incremental">
@@ -256,7 +256,7 @@ cannot be true at once</li>
 
 <ul class="incremental">
 <li>our initial assumption was mistaken. the proposition is not
-satsfiable!</li>
+satisfiable!</li>
 <li>this method looks like a good one for refuting the initial
 assumption of satisfiability</li>
 <li>if we reach a contradiction on a path, we can reject that path</li>
@@ -353,7 +353,7 @@ from above</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c92d6824466be98.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="219.79" viewBox="0 0 218.25 219.79">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238.91" height="219.79" viewBox="0 0 238.91 219.79">
 <defs>
 <g>
 <g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0">
@@ -378,6 +378,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c9
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
 </g>
 <g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
+</g>
+<g id="glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-4-0">
 <path d="M 9.25 -11.125 L 12.0625 -11.125 L 7.484375 -5.65625 L 12.390625 0 L 9.578125 0 L 6.078125 -4 L 2.765625 0 L 0 0 L 4.6875 -5.65625 L 0 -11.125 L 2.765625 -11.125 L 6.078125 -7.3125 Z M 9.25 -11.125 "/>
 </g>
 </g>
@@ -421,6 +424,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c9
 <use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="210.575249" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="218.251" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="71.08" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -434,6 +440,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c9
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="154.057" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-0" x="67.285" y="80.693"/>
@@ -454,30 +463,33 @@ class="/Users/ryan/logic/phil1012_introductory_logic/0f8fee99ce127e9705dcb58d5c9
 <use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-0-1" x="150.176" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="104.823" y="110.581"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="157.852" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="95.676" y="140.469"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="115.151" y="110.581"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="112.333" y="140.469"/>
-</g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00163109 L 19.237182 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.014)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L -19.234548 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.014)"/>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="75.719" y="180.935"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="106.004" y="140.469"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="93.863" y="180.935"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="122.661" y="140.469"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L 19.237308 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 103.733, 160.014)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00150562 -0.00163109 L -19.234422 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 142.061, 160.014)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-2-2" x="86.047" y="180.935"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="87.208" y="210.823"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-0" x="104.191" y="180.935"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="123.293" y="180.935"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-4-0" x="97.536" y="210.823"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-3-0" x="125.536" y="210.823"/>
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-1-1" x="133.621" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph0f8fee99ce127e9705dcb58d5c92d6824466be98.svg-4-0" x="135.864" y="210.823"/>
 </g>
 </svg>
 
@@ -706,7 +718,7 @@ proposition</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/cbd7b453baf9eb24faf11e3fd6090054ead0e706.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="89.66" viewBox="0 0 218.25 89.66">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238.91" height="89.66" viewBox="0 0 238.91 89.66">
 <defs>
 <g>
 <g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0">
@@ -729,6 +741,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/cbd7b453baf9eb24faf11e3fd60
 </g>
 <g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2">
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -771,37 +786,40 @@ class="/Users/ryan/logic/phil1012_introductory_logic/cbd7b453baf9eb24faf11e3fd60
 <use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="210.575249" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="71.08" y="50.805"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-3-0" x="218.251" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="80.492" y="50.805"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="81.408" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-0" x="101.96" y="50.805"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="90.82" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="129.253" y="50.805"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-0" x="112.288" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="146.381" y="50.805"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="139.581" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="67.285" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="156.709" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="76.696" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-0" x="77.613" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1" x="96.953" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-0" x="87.024" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2" x="116.382093" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-1" x="107.281" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="133.048" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-2-2" x="126.710093" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="150.176" y="80.693"/>
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-1-1" x="143.376" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcbd7b453baf9eb24faf11e3fd6090054ead0e706.svg-0-1" x="160.504" y="80.693"/>
 </g>
 </svg>
 
@@ -816,7 +834,7 @@ class="/Users/ryan/logic/phil1012_introductory_logic/cbd7b453baf9eb24faf11e3fd60
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/846906ff5614fd6619858b0cb7dedad14f862c54.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="149.44" viewBox="0 0 218.25 149.44">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238.91" height="149.44" viewBox="0 0 238.91 149.44">
 <defs>
 <g>
 <g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0">
@@ -839,6 +857,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/846906ff5614fd6619858b0cb7d
 </g>
 <g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2">
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -881,19 +902,22 @@ class="/Users/ryan/logic/phil1012_introductory_logic/846906ff5614fd6619858b0cb7d
 <use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="210.575249" y="20.921"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="71.08" y="50.809"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-3-0" x="218.251" y="20.921"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="80.492" y="50.809"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="81.408" y="50.809"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-0" x="101.96" y="50.809"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="90.82" y="50.809"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="129.253" y="50.809"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-0" x="112.288" y="50.809"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="146.381" y="50.809"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="139.581" y="50.809"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="156.709" y="50.809"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-0" x="67.285" y="80.697"/>
@@ -914,13 +938,16 @@ class="/Users/ryan/logic/phil1012_introductory_logic/846906ff5614fd6619858b0cb7d
 <use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-0-1" x="150.176" y="80.697"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="104.823" y="110.585"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-3-0" x="157.852" y="80.697"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2" x="95.676" y="140.473"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-0" x="115.151" y="110.585"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="112.333" y="140.473"/>
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-2-2" x="106.004" y="140.473"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph846906ff5614fd6619858b0cb7dedad14f862c54.svg-1-1" x="122.661" y="140.473"/>
 </g>
 </svg>
 
@@ -943,7 +970,7 @@ on either side of the new branch</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534e43634dd6bd99.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="189.91" viewBox="0 0 218.25 189.91">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238.91" height="189.91" viewBox="0 0 238.91 189.91">
 <defs>
 <g>
 <g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0">
@@ -966,6 +993,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534
 </g>
 <g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2">
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
+</g>
+<g id="glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -1008,6 +1038,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534
 <use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="210.575249" y="20.925"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-3-0" x="218.251" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="71.08" y="50.813"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -1021,6 +1054,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="146.381" y="50.813"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-3-0" x="154.057" y="50.813"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-0" x="67.285" y="80.701"/>
@@ -1041,24 +1077,27 @@ class="/Users/ryan/logic/phil1012_introductory_logic/820ed2840c7fbf7145359072534
 <use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-0-1" x="150.176" y="80.701"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="104.823" y="110.589"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-3-0" x="157.852" y="80.701"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="95.676" y="140.477"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="115.151" y="110.589"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="112.333" y="140.477"/>
-</g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00144289 L 19.237182 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.022)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00144289 L -19.234548 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.022)"/>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="75.719" y="180.943"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="106.004" y="140.477"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="93.863" y="180.943"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="122.661" y="140.477"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00144289 L 19.237308 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 103.733, 160.022)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00150562 -0.00144289 L -19.234422 9.616521 " transform="matrix(0.996264, 0, 0, -0.996264, 142.061, 160.022)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-2-2" x="86.047" y="180.943"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="123.293" y="180.943"/>
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-0" x="104.191" y="180.943"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph820ed2840c7fbf7145359072534e43634dd6bd99.svg-1-1" x="133.621" y="180.943"/>
 </g>
 </svg>
 
@@ -1073,7 +1112,8 @@ which are simpler than those we began with</li>
 <li>the process ends when we cannot apply any more rules</li>
 <li>whenever we encounter a contradiction on a path we immediately
 “close” the path/branch with a cross</li>
-<li>there’s no point continuing with that path</li>
+<li>there’s no point continuing with that path because not all
+propositions on that path can be true together</li>
 </ul>
 </div>
 <div class="slide section level2">
@@ -1084,7 +1124,7 @@ which are simpler than those we began with</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="218.25" height="219.79" viewBox="0 0 218.25 219.79">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="238.91" height="219.79" viewBox="0 0 238.91 219.79">
 <defs>
 <g>
 <g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0">
@@ -1109,6 +1149,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743acc
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
 </g>
 <g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
+</g>
+<g id="glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-4-0">
 <path d="M 9.25 -11.125 L 12.0625 -11.125 L 7.484375 -5.65625 L 12.390625 0 L 9.578125 0 L 6.078125 -4 L 2.765625 0 L 0 0 L 4.6875 -5.65625 L 0 -11.125 L 2.765625 -11.125 L 6.078125 -7.3125 Z M 9.25 -11.125 "/>
 </g>
 </g>
@@ -1152,6 +1195,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743acc
 <use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="210.575249" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="218.251" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="71.08" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -1165,6 +1211,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743acc
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="146.381" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="154.057" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-0" x="67.285" y="80.693"/>
@@ -1185,30 +1234,33 @@ class="/Users/ryan/logic/phil1012_introductory_logic/2cfb508a0d62ddfc55f7c743acc
 <use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-0-1" x="150.176" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="104.823" y="110.581"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="157.852" y="80.693"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="95.676" y="140.469"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="115.151" y="110.581"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="112.333" y="140.469"/>
-</g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00125469 -0.00163109 L 19.237182 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 93.405, 160.014)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L -19.234548 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 131.733, 160.014)"/>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="75.719" y="180.935"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="106.004" y="140.469"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="93.863" y="180.935"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="122.661" y="140.469"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00138016 -0.00163109 L 19.237308 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 103.733, 160.014)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00150562 -0.00163109 L -19.234422 9.616333 " transform="matrix(0.996264, 0, 0, -0.996264, 142.061, 160.014)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-2-2" x="86.047" y="180.935"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="87.208" y="210.823"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-0" x="104.191" y="180.935"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="123.293" y="180.935"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-4-0" x="97.536" y="210.823"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-3-0" x="125.536" y="210.823"/>
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-1-1" x="133.621" y="180.935"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph2cfb508a0d62ddfc55f7c743accbaec0146defd2.svg-4-0" x="135.864" y="210.823"/>
 </g>
 </svg>
 
@@ -1256,7 +1308,7 @@ each connective</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/433ce19a55169223fc9929fab255c6fa6d73428b.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74.92" height="80.7" viewBox="0 0 74.92 80.7">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95.58" height="80.7" viewBox="0 0 95.58 80.7">
 <defs>
 <g>
 <g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-0">
@@ -1274,10 +1326,10 @@ class="/Users/ryan/logic/phil1012_introductory_logic/433ce19a55169223fc9929fab25
 <g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-2-0">
 <path d="M 1.9375 -12.53125 L 7.296875 0 L 9.125 0 L 14.46875 -12.53125 L 12.921875 -12.53125 L 8.203125 -2 L 3.484375 -12.53125 Z M 1.9375 -12.53125 "/>
 </g>
+<g id="glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
-<clipPath id="clip-0">
-<path clip-rule="nonzero" d="M 68 3 L 74.921875 3 L 74.921875 24 L 68 24 Z M 68 3 "/>
-</clipPath>
+</g>
 </defs>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-0" x="6.887" y="20.924"/>
@@ -1291,18 +1343,19 @@ class="/Users/ryan/logic/phil1012_introductory_logic/433ce19a55169223fc9929fab25
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1" x="52.622" y="20.924"/>
 </g>
-<g clip-path="url(#clip-0)">
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-0-1" x="67.246" y="20.924"/>
 </g>
-</g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0019134 -0.000501875 L 13.584 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 27.373, 50.812)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00150562 -0.000501875 L -13.580487 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 54.436, 50.812)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-0" x="19.578" y="71.734"/>
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-3-0" x="74.922" y="20.924"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00178793 -0.000501875 L 13.584125 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 37.701, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00163109 -0.000501875 L -13.580361 6.790494 " transform="matrix(0.996264, 0, 0, -0.996264, 64.764, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-0" x="29.906" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1" x="47.124" y="71.734"/>
+<use xlink:href="#glyph433ce19a55169223fc9929fab255c6fa6d73428b.svg-1-1" x="57.452" y="71.734"/>
 </g>
 </svg>
 
@@ -1312,6 +1365,8 @@ class="/Users/ryan/logic/phil1012_introductory_logic/433ce19a55169223fc9929fab25
 tables</li>
 <li>ask: what must be <em>true</em> if the disjunction is true?</li>
 </ul>
+</div>
+<div class="incremental">
 <div class="ttable2">
 <table>
 <tbody>
@@ -1355,6 +1410,110 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 </ul>
 </div>
 </div>
+<div id="conjunction" class="slide section level2">
+<h1>conjunction</h1>
+<ul class="incremental">
+<li>here is the tree rule for conjunction:</li>
+</ul>
+<div class="incremental">
+<div
+class="/Users/ryan/logic/phil1012_introductory_logic/91dc16ef11a487553c968bb091f3643c421004aa.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="95.58" height="89.66" viewBox="0 0 95.58 89.66">
+<defs>
+<g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0">
+<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1">
+<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0">
+<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1">
+<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0">
+<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
+</g>
+<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
+</g>
+</g>
+</defs>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0" x="6.887" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="14.563" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0" x="33.183" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="52.622" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1" x="67.246" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-3-0" x="74.922" y="20.917"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="43.437" y="50.805"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="43.92" y="80.693"/>
+</g>
+</svg>
+
+</div>
+<ul class="incremental">
+<li>let’s think through the motivation for the rule in terms of truth
+tables</li>
+<li>ask: what must be <em>true</em> if the conjunction is true?</li>
+</ul>
+<div class="ttable2">
+<table>
+<tbody>
+<tr class="odd">
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
+<td
+align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td>T</td>
+<td align="center">T</td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>T</td>
+<td align="center">F</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>F</td>
+<td align="center">F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="incremental">
+<p>answer:
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+<em>and</em>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+must be true</p>
+</div>
+</div>
 <div id="negated-disjunction" class="slide section level2">
 <h1>negated disjunction</h1>
 <ul class="incremental">
@@ -1363,7 +1522,7 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/d4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91.33" height="89.66" viewBox="0 0 91.33 89.66">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="111.99" height="89.66" viewBox="0 0 111.99 89.66">
 <defs>
 <g>
 <g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0">
@@ -1383,6 +1542,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/d4db91eb29012b0d27d1b163cdb
 </g>
 <g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1">
 <path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -1405,16 +1567,19 @@ class="/Users/ryan/logic/phil1012_introductory_logic/d4db91eb29012b0d27d1b163cdb
 <use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-1-1" x="83.655" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="33.109" y="50.805"/>
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-3-0" x="91.331" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-0" x="49.518" y="50.805"/>
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="43.437" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="33.592" y="80.693"/>
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-0" x="59.846" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1" x="50.001" y="80.693"/>
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-0-0" x="43.92" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphd4db91eb29012b0d27d1b163cdb5e3710f940cdb.svg-2-1" x="60.329" y="80.693"/>
 </g>
 </svg>
 
@@ -1470,109 +1635,6 @@ must be true</li>
 </ul>
 </div>
 </div>
-<div id="conjunction" class="slide section level2">
-<h1>conjunction</h1>
-<ul class="incremental">
-<li>here is the tree rule for conjunction:</li>
-</ul>
-<div class="incremental">
-<div
-class="/Users/ryan/logic/phil1012_introductory_logic/91dc16ef11a487553c968bb091f3643c421004aa.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74.92" height="89.66" viewBox="0 0 74.92 89.66">
-<defs>
-<g>
-<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0">
-<path d="M 6.4375 -16.96875 C 5.046875 -16.109375 4.3125 -15.515625 3.53125 -14.59375 C 1.78125 -12.515625 0.828125 -9.859375 0.828125 -7.078125 C 0.828125 -4.453125 1.65625 -1.984375 3.203125 0.0625 C 4.078125 1.171875 4.859375 1.859375 6.4375 2.828125 L 6.4375 1.984375 C 4.125 -0.046875 3.203125 -2.65625 3.203125 -7.078125 C 3.203125 -11.5 4.125 -14.078125 6.4375 -16.109375 Z M 6.4375 -16.96875 "/>
-</g>
-<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1">
-<path d="M 1.25 2.828125 C 2.625 1.984375 3.359375 1.390625 4.15625 0.4375 C 5.90625 -1.609375 6.84375 -4.28125 6.84375 -7.078125 C 6.84375 -9.703125 6.015625 -12.171875 4.46875 -14.203125 C 3.59375 -15.328125 2.8125 -16.015625 1.25 -16.96875 L 1.25 -16.109375 C 3.546875 -14.078125 4.46875 -11.5 4.46875 -7.078125 C 4.46875 -2.625 3.546875 -0.046875 1.25 1.984375 Z M 1.25 2.828125 "/>
-</g>
-<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0">
-<path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
-</g>
-<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1">
-<path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
-</g>
-<g id="glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0">
-<path d="M 3.484375 0 L 8.203125 -10.53125 L 12.921875 0 L 14.46875 0 L 9.125 -12.53125 L 7.296875 -12.53125 L 1.9375 0 Z M 3.484375 0 "/>
-</g>
-</g>
-<clipPath id="clip-0">
-<path clip-rule="nonzero" d="M 68 3 L 74.921875 3 L 74.921875 24 L 68 24 Z M 68 3 "/>
-</clipPath>
-</defs>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-0" x="6.887" y="20.917"/>
-</g>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="14.563" y="20.917"/>
-</g>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-2-0" x="33.183" y="20.917"/>
-</g>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="52.622" y="20.917"/>
-</g>
-<g clip-path="url(#clip-0)">
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-0-1" x="67.246" y="20.917"/>
-</g>
-</g>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-0" x="33.109" y="50.805"/>
-</g>
-<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph91dc16ef11a487553c968bb091f3643c421004aa.svg-1-1" x="33.592" y="80.693"/>
-</g>
-</svg>
-
-</div>
-<ul class="incremental">
-<li>let’s think through the motivation for the rule in terms of truth
-tables</li>
-<li>ask: what must be <em>true</em> if the conjunction is true?</li>
-</ul>
-<div class="ttable2">
-<table>
-<tbody>
-<tr class="odd">
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></td>
-<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math></td>
-<td
-align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \land \beta)</annotation></semantics></math></td>
-</tr>
-<tr class="even">
-<td>T</td>
-<td>T</td>
-<td align="center">T</td>
-</tr>
-<tr class="odd">
-<td>T</td>
-<td>F</td>
-<td align="center">F</td>
-</tr>
-<tr class="even">
-<td>F</td>
-<td>T</td>
-<td align="center">F</td>
-</tr>
-<tr class="odd">
-<td>F</td>
-<td>F</td>
-<td align="center">F</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="incremental">
-<p>answer:
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
-<em>and</em>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
-must be true</p>
-</div>
-</div>
 <div id="negated-conjunction" class="slide section level2">
 <h1>negated conjunction</h1>
 <ul class="incremental">
@@ -1581,7 +1643,7 @@ must be true</p>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/71fc6691d662dc9b71790da75456a8fdf0df5b99.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91.33" height="80.7" viewBox="0 0 91.33 80.7">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="111.99" height="80.7" viewBox="0 0 111.99 80.7">
 <defs>
 <g>
 <g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0">
@@ -1601,6 +1663,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/71fc6691d662dc9b71790da7545
 </g>
 <g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1">
 <path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -1622,19 +1687,22 @@ class="/Users/ryan/logic/phil1012_introductory_logic/71fc6691d662dc9b71790da7545
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-1-1" x="83.655" y="20.924"/>
 </g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0019134 -0.000501875 L 21.817886 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 27.373, 50.812)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00125469 -0.000501875 L -21.817134 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 70.845, 50.812)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="11.373" y="71.734"/>
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-3-0" x="91.331" y="20.924"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00178793 -0.000501875 L 21.818012 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 37.701, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00112922 -0.000501875 L -21.817008 10.907438 " transform="matrix(0.996264, 0, 0, -0.996264, 81.173, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="21.701" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-0" x="27.782" y="71.734"/>
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-0" x="38.11" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="55.328" y="71.734"/>
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-0-0" x="65.656" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1" x="71.737" y="71.734"/>
+<use xlink:href="#glyph71fc6691d662dc9b71790da75456a8fdf0df5b99.svg-2-1" x="82.065" y="71.734"/>
 </g>
 </svg>
 
@@ -1699,7 +1767,7 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/b9915540b371a07fc5d68ab26cdcaf39fc84b088.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.74" height="80.7" viewBox="0 0 83.74 80.7">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104.4" height="80.7" viewBox="0 0 104.4 80.7">
 <defs>
 <g>
 <g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-0">
@@ -1720,6 +1788,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/b9915540b371a07fc5d68ab26cd
 <g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-1">
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
 </g>
+<g id="glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
+</g>
 </g>
 </defs>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -1737,16 +1808,19 @@ class="/Users/ryan/logic/phil1012_introductory_logic/b9915540b371a07fc5d68ab26cd
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-0-1" x="76.065" y="20.924"/>
 </g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000313672 -0.000501875 L 17.698622 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 27.68, 50.812)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00122332 -0.000501875 L -17.701633 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 62.948, 50.812)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-1" x="11.68" y="71.734"/>
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-3-0" x="83.741" y="20.924"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000188203 -0.000501875 L 17.698747 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 38.008, 50.812)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00134879 -0.000501875 L -17.701508 8.848966 " transform="matrix(0.996264, 0, 0, -0.996264, 73.276, 50.812)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-2-1" x="22.008" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-0" x="28.089" y="71.734"/>
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-0" x="38.417" y="71.734"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-1" x="55.635" y="71.734"/>
+<use xlink:href="#glyphb9915540b371a07fc5d68ab26cdcaf39fc84b088.svg-1-1" x="65.963" y="71.734"/>
 </g>
 </svg>
 
@@ -1812,7 +1886,7 @@ mind:
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.15" height="89.66" viewBox="0 0 100.15 89.66">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120.81" height="89.66" viewBox="0 0 120.81 89.66">
 <defs>
 <g>
 <g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0">
@@ -1832,6 +1906,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/12ae7f0a9ba85301d3b3f87208a
 </g>
 <g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1">
 <path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -1854,13 +1931,16 @@ class="/Users/ryan/logic/phil1012_introductory_logic/12ae7f0a9ba85301d3b3f87208a
 <use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-1-1" x="92.474" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-0" x="45.723" y="50.805"/>
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-3-0" x="100.15" y="20.917"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0" x="38.002" y="80.693"/>
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-0" x="56.051" y="50.805"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1" x="54.411" y="80.693"/>
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-0-0" x="48.33" y="80.693"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph12ae7f0a9ba85301d3b3f87208af404d2f7d7499.svg-2-1" x="64.739" y="80.693"/>
 </g>
 </svg>
 
@@ -1925,7 +2005,7 @@ must be true</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/acc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="83.74" height="110.59" viewBox="0 0 83.74 110.59">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="104.4" height="110.59" viewBox="0 0 104.4 110.59">
 <defs>
 <g>
 <g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-0">
@@ -1946,6 +2026,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/acc9e470cf4c3043b771e7fcb17
 <g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1">
 <path d="M 1.921875 -10.265625 L 1.921875 -8.9375 L 12.90625 -8.9375 L 12.90625 -2.59375 L 14.453125 -2.59375 L 14.453125 -10.265625 Z M 1.921875 -10.265625 "/>
 </g>
+<g id="glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
+</g>
 </g>
 </defs>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
@@ -1963,25 +2046,28 @@ class="/Users/ryan/logic/phil1012_introductory_logic/acc9e470cf4c3043b771e7fcb17
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-0-1" x="76.065" y="20.926"/>
 </g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000501875 0.00150562 L 17.941529 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 27.438, 50.814)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00150562 0.00150562 L -17.943537 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 63.189, 50.814)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="19.643" y="71.736"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-3-0" x="83.741" y="20.926"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000376406 0.00150562 L 17.941655 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 37.766, 50.814)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00138016 0.00150562 L -17.943411 8.972521 " transform="matrix(0.996264, 0, 0, -0.996264, 73.517, 50.814)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="29.971" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="20.126" y="101.624"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="30.454" y="101.624"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="47.189" y="71.736"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="57.517" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="63.598" y="71.736"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-0" x="73.926" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="47.673" y="101.624"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-2-1" x="58.001" y="101.624"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="64.082" y="101.624"/>
+<use xlink:href="#glyphacc9e470cf4c3043b771e7fcb17e93bea01ff38e.svg-1-1" x="74.41" y="101.624"/>
 </g>
 </svg>
 
@@ -2048,7 +2134,7 @@ must be true.</li>
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/cba41b9310f3eff0866700bbbec7b5aaad9992fa.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.15" height="110.59" viewBox="0 0 100.15 110.59">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120.81" height="110.59" viewBox="0 0 120.81 110.59">
 <defs>
 <g>
 <g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0">
@@ -2068,6 +2154,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/cba41b9310f3eff0866700bbbec
 </g>
 <g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1">
 <path d="M 10.21875 -16.5625 C 7.1875 -16.5625 4.9375 -13.140625 4.328125 -10.28125 L 0.953125 5.40625 L 3.078125 4.78125 L 4.328125 -1 C 4.890625 -0.171875 6.109375 0.265625 7.125 0.265625 C 10.796875 0.265625 13.609375 -3.0625 13.609375 -6.734375 C 13.609375 -8.40625 12.8125 -10.203125 10.21875 -10.328125 C 12.140625 -10.78125 13.5625 -12.1875 13.5625 -14.140625 C 13.5625 -14.84375 13.296875 -15.421875 12.8125 -15.890625 C 12.203125 -16.4375 11.09375 -16.5625 10.21875 -16.5625 Z M 11.359375 -5.71875 C 10.640625 -2.390625 9.6875 -0.5625 7.234375 -0.5625 C 6.203125 -0.5625 5.0625 -1.5625 5.0625 -3.703125 C 5.0625 -4.1875 5.125 -4.75 5.265625 -5.359375 L 6.453125 -10.796875 C 6.828125 -12.609375 7.609375 -15.734375 9.96875 -15.734375 C 11.203125 -15.734375 11.6875 -14.953125 11.6875 -13.875 C 11.6875 -12.71875 11.296875 -10.703125 9.53125 -10.703125 C 8.703125 -10.703125 8.25 -10.9375 7.984375 -10.9375 C 7.5625 -10.9375 7.359375 -10.6875 7.28125 -10.265625 C 7.25 -10.15625 7.234375 -10.0625 7.234375 -9.96875 C 7.234375 -9.703125 7.390625 -9.59375 7.703125 -9.59375 C 8.015625 -9.59375 8.515625 -9.8125 9.328125 -9.8125 C 10.734375 -9.8125 11.453125 -8.171875 11.453125 -6.65625 C 11.453125 -6.34375 11.421875 -6 11.359375 -5.71875 Z M 11.359375 -5.71875 "/>
+</g>
+<g id="glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-3-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -2089,25 +2178,28 @@ class="/Users/ryan/logic/phil1012_introductory_logic/cba41b9310f3eff0866700bbbec
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
 <use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-1-1" x="92.474" y="20.926"/>
 </g>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000752812 0.00150562 L 21.819047 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 31.782, 50.814)"/>
-<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.0000941016 0.00150562 L -21.815973 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 75.254, 50.814)"/>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="23.987" y="71.736"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-3-0" x="100.15" y="20.926"/>
+</g>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.000627344 0.00150562 L 21.819172 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 42.11, 50.814)"/>
+<path fill="none" stroke-width="0.39998" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.0000313672 0.00150562 L -21.815848 10.909445 " transform="matrix(0.996264, 0, 0, -0.996264, 85.582, 50.814)"/>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="34.315" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="16.266" y="101.624"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="26.594" y="101.624"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="32.675" y="101.624"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="43.003" y="101.624"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="59.254" y="71.736"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-0-0" x="69.582" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="75.663" y="71.736"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-0" x="85.991" y="71.736"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="67.942" y="101.624"/>
+<use xlink:href="#glyphcba41b9310f3eff0866700bbbec7b5aaad9992fa.svg-2-1" x="78.27" y="101.624"/>
 </g>
 </svg>
 
@@ -2151,6 +2243,15 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 </div>
 <div class="incremental">
 <ul class="incremental">
+<li>answer: either both
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\lnot\beta</annotation></semantics></math>
+must be true or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>¬</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">\lnot\alpha</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>
+must be true.</li>
 <li>this is easy if you remember the following equivalence:
 <ul class="incremental">
 <li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>↔</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\alpha \leftrightarrow \beta)</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>≡</mo><annotation encoding="application/x-tex">\equiv</annotation></semantics></math><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>∧</mo><mi>¬</mi><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>∨</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>¬</mi><mi>α</mi><mo>∧</mo><mi>β</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">((\alpha \land \lnot\beta) \lor (\lnot\alpha \land \beta))</annotation></semantics></math></li>
@@ -2166,7 +2267,7 @@ align="center"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"
 <div class="incremental">
 <div
 class="/Users/ryan/logic/phil1012_introductory_logic/39dd1eefeffa4a338369b1c8b32202eef67c3845.svg">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55.3" height="59.78" viewBox="0 0 55.3 59.78">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="75.95" height="59.78" viewBox="0 0 75.95 59.78">
 <defs>
 <g>
 <g id="glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-0-0">
@@ -2174,6 +2275,9 @@ class="/Users/ryan/logic/phil1012_introductory_logic/39dd1eefeffa4a338369b1c8b32
 </g>
 <g id="glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0">
 <path d="M 11.21875 -6 L 14.59375 -10.9375 L 12.96875 -10.9375 L 11.140625 -7.390625 C 11.140625 -10.375 10.3125 -11.203125 7.90625 -11.203125 C 3.59375 -11.203125 1.703125 -6.609375 1.703125 -3.375 C 1.703125 -1.421875 2.546875 0.265625 4.96875 0.265625 C 6.625 0.265625 8.015625 -1.359375 8.984375 -2.765625 C 8.96875 -2.546875 8.96875 -2.328125 8.96875 -2.09375 C 8.96875 -1.421875 9.0625 -0.796875 9.328125 -0.359375 C 9.578125 0.046875 9.859375 0.265625 10.375 0.265625 C 10.90625 0.265625 11.671875 0.09375 12.25 -0.359375 C 12.671875 -0.6875 13.546875 -1.515625 14.140625 -2.9375 L 13.609375 -3.25 C 13.03125 -2.125 12.09375 -0.890625 11.609375 -0.890625 C 10.984375 -0.890625 10.984375 -2.046875 10.984375 -2.59375 C 10.984375 -3.5625 11.09375 -4.859375 11.21875 -6 Z M 9.109375 -4.484375 C 7.9375 -2.609375 6.78125 -0.9375 5.3125 -0.9375 C 4.1875 -0.9375 3.84375 -2.046875 3.84375 -3.296875 C 3.84375 -5.890625 5.21875 -10.421875 7.921875 -10.421875 C 8.984375 -10.421875 9.296875 -8.953125 9.296875 -7.28125 C 9.296875 -6.34375 9.21875 -5.328125 9.109375 -4.484375 Z M 9.109375 -4.484375 "/>
+</g>
+<g id="glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-2-0">
+<path d="M 4.3125 -6.515625 C 4.09375 -6.859375 4.0625 -6.890625 3.921875 -6.890625 C 3.34375 -6.890625 2.078125 -6.09375 2.078125 -5.671875 C 2.078125 -5.625 2.078125 -5.578125 2.28125 -5.25 L 5.421875 -0.078125 C 5.546875 0.15625 5.796875 0.546875 5.828125 0.5625 C 5.875 0.671875 6 0.671875 6.125 0.671875 C 6.640625 0.671875 7.8125 0 7.9375 -0.515625 C 8.71875 -4.234375 10.1875 -7.78125 12.421875 -10.859375 C 13.671875 -12.59375 15.359375 -14.546875 17.8125 -16.375 C 18.234375 -16.703125 18.53125 -16.921875 18.53125 -17.15625 C 18.53125 -17.328125 18.40625 -17.328125 18.265625 -17.328125 C 17.09375 -17.328125 13.5625 -13.984375 12.140625 -12.3125 C 9.609375 -9.34375 7.953125 -6.515625 6.640625 -2.703125 Z M 4.3125 -6.515625 "/>
 </g>
 </g>
 </defs>
@@ -2185,7 +2289,10 @@ class="/Users/ryan/logic/phil1012_introductory_logic/39dd1eefeffa4a338369b1c8b32
 <use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0" x="39.705" y="20.925"/>
 </g>
 <g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
-<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0" x="23.296" y="50.813"/>
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-2-0" x="55.296" y="20.925"/>
+</g>
+<g fill="rgb(0%, 0%, 0%)" fill-opacity="1">
+<use xlink:href="#glyph39dd1eefeffa4a338369b1c8b32202eef67c3845.svg-1-0" x="33.624" y="50.813"/>
 </g>
 </svg>
 

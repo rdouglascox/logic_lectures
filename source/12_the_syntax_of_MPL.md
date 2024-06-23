@@ -284,4 +284,4 @@ subtitle: phil1012 introductory logic
 
 ## next lecture
 
-* [lecture 13, lost in translation 2](13_lost_in_translation_2.html)
+<!-- * [lecture 13, lost in translation 2](13_lost_in_translation_2.html) -->
